@@ -71,22 +71,22 @@ if (isset($_POST['Street']))
 elseif (isset($_POST['remove']))
 {
 	$remove = $_POST['remove'];
-	$query = "DELETE FROM Address WHERE id = \"$remove\"";
+	$query = "DELETE FROM Student WHERE id = \"$remove\"";
 	$result = mysql_query ($query, $DBconn);
 }
-//change street of address if update was clicked and if post is not empty
-elseif (isset($_POST['UpdateS']))
+//change fname of student if update was clicked and if post is not empty
+elseif (isset($_POST['UpdateF']))
 {
-	if(!empty($_POST['UpdatedStreet']))
+	if(!empty($_POST['Fname']))
 {
-	$update = $_POST['UpdateS'];
-	$UpdateStreet= $_POST['UpdatedStreet'];
-	$query = "UPDATE Address SET Street = \"$UpdateStreet\" WHERE id = $update;";
+	$update = $_POST['UpdateF'];
+	$UpdateFname= $_POST['UpdatedFname'];
+	$query = "UPDATE Student SET Fname = \"$UpdateFname\" WHERE id = $update;";
         $result = mysql_query($query, $DBconn);
 }
-	if(empty($_POST['UpdatedStreet']))
+	if(empty($_POST['UpdatedFname']))
 {
-	throw new InvalidArgumentException('Invalid Street');
+	throw new InvalidArgumentException('Invalid Fname');
 }
 }
 //change city of address if update was clicked and if post is not empty
