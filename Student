@@ -1,1 +1,192 @@
+<html>
+<hr>
+<table rules=all border=10>
+<tr>
+<td bgcolor=black colspan=8 align=center><font color=white>Existing Users
+<tr>
+<td bgcolor=green>id
+<td bgcolor=green>First Name
+<td bgcolor=yellow>Update First Name
+<td bgcolor=green>Last Name
+<td bgcolor=yellow>Update Last Name
+<td bgcolor=green>Address Id
+<td bgcolor=yellow>Update Address Id
+<td bgcolor=green>Shirt Size
+<td bgcolor=yellow>Update Shirt Size
+<td bgcolor=green>School
+<td bgcolor=yellow>Update School
+<td bgcolor=green>Parent Id
+<td bgcolor=yellow>Update Parent Id
+<td bgcolor=green>Grade
+<td bgcolor=yellow>Update Grade
+<td bgcolor=green>Gender
+<td bgcolor=yellow>Update Gender
+<td bgcolor=green>Ethnicity
+<td bgcolor=yellow>Update Ethnicity
+<td bgcolor=green>Safe Pickup
+<td bgcolor=yellow>Update Safe Pickup
+<td bgcolor=green>No Pickup
+<td bgcolor=yellow>Update No Pickup
+<td bgcolor=green>Camp Id
+<td bgcolor=yellow>Update Camp Id
+<td bgcolor=green>Scholarship?
+<td bgcolor=yellow>Update Scholarship
+<td bgcolor=green>Emergency Id
+<td bgcolor=yellow>Update Emergency Id
+<td bgcolor=green>Accepted
+<td bgcolor=yellow>Update Accepted
+<td bgcolor=red>Delete
 
+
+
+<?php
+// connect the database
+$DBconn = mysql_connect ("daytona.birdnest.org", "my.morriss11", "@y#mln52")
+          or exit ("failed to connect to mysql");
+$db_selected = mysql_select_db("my_morriss11", $DBconn);
+if (!$db_selected)
+   die ("Can't use my_paternom3 : " . mysql_error());
+// if the form has data, then insert a new record
+if (isset($_POST['Street']))
+  {
+   $Fname= $_POST['Fname'];
+   $Lname = $_POST['Lname'];
+   $Address_id= $_POST['Address_id'];
+   $Shirt_Size= $_POST['Shirt_Size'];
+   $School = $_POST['School'];
+   $Parent_id = $_POST['Parent_id'];
+   $Grade = $_POST['Grade'];
+   $Gender = $_POST['Gender'];
+   $Ethnicity = $_POST['Ethnicity'];
+   $Safe_PU = $_POST['Safe_PU'];
+   $No_PU = $_POST['Camp_id'];
+   $Camp_id = $_POST['Camp_id'];
+   $Scholarship = $_POST['Scholarship'];
+   $Emerge_id = $_POST['Emerge_id'];
+   $Accepted = $_POST['Accepted'];
+   $query = "INSERT INTO Student VALUES (NULL,'$Fname','$Lname','$Address_id','$Shirt_Size','$School','$Parent_id','$Grade','$Gender',
+   '$Ethnicity','$Safe_PU','$No_PU','$Camp_id','$Scholarship','$Emerge_id','$Accepted')";
+   $result = mysql_query ($query, $DBconn);
+  }
+elseif (isset($_POST['remove']))
+{
+	$remove = $_POST['remove'];
+	$query = "DELETE FROM Address WHERE id = \"$remove\"";
+	$result = mysql_query ($query, $DBconn);
+}
+//change street of address if update was clicked and if post is not empty
+elseif (isset($_POST['UpdateS']))
+{
+	if(!empty($_POST['UpdatedStreet']))
+{
+	$update = $_POST['UpdateS'];
+	$UpdateStreet= $_POST['UpdatedStreet'];
+	$query = "UPDATE Address SET Street = \"$UpdateStreet\" WHERE id = $update;";
+        $result = mysql_query($query, $DBconn);
+}
+	if(empty($_POST['UpdatedStreet']))
+{
+	throw new InvalidArgumentException('Invalid Street');
+}
+}
+//change city of address if update was clicked and if post is not empty
+elseif (isset($_POST['UpdateC']))
+{
+	if(!empty($_POST['UpdatedCity']))
+{
+	$update = $_POST['UpdateC'];
+	$UpdateCity= $_POST['UpdatedCity'];
+	$query = "UPDATE Address SET City = \"$UpdateCity\" WHERE id = $update;";
+        $result = mysql_query($query, $DBconn);
+}
+	if(empty($_POST['UpdatedCity']))
+{
+	throw new InvalidArgumentException('Invalid City');
+}
+}
+//change title of duration if update was clicked and if post is not empty
+elseif (isset($_POST['UpdateS']))
+{
+	if(!empty($_POST['UpdatedState']))
+{
+	$update = $_POST['UpdateS'];
+	$UpdateState= $_POST['UpdatedState'];
+	$query = "UPDATE Address SET State = \"$UpdateState\" WHERE id = $update;";
+        $result = mysql_query($query, $DBconn);
+}
+	if(empty($_POST['UpdatedState']))
+{
+	throw new InvalidArgumentException('Invalid Duration');
+}
+}
+//change title of artist if update was clicked and if post is not empty
+elseif (isset($_POST['UpdateZ']))
+{
+	if(!empty($_POST['UpdatedZip']))
+{
+	$update = $_POST['UpdateZ'];
+	$UpdateZip = $_POST['UpdatedZip'];
+	$query = "UPDATE Address SET Zip = $UpdateZip WHERE id = $update;";
+        $result = mysql_query($query, $DBconn);
+}
+	if(empty($_POST['UpdatedZip']))
+{
+	throw new InvalidArgumentException('Invalid Zip');
+}
+}
+// submit and process the query for existing Artists
+$query = "select * from Address;";
+$result = mysql_query ($query, $DBconn);
+while ($row = mysql_fetch_object ($result))
+{
+   echo ("<tr> <td> $row->id");
+   echo("<td> $row->Street");
+   echo ("<form action=crudtest.php method = post>");
+   echo ("<td> <input type=submit value=Update>");
+   echo ("<input type='hidden' name ='UpdateS' value = $row->id>");  
+   echo ("Change Street <input type=text name='UpdatedStreet'>");
+   echo "</form>";
+   echo("<td> $row->City");
+   echo ("<form action=crudtest.php method = post>");
+   echo ("<td> <input type=submit value=Update>");
+   echo ("<input type='hidden' name ='UpdateC' value = $row->id>");  
+   echo ("Change City <input type=text name='UpdatedCity'>");
+   echo "</form>";
+   echo ("<td> $row->State");
+   echo ("<form action=crudtest.php method = post>");
+   echo ("<td> <input type=submit value=Update>");
+   echo ("<input type='hidden' name ='UpdateS' value = $row->id>");  
+   echo ("Change State <input type=text name='UpdatedState'>");
+   echo "</form>";
+   echo ("<td> $row->Zip");
+   echo ("<form action=crudtest.php method = post>");
+   echo ("<td> <input type=submit value=Update>");
+   echo ("<input type='hidden' name ='UpdateZ' value = $row->id>");  
+   echo ("Change Zip <input type=text name='UpdatedZip'>");
+   echo "</form>";
+   echo ("<form action=crudtest.php method =post>");
+   echo ("<td> <input type=submit value=Delete>");
+   echo ("<input type='hidden' name ='remove' value = $row->id>");
+   echo "</form>";
+}
+?>
+
+</table>
+<P>
+<hr>
+<P>
+
+<form action=crudtest.php method=post>
+<pre>
+       New Address Info:
+        Streey <input type=text name="Street">
+	City <input type=text name="City">
+	State <input type=text name="State">
+	Zip <input type=text name="Zip">
+       <input type=submit value="Add Record">
+<a href ="JoinedTable.php"> Addresses And Zips Table </a>
+</pre>
+</form>
+<P>
+<hr>
+</html>
