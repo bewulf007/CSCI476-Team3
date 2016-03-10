@@ -7,9 +7,17 @@
 <tr>
 <td bgcolor=black colspan=8 align=center><font color=white>Existing Users
 <tr>
-<td bgcolor=green>id
-<td bgcolor=green>Street
-<td bgcolor=yellow>Update Street
+<td bgcolor=green>Fname
+<td bgcolor=yellow>Update Fname
+<td bgcolor=green>Lname
+<td bgcolor=yellow>Update Lname
+<td bgcolor=green>AddressID
+<td bgcolor=yellow>Update Address ID
+<td bgcolor=green>Email
+<td bgcolor=yellow>Update Email
+<td bgcolor=green>Phone
+<td bgcolor=yellow>Update Phone
+<td bgcolor=red>Delete
 
 <?php
 // connect the database
@@ -66,6 +74,21 @@ elseif (isset($_POST['UpdateLN']))
 	throw new InvalidArgumentException('Invalid Lname');
 }
 }
+//change AddressID of Parent if update was clicked and if post is not empty
+elseif (isset($_POST['UpdateA']))
+{
+	if(!empty($_POST['UpdatedAddressID']))
+{
+	$update = $_POST['UpdateA'];
+	$UpdateAddressID= $_POST['UpdatedAddressID'];
+	$query = "UPDATE Parent SET AddressID = \"$UpdateAddressID\" WHERE id = $update;";
+        $result = mysql_query($query, $DBconn);
+}
+	if(empty($_POST['UpdatedAddressID']))
+{
+	throw new InvalidArgumentException('Invalid AddressID');
+}
+}
 //change Email of Parent if update was clicked and if post is not empty
 elseif (isset($_POST['UpdateE']))
 {
@@ -96,3 +119,61 @@ elseif (isset($_POST['UpdateP']))
 	throw new InvalidArgumentException('Invalid Phone');
 }
 }
+// submit and process the query for exisiting Parents
+
+$query = "select * from Parent;";
+$result = mysql_query ($query, $DBconn);
+while ($row = mysql_fetch_object ($result))
+{
+   echo ("<tr> <td> $row->id");
+   echo("<td> $row->Fname");
+   echo ("<form action=crudtest.php method = post>");
+   echo ("<td> <input type=submit value=Update>");
+   echo ("<input type='hidden' name ='UpdateFN' value = $row->id>");  
+   echo ("Change Fname <input type=text name='UpdatedFname'>");
+   echo "</form>";
+   echo("<td> $row->Lname");
+   echo ("<form action=crudtest.php method = post>");
+   echo ("<td> <input type=submit value=Update>");
+   echo ("<input type='hidden' name ='UpdateLN' value = $row->id>");  
+   echo ("Change Lname <input type=text name='UpdatedLname'>");
+   echo "</form>";
+   echo ("<td> $row->AddressID");
+   echo ("<form action=crudtest.php method = post>");
+   echo ("<td> <input type=submit value=Update>");
+   echo ("<input type='hidden' name ='UpdateA' value = $row->id>");  
+   echo ("Change AddressID <input type=text name='UpdatedAddressIDe'>");
+   echo "</form>";
+   echo ("<td> $row->Email");
+   echo ("<form action=crudtest.php method = post>");
+   echo ("<td> <input type=submit value=Update>");
+   echo ("<input type='hidden' name ='UpdateE' value = $row->id>");  
+   echo ("Change Email <input type=text name='UpdatedEmail'>");
+   echo "</form>";
+   echo ("<form action=crudtest.php method =post>");
+   echo ("<td> <input type=submit value=Delete>");
+   echo ("<input type='hidden' name ='remove' value = $row->id>");
+   echo "</form>";
+}
+?>
+
+</table>
+<P>
+<hr>
+<P>
+
+<form action=crudtest.php method=post>
+<pre>
+       New Parent Info:
+        Fname <input type=text name="Fname">
+	Lname <input type=text name="Lname">
+	AddressID <input type=text name="AddressID">
+	Email <input type=text name="Email">
+	Phone <input type=text name="Phone">
+       <input type=submit value="Add Record">
+<a href ="JoinedTable.php"> Addresses And Zips Table </a>
+</pre>
+</form>
+<P>
+<hr>
+</html>
