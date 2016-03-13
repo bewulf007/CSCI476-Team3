@@ -86,52 +86,112 @@ elseif (isset($_POST['UpdateF']))
 }
 	if(empty($_POST['UpdatedFname']))
 {
-	throw new InvalidArgumentException('Invalid Fname');
+	throw new InvalidArgumentException('Invalid First name');
 }
 }
-//change city of address if update was clicked and if post is not empty
-elseif (isset($_POST['UpdateC']))
+//change last name of student if update was clicked and if post is not empty
+elseif (isset($_POST['UpdateL']))
 {
-	if(!empty($_POST['UpdatedCity']))
+	if(!empty($_POST['UpdatedLname']))
 {
-	$update = $_POST['UpdateC'];
-	$UpdateCity= $_POST['UpdatedCity'];
-	$query = "UPDATE Address SET City = \"$UpdateCity\" WHERE id = $update;";
+	$update = $_POST['UpdateL'];
+	$UpdateLname= $_POST['UpdatedLname'];
+	$query = "UPDATE Student SET Lname = \"$UpdateLname\" WHERE id = $update;";
         $result = mysql_query($query, $DBconn);
 }
-	if(empty($_POST['UpdatedCity']))
+	if(empty($_POST['UpdatedLname']))
 {
-	throw new InvalidArgumentException('Invalid City');
+	throw new InvalidArgumentException('Invalid Last Name');
 }
 }
-//change title of duration if update was clicked and if post is not empty
-elseif (isset($_POST['UpdateS']))
+//change address id of student if update was clicked and if post is not empty
+elseif (isset($_POST['UpdateA']))
 {
-	if(!empty($_POST['UpdatedState']))
+	if(!empty($_POST['UpdatedAddress_id']))
 {
-	$update = $_POST['UpdateS'];
-	$UpdateState= $_POST['UpdatedState'];
-	$query = "UPDATE Address SET State = \"$UpdateState\" WHERE id = $update;";
+	$update = $_POST['UpdateA'];
+	$UpdateAddress_id= $_POST['UpdatedAddress_id'];
+	$query = "UPDATE Student SET Address_id = \"$UpdateAddress_id\" WHERE id = $update;";
         $result = mysql_query($query, $DBconn);
 }
-	if(empty($_POST['UpdatedState']))
+	if(empty($_POST['UpdatedAddress_id']))
 {
-	throw new InvalidArgumentException('Invalid Duration');
+	throw new InvalidArgumentException('Invalid Address_id');
 }
 }
-//change title of artist if update was clicked and if post is not empty
-elseif (isset($_POST['UpdateZ']))
+//change shirt size of student if update was clicked and if post is not empty
+elseif (isset($_POST['UpdateShirt']))
 {
-	if(!empty($_POST['UpdatedZip']))
+	if(!empty($_POST['UpdatedShirt']))
 {
-	$update = $_POST['UpdateZ'];
-	$UpdateZip = $_POST['UpdatedZip'];
-	$query = "UPDATE Address SET Zip = $UpdateZip WHERE id = $update;";
+	$update = $_POST['UpdateShirt'];
+	$UpdateShirt = $_POST['UpdatedShirt'];
+	$query = "UPDATE Student SET Shirt_Size = $UpdateShirt WHERE id = $update;";
         $result = mysql_query($query, $DBconn);
 }
-	if(empty($_POST['UpdatedZip']))
+	if(empty($_POST['UpdatedShirt']))
 {
-	throw new InvalidArgumentException('Invalid Zip');
+	throw new InvalidArgumentException('Invalid Size');
+}
+}
+//change school of student if update was clicked and if post is not empty
+elseif (isset($_POST['UpdateSchool']))
+{
+	if(!empty($_POST['UpdatedSchool']))
+{
+	$update = $_POST['UpdateSchool'];
+	$UpdateSchool = $_POST['UpdatedSchool'];
+	$query = "UPDATE Student SET School = $UpdateSchool WHERE id = $update;";
+        $result = mysql_query($query, $DBconn);
+}
+	if(empty($_POST['UpdatedSchool']))
+{
+	throw new InvalidArgumentException('Invalid School');
+}
+}
+//change Parent_id of student if update was clicked and if post is not empty
+elseif (isset($_POST['UpdateParent_id']))
+{
+	if(!empty($_POST['UpdatedParent_id']))
+{
+	$update = $_POST['UpdateParent_id'];
+	$UpdateParent_id = $_POST['UpdatedParent_id'];
+	$query = "UPDATE Student SET Parent_id = $UpdateParent_id WHERE id = $update;";
+        $result = mysql_query($query, $DBconn);
+}
+	if(empty($_POST['UpdatedParent_id']))
+{
+	throw new InvalidArgumentException('Invalid Parent_id');
+}
+}
+//change grade of student if update was clicked and if post is not empty
+elseif (isset($_POST['UpdateGrade']))
+{
+	if(!empty($_POST['UpdatedGrade']))
+{
+	$update = $_POST['UpdateGrade'];
+	$UpdateGrade = $_POST['UpdatedGrade'];
+	$query = "UPDATE Student SET Grade = $UpdateGrade WHERE id = $update;";
+        $result = mysql_query($query, $DBconn);
+}
+	if(empty($_POST['UpdatedGrade']))
+{
+	throw new InvalidArgumentException('Invalid Size');
+}
+}
+//change gender of student if update was clicked and if post is not empty
+elseif (isset($_POST['UpdateGender']))
+{
+	if(!empty($_POST['UpdatedGender']))
+{
+	$update = $_POST['UpdateGender'];
+	$UpdateGender = $_POST['UpdatedGender'];
+	$query = "UPDATE Student SET Gender = $UpdateGender WHERE id = $update;";
+        $result = mysql_query($query, $DBconn);
+}
+	if(empty($_POST['UpdatedGender']))
+{
+	throw new InvalidArgumentException('Invalid Size');
 }
 }
 // submit and process the query for existing Artists
