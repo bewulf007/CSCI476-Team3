@@ -75,11 +75,11 @@ elseif (isset($_POST['remove']))
 	$result = mysql_query ($query, $DBconn);
 }
 //change fname of student if update was clicked and if post is not empty
-elseif (isset($_POST['UpdateF']))
+elseif (isset($_POST['UpdateFname']))
 {
 	if(!empty($_POST['Fname']))
 {
-	$update = $_POST['UpdateF'];
+	$update = $_POST['UpdateFname'];
 	$UpdateFname= $_POST['UpdatedFname'];
 	$query = "UPDATE Student SET Fname = \"$UpdateFname\" WHERE id = $update;";
         $result = mysql_query($query, $DBconn);
@@ -90,11 +90,11 @@ elseif (isset($_POST['UpdateF']))
 }
 }
 //change last name of student if update was clicked and if post is not empty
-elseif (isset($_POST['UpdateL']))
+elseif (isset($_POST['UpdateLname']))
 {
 	if(!empty($_POST['UpdatedLname']))
 {
-	$update = $_POST['UpdateL'];
+	$update = $_POST['UpdateLname'];
 	$UpdateLname= $_POST['UpdatedLname'];
 	$query = "UPDATE Student SET Lname = \"$UpdateLname\" WHERE id = $update;";
         $result = mysql_query($query, $DBconn);
@@ -105,11 +105,11 @@ elseif (isset($_POST['UpdateL']))
 }
 }
 //change address id of student if update was clicked and if post is not empty
-elseif (isset($_POST['UpdateA']))
+elseif (isset($_POST['UpdateAddress_id']))
 {
 	if(!empty($_POST['UpdatedAddress_id']))
 {
-	$update = $_POST['UpdateA'];
+	$update = $_POST['UpdateAddress_id'];
 	$UpdateAddress_id= $_POST['UpdatedAddress_id'];
 	$query = "UPDATE Student SET Address_id = \"$UpdateAddress_id\" WHERE id = $update;";
         $result = mysql_query($query, $DBconn);
@@ -254,7 +254,7 @@ elseif (isset($_POST['UpdateCamp_id']))
 	throw new InvalidArgumentException('Invalid Camp_id');
 }
 }
-//change No pick up of student if update was clicked and if post is not empty
+//change scholarship of student if update was clicked and if post is not empty
 elseif (isset($_POST['UpdateScholarship']))
 {
 	if(!empty($_POST['UpdatedScholarship']))
@@ -299,37 +299,147 @@ elseif (isset($_POST['UpdateAccepted']))
 	throw new InvalidArgumentException('Invalid Accepted');
 }
 }
-// submit and process the query for existing Artists
-$query = "select * from Address;";
+// submit and process the query for existing Students
+$query = "select * from Student;";
 $result = mysql_query ($query, $DBconn);
 while ($row = mysql_fetch_object ($result))
 {
    echo ("<tr> <td> $row->id");
-   echo("<td> $row->Street");
-   echo ("<form action=crudtest.php method = post>");
+   echo("<td> $row->Fname");
+   echo ("<form action=Student.php method = post>");
    echo ("<td> <input type=submit value=Update>");
-   echo ("<input type='hidden' name ='UpdateS' value = $row->id>");  
-   echo ("Change Street <input type=text name='UpdatedStreet'>");
+   echo ("<input type='hidden' name ='UpdateFname' value = $row->id>");  
+   echo ("Change Fname <input type=text name='UpdatedFname'>");
    echo "</form>";
-   echo("<td> $row->City");
-   echo ("<form action=crudtest.php method = post>");
+   echo("<td> $row->Lname");
+   echo ("<form action=Student.php method = post>");
    echo ("<td> <input type=submit value=Update>");
-   echo ("<input type='hidden' name ='UpdateC' value = $row->id>");  
-   echo ("Change City <input type=text name='UpdatedCity'>");
+   echo ("<input type='hidden' name ='UpdateLname' value = $row->id>");  
+   echo ("Change Lname <input type=text name='UpdatedLname'>");
    echo "</form>";
-   echo ("<td> $row->State");
-   echo ("<form action=crudtest.php method = post>");
+   echo ("<td> $row->Address_id");
+   echo ("<form action=Student.php method = post>");
    echo ("<td> <input type=submit value=Update>");
-   echo ("<input type='hidden' name ='UpdateS' value = $row->id>");  
-   echo ("Change State <input type=text name='UpdatedState'>");
+   echo ("<input type='hidden' name ='UpdateAddress_id' value = $row->id>");  
+   echo ("Change Address_id <input type=text name='UpdatedAddress_id'>");
    echo "</form>";
-   echo ("<td> $row->Zip");
-   echo ("<form action=crudtest.php method = post>");
+   echo ("<td> $row->Shirt_Size");
+   echo ("<form action=Student.php method = post>");
    echo ("<td> <input type=submit value=Update>");
-   echo ("<input type='hidden' name ='UpdateZ' value = $row->id>");  
-   echo ("Change Zip <input type=text name='UpdatedZip'>");
+   echo ("<input type='hidden' name ='UpdateShirt_Size' value = $row->id>");  
+   echo ("Change Shirt_Size <input type=text name='UpdatedShirt_Size'>");
    echo "</form>";
-   echo ("<form action=crudtest.php method =post>");
+   echo ("<form action=Student.php method =post>");
+   echo ("<td> <input type=submit value=Delete>");
+   echo ("<input type='hidden' name ='remove' value = $row->id>");
+   echo "</form>";
+   echo ("<td> $row->School");
+   echo ("<form action=Student.php method = post>");
+   echo ("<td> <input type=submit value=Update>");
+   echo ("<input type='hidden' name ='UpdateSchool' value = $row->id>");  
+   echo ("Change School <input type=text name='UpdatedSchool'>");
+   echo "</form>";
+   echo ("<form action=Student.php method =post>");
+   echo ("<td> <input type=submit value=Delete>");
+   echo ("<input type='hidden' name ='remove' value = $row->id>");
+   echo "</form>";
+   echo ("<td> $row->Parent_id");
+   echo ("<form action=Student.php method = post>");
+   echo ("<td> <input type=submit value=Update>");
+   echo ("<input type='hidden' name ='UpdateParent_id' value = $row->id>");  
+   echo ("Change Parent_id <input type=text name='UpdatedParent_id'>");
+   echo "</form>";
+   echo ("<form action=Student.php method =post>");
+   echo ("<td> <input type=submit value=Delete>");
+   echo ("<input type='hidden' name ='remove' value = $row->id>");
+   echo "</form>";
+   echo ("<td> $row->Grade");
+   echo ("<form action=Student.php method = post>");
+   echo ("<td> <input type=submit value=Update>");
+   echo ("<input type='hidden' name ='UpdateGrade' value = $row->id>");  
+   echo ("Change Grade <input type=text name='UpdatedGrade'>");
+   echo "</form>";
+   echo ("<form action=Student.php method =post>");
+   echo ("<td> <input type=submit value=Delete>");
+   echo ("<input type='hidden' name ='remove' value = $row->id>");
+   echo "</form>";
+   echo ("<td> $row->Gender");
+   echo ("<form action=Student.php method = post>");
+   echo ("<td> <input type=submit value=Update>");
+   echo ("<input type='hidden' name ='UpdateGender' value = $row->id>");  
+   echo ("Change Gender <input type=text name='UpdatedGender'>");
+   echo "</form>";
+   echo ("<form action=Student.php method =post>");
+   echo ("<td> <input type=submit value=Delete>");
+   echo ("<input type='hidden' name ='remove' value = $row->id>");
+   echo "</form>";
+   echo ("<td> $row->Ethnicity");
+   echo ("<form action=Student.php method = post>");
+   echo ("<td> <input type=submit value=Update>");
+   echo ("<input type='hidden' name ='UpdateEthnicity' value = $row->id>");  
+   echo ("Change Ethnicity <input type=text name='UpdatedEthnicity'>");
+   echo "</form>";
+   echo ("<form action=Student.php method =post>");
+   echo ("<td> <input type=submit value=Delete>");
+   echo ("<input type='hidden' name ='remove' value = $row->id>");
+   echo "</form>";
+   echo ("<td> $row->Safe_PU");
+   echo ("<form action=Student.php method = post>");
+   echo ("<td> <input type=submit value=Update>");
+   echo ("<input type='hidden' name ='UpdateSafe_PU' value = $row->id>");  
+   echo ("Change Safe_PU <input type=text name='UpdatedSafe_PU'>");
+   echo "</form>";
+   echo ("<form action=Student.php method =post>");
+   echo ("<td> <input type=submit value=Delete>");
+   echo ("<input type='hidden' name ='remove' value = $row->id>");
+   echo "</form>";
+   echo ("<td> $row->No_PU");
+   echo ("<form action=Student.php method = post>");
+   echo ("<td> <input type=submit value=Update>");
+   echo ("<input type='hidden' name ='UpdateNo_PU' value = $row->id>");  
+   echo ("Change No_PU <input type=text name='UpdatedNo_PU'>");
+   echo "</form>";
+   echo ("<form action=Student.php method =post>");
+   echo ("<td> <input type=submit value=Delete>");
+   echo ("<input type='hidden' name ='remove' value = $row->id>");
+   echo "</form>";
+   echo ("<td> $row->Camp_id");
+   echo ("<form action=Student.php method = post>");
+   echo ("<td> <input type=submit value=Update>");
+   echo ("<input type='hidden' name ='UpdateCamp_id' value = $row->id>");  
+   echo ("Change Camp_id <input type=text name='UpdatedCamp_id'>");
+   echo "</form>";
+   echo ("<form action=Student.php method =post>");
+   echo ("<td> <input type=submit value=Delete>");
+   echo ("<input type='hidden' name ='remove' value = $row->id>");
+   echo "</form>";
+   echo ("<td> $row->Scholarship");
+   echo ("<form action=Student.php method = post>");
+   echo ("<td> <input type=submit value=Update>");
+   echo ("<input type='hidden' name ='UpdateScholarship' value = $row->id>");  
+   echo ("Change Scholarship <input type=text name='UpdatedScholarship'>");
+   echo "</form>";
+   echo ("<form action=Student.php method =post>");
+   echo ("<td> <input type=submit value=Delete>");
+   echo ("<input type='hidden' name ='remove' value = $row->id>");
+   echo "</form>";
+   echo ("<td> $row->Emerge_id");
+   echo ("<form action=Student.php method = post>");
+   echo ("<td> <input type=submit value=Update>");
+   echo ("<input type='hidden' name ='UpdateEmerge_id' value = $row->id>");  
+   echo ("Change Emerge_id <input type=text name='UpdatedEmerge_id'>");
+   echo "</form>";
+   echo ("<form action=Student.php method =post>");
+   echo ("<td> <input type=submit value=Delete>");
+   echo ("<input type='hidden' name ='remove' value = $row->id>");
+   echo "</form>";
+   echo ("<td> $row->Accepted");
+   echo ("<form action=Student.php method = post>");
+   echo ("<td> <input type=submit value=Update>");
+   echo ("<input type='hidden' name ='UpdateAccepted' value = $row->id>");  
+   echo ("Change Accepted <input type=text name='UpdatedAccepted'>");
+   echo "</form>";
+   echo ("<form action=Student.php method =post>");
    echo ("<td> <input type=submit value=Delete>");
    echo ("<input type='hidden' name ='remove' value = $row->id>");
    echo "</form>";
