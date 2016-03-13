@@ -451,15 +451,26 @@ while ($row = mysql_fetch_object ($result))
 <hr>
 <P>
 
-<form action=crudtest.php method=post>
+<form action=Student.php method=post>
 <pre>
-       New Address Info:
-        Streey <input type=text name="Street">
-	City <input type=text name="City">
-	State <input type=text name="State">
-	Zip <input type=text name="Zip">
-       <input type=submit value="Add Record">
-<a href ="JoinedTable.php"> Addresses And Zips Table </a>
+       New Student Info:
+        Fname <input type=text name="Fname">
+	Lname <input type=text name="Lname">
+	Address_id <input type=text name="Address_id">
+	Shirt_Size <input type=text name="Shirt_Size">
+	School <input type=text name="School">
+	Parent_id <input type=text name="Parent_id">
+	Grade <input type=text name="Grade">
+	Gender <input type=text name="Gender">
+	Ethnicity <input type=text name="Ethnicity">
+	Safe_PU <input type=text name="Safe_PU">
+	No_PU <input type=text name="No_PU">
+	Camp_id <input type=text name="Camp_id">
+	Scholarship <input type=text name="Scholarship">
+	Emerge_id <input type=text name="Emerge_id">
+	Accepted <input type=text name="Accepted">
+       <input type=submit value="Add Student">
+<a href ="JoinedTable.php"> Student Table </a>
 </pre>
 </form>
 <P>
