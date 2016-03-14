@@ -41,11 +41,11 @@ elseif (isset($_POST['remove']))
 	$result = mysql_query ($query, $DBconn);
 }
 //change fname of Emerge if update was clicked and if post is not empty
-elseif (isset($_POST['UpdateFname']))
+elseif (isset($_POST['UpdateF']))
 {
 	if(!empty($_POST['UpdatedFname']))
 {
-	$update = $_POST['UpdateFname'];
+	$update = $_POST['UpdateF'];
 	$UpdateFname= $_POST['UpdatedFname'];
 	$query = "UPDATE Emerge SET Fname = \"$UpdateFname\" WHERE id = $update;";
         $result = mysql_query($query, $DBconn);
@@ -56,11 +56,11 @@ elseif (isset($_POST['UpdateFname']))
 }
 }
 //change Lname of Emerge if update was clicked and if post is not empty
-elseif (isset($_POST['UpdateLname']))
+elseif (isset($_POST['UpdateL']))
 {
 	if(!empty($_POST['UpdatedLname']))
 {
-	$update = $_POST['UpdateLname'];
+	$update = $_POST['UpdateL'];
 	$UpdateLname= $_POST['UpdatedLname'];
 	$query = "UPDATE Emerge SET Lname = \"$UpdateLname\" WHERE id = $update;";
         $result = mysql_query($query, $DBconn);
@@ -71,11 +71,11 @@ elseif (isset($_POST['UpdateLname']))
 }
 }
 //change title of duration if update was clicked and if post is not empty
-elseif (isset($_POST['UpdateEmail']))
+elseif (isset($_POST['UpdateE']))
 {
 	if(!empty($_POST['UpdatedEmail']))
 {
-	$update = $_POST['UpdateEmail'];
+	$update = $_POST['UpdateE'];
 	$UpdateEmail= $_POST['UpdatedEmail'];
 	$query = "UPDATE Emerge SET email = \"$UpdateEmail\" WHERE id = $update;";
         $result = mysql_query($query, $DBconn);
@@ -86,11 +86,11 @@ elseif (isset($_POST['UpdateEmail']))
 }
 }
 //change phone of emergency if update was clicked and if post is not empty
-elseif (isset($_POST['UpdatePhone']))
+elseif (isset($_POST['UpdateP']))
 {
 	if(!empty($_POST['UpdatedPhone']))
 {
-	$update = $_POST['UpdatePhone'];
+	$update = $_POST['UpdateP'];
 	$UpdatePhone = $_POST['UpdatedPhone'];
 	$query = "UPDATE Emerge SET phone = $UpdatePhone WHERE id = $update;";
         $result = mysql_query($query, $DBconn);
@@ -109,25 +109,25 @@ while ($row = mysql_fetch_object ($result))
    echo("<td> $row->Fname");
    echo ("<form action=Emerge.php method = post>");
    echo ("<td> <input type=submit value=Update>");
-   echo ("<input type='hidden' name ='UpdateFname' value = $row->id>");  
+   echo ("<input type='hidden' name ='UpdateF' value = $row->id>");  
    echo ("Change Fname <input type=text name='UpdatedFname'>");
    echo "</form>";
    echo("<td> $row->Lname");
    echo ("<form action=Emerge.php method = post>");
    echo ("<td> <input type=submit value=Update>");
-   echo ("<input type='hidden' name ='UpdateLname' value = $row->id>");  
+   echo ("<input type='hidden' name ='UpdateL' value = $row->id>");  
    echo ("Change Lname <input type=text name='UpdatedLname'>");
    echo "</form>";
    echo ("<td> $row->email");
    echo ("<form action=Emerge.php method = post>");
    echo ("<td> <input type=submit value=Update>");
-   echo ("<input type='hidden' name ='UpdateEmail' value = $row->id>");  
+   echo ("<input type='hidden' name ='UpdateE' value = $row->id>");  
    echo ("Change Email <input type=text name='UpdatedEmail'>");
    echo "</form>";
    echo ("<td> $row->phone");
    echo ("<form action=Emerge.php method = post>");
    echo ("<td> <input type=submit value=Update>");
-   echo ("<input type='hidden' name ='UpdatePhone' value = $row->id>");  
+   echo ("<input type='hidden' name ='UpdateP' value = $row->id>");  
    echo ("Change Phone <input type=text name='UpdatedPhone'>");
    echo "</form>";
    echo ("<form action=Emerge.php method =post>");
