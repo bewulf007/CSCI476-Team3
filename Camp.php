@@ -38,11 +38,11 @@ elseif (isset($_POST['remove']))
 	$result = mysql_query ($query, $DBconn);
 }
 //change Name of Camp if update was clicked and if post is not empty
-elseif (isset($_POST['UpdateName']))
+elseif (isset($_POST['UpdateN']))
 {
 	if(!empty($_POST['UpdatedName']))
 {
-	$update = $_POST['UpdateName'];
+	$update = $_POST['UpdateN'];
 	$UpdateName= $_POST['UpdatedName'];
 	$query = "UPDATE Camp SET Name = \"$UpdateName\" WHERE id = $update;";
         $result = mysql_query($query, $DBconn);
@@ -53,11 +53,11 @@ elseif (isset($_POST['UpdateName']))
 }
 }
 //change MaxNum of Camp if update was clicked and if post is not empty
-elseif (isset($_POST['UpdateMaxNum']))
+elseif (isset($_POST['UpdateMN']))
 {
 	if(!empty($_POST['UpdatedMaxNum']))
 {
-	$update = $_POST['UpdateMaxNum'];
+	$update = $_POST['UpdateMN'];
 	$UpdateMaxNum= $_POST['UpdatedMaxNum'];
 	$query = "UPDATE Camp SET MaxNum = \"$UpdateMaxNum\" WHERE id = $update;";
         $result = mysql_query($query, $DBconn);
@@ -68,11 +68,11 @@ elseif (isset($_POST['UpdateMaxNum']))
 }
 }
 //change title of duration if update was clicked and if post is not empty
-elseif (isset($_POST['UpdateInstructor_id']))
+elseif (isset($_POST['UpdateI']))
 {
 	if(!empty($_POST['UpdatedInstructor_id']))
 {
-	$update = $_POST['UpdateInstructor_id'];
+	$update = $_POST['UpdateI'];
 	$UpdateInstructor_id= $_POST['UpdatedInstructor_id'];
 	$query = "UPDATE Camp SET instructor_id = \"$UpdateInstructor_id\" WHERE id = $update;";
         $result = mysql_query($query, $DBconn);
@@ -92,19 +92,19 @@ while ($row = mysql_fetch_object ($result))
    echo("<td> $row->Name");
    echo ("<form action=Camp.php method = post>");
    echo ("<td> <input type=submit value=Update>");
-   echo ("<input type='hidden' name ='UpdateName' value = $row->id>");  
+   echo ("<input type='hidden' name ='UpdateN' value = $row->id>");  
    echo ("Change Name <input type=text name='UpdatedName'>");
    echo "</form>";
    echo("<td> $row->MaxNum");
    echo ("<form action=Camp.php method = post>");
    echo ("<td> <input type=submit value=Update>");
-   echo ("<input type='hidden' name ='UpdateMaxNum' value = $row->id>");  
+   echo ("<input type='hidden' name ='UpdateMN' value = $row->id>");  
    echo ("Change MaxNum <input type=text name='UpdatedMaxNum'>");
    echo "</form>";
    echo ("<td> $row->instructor_id");
    echo ("<form action=Camp.php method = post>");
    echo ("<td> <input type=submit value=Update>");
-   echo ("<input type='hidden' name ='Updateinstructor_id' value = $row->id>");  
+   echo ("<input type='hidden' name ='UpdateI' value = $row->id>");  
    echo ("Change instructor_id <input type=text name='Updatedinstructor_id'>");
    echo "</form>";
    echo ("<form action=Camp.php method =post>");
