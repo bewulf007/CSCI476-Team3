@@ -50,7 +50,7 @@ elseif (isset($_POST['UpdateFN']))
 	if(!empty($_POST['UpdatedFname']))
 {
 	$update = $_POST['UpdateFN'];
-	$UpdateStreet= $_POST['UpdatedFname'];
+	$UpdateFname= $_POST['UpdatedFname'];
 	$query = "UPDATE Instructor SET Fname = \"$UpdateFname\" WHERE id = $update;";
         $result = mysql_query($query, $DBconn);
 }
@@ -65,7 +65,7 @@ elseif (isset($_POST['UpdateLN']))
 	if(!empty($_POST['UpdatedLname']))
 {
 	$update = $_POST['UpdateLN'];
-	$UpdateCity= $_POST['UpdatedLname'];
+	$UpdateLName= $_POST['UpdatedLname'];
 	$query = "UPDATE Instructor SET Lname = \"$UpdateLname\" WHERE id = $update;";
         $result = mysql_query($query, $DBconn);
 }
@@ -81,7 +81,7 @@ elseif (isset($_POST['UpdateE']))
 	if(!empty($_POST['UpdatedEmail']))
 {
 	$update = $_POST['UpdateE'];
-	$UpdateState= $_POST['UpdatedEmail'];
+	$UpdateEmail= $_POST['UpdatedEmail'];
 	$query = "UPDATE Instructor SET Email = \"$UpdateEmail\" WHERE id = $update;";
         $result = mysql_query($query, $DBconn);
 }
@@ -96,7 +96,7 @@ elseif (isset($_POST['UpdateP']))
 	if(!empty($_POST['UpdatedPhone']))
 {
 	$update = $_POST['UpdateP'];
-	$UpdateZip = $_POST['UpdatedPhone'];
+	$UpdatePhone = $_POST['UpdatedPhone'];
 	$query = "UPDATE Instructor SET Phone = $UpdateInstructor WHERE id = $update;";
         $result = mysql_query($query, $DBconn);
 }
