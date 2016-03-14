@@ -65,7 +65,7 @@ elseif (isset($_POST['UpdateLN']))
 	if(!empty($_POST['UpdatedLname']))
 {
 	$update = $_POST['UpdateLN'];
-	$UpdateCity= $_POST['UpdatedLname'];
+	$UpdatedLname= $_POST['UpdatedLname'];
 	$query = "UPDATE Parent SET Lname = \"$UpdateLname\" WHERE id = $update;";
         $result = mysql_query($query, $DBconn);
 }
@@ -95,7 +95,7 @@ elseif (isset($_POST['UpdateE']))
 	if(!empty($_POST['UpdatedEmail']))
 {
 	$update = $_POST['UpdateE'];
-	$UpdateState= $_POST['UpdatedEmail'];
+	$UpdatedEmail= $_POST['UpdatedEmail'];
 	$query = "UPDATE Parent SET Email = \"$UpdateEmail\" WHERE id = $update;";
         $result = mysql_query($query, $DBconn);
 }
@@ -110,7 +110,7 @@ elseif (isset($_POST['UpdateP']))
 	if(!empty($_POST['UpdatedPhone']))
 {
 	$update = $_POST['UpdateP'];
-	$UpdateZip = $_POST['UpdatedPhone'];
+	$UpdatedPhone = $_POST['UpdatedPhone'];
 	$query = "UPDATE Parent SET Phone = $UpdateParent WHERE id = $update;";
         $result = mysql_query($query, $DBconn);
 }
