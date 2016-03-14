@@ -38,7 +38,7 @@ elseif (isset($_POST['UpdateN']))
 	if(!empty($_POST['UpdatedName']))
 {
 	$update = $_POST['UpdateN'];
-	$UpdateStreet= $_POST['UpdatedName'];
+	$UpdatedName= $_POST['UpdatedName'];
 	$query = "UPDATE Equipment SET Name = \"$UpdateName\" WHERE id = $update;";
         $result = mysql_query($query, $DBconn);
 }
@@ -53,7 +53,7 @@ elseif (isset($_POST['UpdateSID']))
 	if(!empty($_POST['UpdatedStudent_id']))
 {
 	$update = $_POST['UpdateSID'];
-	$UpdateCity= $_POST['UpdatedStudent_id'];
+	$UpdatedStudent_id= $_POST['UpdatedStudent_id'];
 	$query = "UPDATE Equipment SET Student_id = \"$UpdateStudent_id\" WHERE id = $update;";
         $result = mysql_query($query, $DBconn);
 }
