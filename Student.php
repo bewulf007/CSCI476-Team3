@@ -75,11 +75,11 @@ elseif (isset($_POST['remove']))
 	$result = mysql_query ($query, $DBconn);
 }
 //change fname of student if update was clicked and if post is not empty
-elseif (isset($_POST['UpdateFname']))
+elseif (isset($_POST['UpdateF']))
 {
 	if(!empty($_POST['Fname']))
 {
-	$update = $_POST['UpdateFname'];
+	$update = $_POST['UpdateF'];
 	$UpdateFname= $_POST['UpdatedFname'];
 	$query = "UPDATE Student SET Fname = \"$UpdateFname\" WHERE id = $update;";
         $result = mysql_query($query, $DBconn);
@@ -90,11 +90,11 @@ elseif (isset($_POST['UpdateFname']))
 }
 }
 //change last name of student if update was clicked and if post is not empty
-elseif (isset($_POST['UpdateLname']))
+elseif (isset($_POST['UpdateL']))
 {
 	if(!empty($_POST['UpdatedLname']))
 {
-	$update = $_POST['UpdateLname'];
+	$update = $_POST['UpdateL'];
 	$UpdateLname= $_POST['UpdatedLname'];
 	$query = "UPDATE Student SET Lname = \"$UpdateLname\" WHERE id = $update;";
         $result = mysql_query($query, $DBconn);
@@ -105,11 +105,11 @@ elseif (isset($_POST['UpdateLname']))
 }
 }
 //change address id of student if update was clicked and if post is not empty
-elseif (isset($_POST['UpdateAddress_id']))
+elseif (isset($_POST['UpdateA']))
 {
 	if(!empty($_POST['UpdatedAddress_id']))
 {
-	$update = $_POST['UpdateAddress_id'];
+	$update = $_POST['UpdateA'];
 	$UpdateAddress_id= $_POST['UpdatedAddress_id'];
 	$query = "UPDATE Student SET Address_id = \"$UpdateAddress_id\" WHERE id = $update;";
         $result = mysql_query($query, $DBconn);
@@ -120,11 +120,11 @@ elseif (isset($_POST['UpdateAddress_id']))
 }
 }
 //change shirt size of student if update was clicked and if post is not empty
-elseif (isset($_POST['UpdateShirt']))
+elseif (isset($_POST['UpdateS']))
 {
 	if(!empty($_POST['UpdatedShirt']))
 {
-	$update = $_POST['UpdateShirt'];
+	$update = $_POST['UpdateS'];
 	$UpdateShirt = $_POST['UpdatedShirt'];
 	$query = "UPDATE Student SET Shirt_Size = $UpdateShirt WHERE id = $update;";
         $result = mysql_query($query, $DBconn);
@@ -135,11 +135,11 @@ elseif (isset($_POST['UpdateShirt']))
 }
 }
 //change school of student if update was clicked and if post is not empty
-elseif (isset($_POST['UpdateSchool']))
+elseif (isset($_POST['UpdateSc']))
 {
 	if(!empty($_POST['UpdatedSchool']))
 {
-	$update = $_POST['UpdateSchool'];
+	$update = $_POST['UpdateSc'];
 	$UpdateSchool = $_POST['UpdatedSchool'];
 	$query = "UPDATE Student SET School = $UpdateSchool WHERE id = $update;";
         $result = mysql_query($query, $DBconn);
@@ -150,11 +150,11 @@ elseif (isset($_POST['UpdateSchool']))
 }
 }
 //change Parent_id of student if update was clicked and if post is not empty
-elseif (isset($_POST['UpdateParent_id']))
+elseif (isset($_POST['UpdateP']))
 {
 	if(!empty($_POST['UpdatedParent_id']))
 {
-	$update = $_POST['UpdateParent_id'];
+	$update = $_POST['UpdateP'];
 	$UpdateParent_id = $_POST['UpdatedParent_id'];
 	$query = "UPDATE Student SET Parent_id = $UpdateParent_id WHERE id = $update;";
         $result = mysql_query($query, $DBconn);
@@ -165,11 +165,11 @@ elseif (isset($_POST['UpdateParent_id']))
 }
 }
 //change grade of student if update was clicked and if post is not empty
-elseif (isset($_POST['UpdateGrade']))
+elseif (isset($_POST['UpdateG']))
 {
 	if(!empty($_POST['UpdatedGrade']))
 {
-	$update = $_POST['UpdateGrade'];
+	$update = $_POST['UpdateG'];
 	$UpdateGrade = $_POST['UpdatedGrade'];
 	$query = "UPDATE Student SET Grade = $UpdateGrade WHERE id = $update;";
         $result = mysql_query($query, $DBconn);
@@ -180,11 +180,11 @@ elseif (isset($_POST['UpdateGrade']))
 }
 }
 //change gender of student if update was clicked and if post is not empty
-elseif (isset($_POST['UpdateGender']))
+elseif (isset($_POST['UpdateGe']))
 {
 	if(!empty($_POST['UpdatedGender']))
 {
-	$update = $_POST['UpdateGender'];
+	$update = $_POST['UpdateGe'];
 	$UpdateGender = $_POST['UpdatedGender'];
 	$query = "UPDATE Student SET Gender = $UpdateGender WHERE id = $update;";
         $result = mysql_query($query, $DBconn);
@@ -195,11 +195,11 @@ elseif (isset($_POST['UpdateGender']))
 }
 }
 //change ethnicity of student if update was clicked and if post is not empty
-elseif (isset($_POST['UpdateEthnicity']))
+elseif (isset($_POST['UpdateE']))
 {
 	if(!empty($_POST['UpdatedEthnicity']))
 {
-	$update = $_POST['UpdateEthnicity'];
+	$update = $_POST['UpdateE'];
 	$UpdateEthnicity = $_POST['UpdatedEthnicity'];
 	$query = "UPDATE Student SET Ethnicity = $UpdateEthnicity WHERE id = $update;";
         $result = mysql_query($query, $DBconn);
@@ -210,11 +210,11 @@ elseif (isset($_POST['UpdateEthnicity']))
 }
 }
 //change safe pickup of student if update was clicked and if post is not empty
-elseif (isset($_POST['UpdateSafe_PU']))
+elseif (isset($_POST['UpdateSPU']))
 {
 	if(!empty($_POST['UpdatedSafe_PU']))
 {
-	$update = $_POST['UpdateSafe_PU'];
+	$update = $_POST['UpdateSPU'];
 	$UpdateGender = $_POST['UpdatedSafe_PU'];
 	$query = "UPDATE Student SET Safe_PU = $UpdateSafe_PU WHERE id = $update;";
         $result = mysql_query($query, $DBconn);
@@ -225,11 +225,11 @@ elseif (isset($_POST['UpdateSafe_PU']))
 }
 }
 //change No pick up of student if update was clicked and if post is not empty
-elseif (isset($_POST['UpdateNo_PU']))
+elseif (isset($_POST['UpdateNPU']))
 {
 	if(!empty($_POST['UpdatedNo_PU']))
 {
-	$update = $_POST['UpdateNo_PU'];
+	$update = $_POST['UpdateNPU'];
 	$UpdateNo_PU = $_POST['UpdatedNo_PU'];
 	$query = "UPDATE Student SET No_PU = $UpdateNo_PU WHERE id = $update;";
         $result = mysql_query($query, $DBconn);
@@ -240,11 +240,11 @@ elseif (isset($_POST['UpdateNo_PU']))
 }
 }
 //change Camp id of student if update was clicked and if post is not empty
-elseif (isset($_POST['UpdateCamp_id']))
+elseif (isset($_POST['UpdateC']))
 {
 	if(!empty($_POST['UpdatedCamp_id']))
 {
-	$update = $_POST['UpdateCamp_id'];
+	$update = $_POST['UpdateC'];
 	$UpdateCamp_id = $_POST['UpdatedCamp_id'];
 	$query = "UPDATE Student SET Camp_id = $UpdateCamp_id WHERE id = $update;";
         $result = mysql_query($query, $DBconn);
@@ -255,11 +255,11 @@ elseif (isset($_POST['UpdateCamp_id']))
 }
 }
 //change scholarship of student if update was clicked and if post is not empty
-elseif (isset($_POST['UpdateScholarship']))
+elseif (isset($_POST['UpdateSchol']))
 {
 	if(!empty($_POST['UpdatedScholarship']))
 {
-	$update = $_POST['UpdateScholarship'];
+	$update = $_POST['UpdateSchol'];
 	$UpdateScholarship = $_POST['UpdatedScholarship'];
 	$query = "UPDATE Student SET Scholarship = $UpdateScholarship WHERE id = $update;";
         $result = mysql_query($query, $DBconn);
@@ -270,11 +270,11 @@ elseif (isset($_POST['UpdateScholarship']))
 }
 }
 //change Emergency id of student if update was clicked and if post is not empty
-elseif (isset($_POST['UpdateEmerge_id']))
+elseif (isset($_POST['UpdateEm']))
 {
 	if(!empty($_POST['UpdatedEmerge_id']))
 {
-	$update = $_POST['UpdateEmerge_id'];
+	$update = $_POST['UpdateEm'];
 	$UpdateEmerge_id = $_POST['UpdatedEmerge_id'];
 	$query = "UPDATE Student SET Emerge_id = $UpdateEmerge_id WHERE id = $update;";
         $result = mysql_query($query, $DBconn);
@@ -285,11 +285,11 @@ elseif (isset($_POST['UpdateEmerge_id']))
 }
 }
 //change Accepted of student if update was clicked and if post is not empty
-elseif (isset($_POST['UpdateAccepted']))
+elseif (isset($_POST['UpdateAc']))
 {
 	if(!empty($_POST['UpdatedAccepted']))
 {
-	$update = $_POST['UpdateAccepted'];
+	$update = $_POST['UpdateAc'];
 	$UpdateAccepted = $_POST['UpdatedAccepted'];
 	$query = "UPDATE Student SET Accepted = $UpdateAccepted WHERE id = $update;";
         $result = mysql_query($query, $DBconn);
@@ -308,25 +308,25 @@ while ($row = mysql_fetch_object ($result))
    echo("<td> $row->Fname");
    echo ("<form action=Student.php method = post>");
    echo ("<td> <input type=submit value=Update>");
-   echo ("<input type='hidden' name ='UpdateFname' value = $row->id>");  
+   echo ("<input type='hidden' name ='UpdateF' value = $row->id>");  
    echo ("Change Fname <input type=text name='UpdatedFname'>");
    echo "</form>";
    echo("<td> $row->Lname");
    echo ("<form action=Student.php method = post>");
    echo ("<td> <input type=submit value=Update>");
-   echo ("<input type='hidden' name ='UpdateLname' value = $row->id>");  
+   echo ("<input type='hidden' name ='UpdateL' value = $row->id>");  
    echo ("Change Lname <input type=text name='UpdatedLname'>");
    echo "</form>";
    echo ("<td> $row->Address_id");
    echo ("<form action=Student.php method = post>");
    echo ("<td> <input type=submit value=Update>");
-   echo ("<input type='hidden' name ='UpdateAddress_id' value = $row->id>");  
+   echo ("<input type='hidden' name ='UpdateA' value = $row->id>");  
    echo ("Change Address_id <input type=text name='UpdatedAddress_id'>");
    echo "</form>";
    echo ("<td> $row->Shirt_Size");
    echo ("<form action=Student.php method = post>");
    echo ("<td> <input type=submit value=Update>");
-   echo ("<input type='hidden' name ='UpdateShirt_Size' value = $row->id>");  
+   echo ("<input type='hidden' name ='UpdateS' value = $row->id>");  
    echo ("Change Shirt_Size <input type=text name='UpdatedShirt_Size'>");
    echo "</form>";
    echo ("<form action=Student.php method =post>");
@@ -336,7 +336,7 @@ while ($row = mysql_fetch_object ($result))
    echo ("<td> $row->School");
    echo ("<form action=Student.php method = post>");
    echo ("<td> <input type=submit value=Update>");
-   echo ("<input type='hidden' name ='UpdateSchool' value = $row->id>");  
+   echo ("<input type='hidden' name ='UpdateSc' value = $row->id>");  
    echo ("Change School <input type=text name='UpdatedSchool'>");
    echo "</form>";
    echo ("<form action=Student.php method =post>");
@@ -346,7 +346,7 @@ while ($row = mysql_fetch_object ($result))
    echo ("<td> $row->Parent_id");
    echo ("<form action=Student.php method = post>");
    echo ("<td> <input type=submit value=Update>");
-   echo ("<input type='hidden' name ='UpdateParent_id' value = $row->id>");  
+   echo ("<input type='hidden' name ='UpdateP' value = $row->id>");  
    echo ("Change Parent_id <input type=text name='UpdatedParent_id'>");
    echo "</form>";
    echo ("<form action=Student.php method =post>");
@@ -356,7 +356,7 @@ while ($row = mysql_fetch_object ($result))
    echo ("<td> $row->Grade");
    echo ("<form action=Student.php method = post>");
    echo ("<td> <input type=submit value=Update>");
-   echo ("<input type='hidden' name ='UpdateGrade' value = $row->id>");  
+   echo ("<input type='hidden' name ='UpdateG' value = $row->id>");  
    echo ("Change Grade <input type=text name='UpdatedGrade'>");
    echo "</form>";
    echo ("<form action=Student.php method =post>");
@@ -366,7 +366,7 @@ while ($row = mysql_fetch_object ($result))
    echo ("<td> $row->Gender");
    echo ("<form action=Student.php method = post>");
    echo ("<td> <input type=submit value=Update>");
-   echo ("<input type='hidden' name ='UpdateGender' value = $row->id>");  
+   echo ("<input type='hidden' name ='UpdateGe' value = $row->id>");  
    echo ("Change Gender <input type=text name='UpdatedGender'>");
    echo "</form>";
    echo ("<form action=Student.php method =post>");
@@ -376,7 +376,7 @@ while ($row = mysql_fetch_object ($result))
    echo ("<td> $row->Ethnicity");
    echo ("<form action=Student.php method = post>");
    echo ("<td> <input type=submit value=Update>");
-   echo ("<input type='hidden' name ='UpdateEthnicity' value = $row->id>");  
+   echo ("<input type='hidden' name ='UpdateE' value = $row->id>");  
    echo ("Change Ethnicity <input type=text name='UpdatedEthnicity'>");
    echo "</form>";
    echo ("<form action=Student.php method =post>");
@@ -386,7 +386,7 @@ while ($row = mysql_fetch_object ($result))
    echo ("<td> $row->Safe_PU");
    echo ("<form action=Student.php method = post>");
    echo ("<td> <input type=submit value=Update>");
-   echo ("<input type='hidden' name ='UpdateSafe_PU' value = $row->id>");  
+   echo ("<input type='hidden' name ='UpdateSPU' value = $row->id>");  
    echo ("Change Safe_PU <input type=text name='UpdatedSafe_PU'>");
    echo "</form>";
    echo ("<form action=Student.php method =post>");
@@ -396,7 +396,7 @@ while ($row = mysql_fetch_object ($result))
    echo ("<td> $row->No_PU");
    echo ("<form action=Student.php method = post>");
    echo ("<td> <input type=submit value=Update>");
-   echo ("<input type='hidden' name ='UpdateNo_PU' value = $row->id>");  
+   echo ("<input type='hidden' name ='UpdateNPU' value = $row->id>");  
    echo ("Change No_PU <input type=text name='UpdatedNo_PU'>");
    echo "</form>";
    echo ("<form action=Student.php method =post>");
@@ -406,7 +406,7 @@ while ($row = mysql_fetch_object ($result))
    echo ("<td> $row->Camp_id");
    echo ("<form action=Student.php method = post>");
    echo ("<td> <input type=submit value=Update>");
-   echo ("<input type='hidden' name ='UpdateCamp_id' value = $row->id>");  
+   echo ("<input type='hidden' name ='UpdateC' value = $row->id>");  
    echo ("Change Camp_id <input type=text name='UpdatedCamp_id'>");
    echo "</form>";
    echo ("<form action=Student.php method =post>");
@@ -416,7 +416,7 @@ while ($row = mysql_fetch_object ($result))
    echo ("<td> $row->Scholarship");
    echo ("<form action=Student.php method = post>");
    echo ("<td> <input type=submit value=Update>");
-   echo ("<input type='hidden' name ='UpdateScholarship' value = $row->id>");  
+   echo ("<input type='hidden' name ='UpdateSchol' value = $row->id>");  
    echo ("Change Scholarship <input type=text name='UpdatedScholarship'>");
    echo "</form>";
    echo ("<form action=Student.php method =post>");
@@ -426,7 +426,7 @@ while ($row = mysql_fetch_object ($result))
    echo ("<td> $row->Emerge_id");
    echo ("<form action=Student.php method = post>");
    echo ("<td> <input type=submit value=Update>");
-   echo ("<input type='hidden' name ='UpdateEmerge_id' value = $row->id>");  
+   echo ("<input type='hidden' name ='UpdateEm' value = $row->id>");  
    echo ("Change Emerge_id <input type=text name='UpdatedEmerge_id'>");
    echo "</form>";
    echo ("<form action=Student.php method =post>");
@@ -436,7 +436,7 @@ while ($row = mysql_fetch_object ($result))
    echo ("<td> $row->Accepted");
    echo ("<form action=Student.php method = post>");
    echo ("<td> <input type=submit value=Update>");
-   echo ("<input type='hidden' name ='UpdateAccepted' value = $row->id>");  
+   echo ("<input type='hidden' name ='UpdateAc' value = $row->id>");  
    echo ("Change Accepted <input type=text name='UpdatedAccepted'>");
    echo "</form>";
    echo ("<form action=Student.php method =post>");
