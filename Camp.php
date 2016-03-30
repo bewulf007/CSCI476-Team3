@@ -37,6 +37,7 @@ elseif (isset($_POST['remove']))
 	$query = "DELETE FROM Camp WHERE id = \"$remove\"";
 	$result = mysql_query ($query, $DBconn);
 }
+
 //change Name of Camp if update was clicked and if post is not empty
 elseif (isset($_POST['UpdateN']))
 {
@@ -52,6 +53,7 @@ elseif (isset($_POST['UpdateN']))
 	throw new InvalidArgumentException('Invalid Name');
 }
 }
+
 //change MaxNum of Camp if update was clicked and if post is not empty
 elseif (isset($_POST['UpdateMN']))
 {
@@ -67,7 +69,8 @@ elseif (isset($_POST['UpdateMN']))
 	throw new InvalidArgumentException('Invalid MaxNum');
 }
 }
-//change title of duration if update was clicked and if post is not empty
+
+//change Instructor of Camp if update was clicked and if post is not empty
 elseif (isset($_POST['UpdateI']))
 {
 	if(!empty($_POST['UpdatedInstructor_id']))
@@ -83,7 +86,7 @@ elseif (isset($_POST['UpdateI']))
 }
 }
 
-// submit and process the query for existing Artists
+// submit and process the query for existing Instructors
 $query = "select * from Camp;";
 $result = mysql_query ($query, $DBconn);
 while ($row = mysql_fetch_object ($result))
