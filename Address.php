@@ -1,7 +1,6 @@
-<!-- Matthew Paterno -->
+<!-- Summer Camp Project -->
 <!-- Database Program -->
-<!-- Allows Records to be Added to the ARTIST Table -->
-<!-- Contains one form that is also processed by this script -->
+<!-- Allows Addresses to be Added to the Address Table -->
 
 <html>
 <hr>
@@ -46,6 +45,7 @@ elseif (isset($_POST['remove']))
 	$query = "DELETE FROM Address WHERE id = \"$remove\"";
 	$result = mysql_query ($query, $DBconn);
 }
+
 //change street of address if update was clicked and if post is not empty
 elseif (isset($_POST['UpdateS']))
 {
@@ -62,6 +62,7 @@ elseif (isset($_POST['UpdateS']))
 }
 
 }
+
 //change city of address if update was clicked and if post is not empty
 elseif (isset($_POST['UpdateC']))
 {
@@ -78,7 +79,8 @@ elseif (isset($_POST['UpdateC']))
 }
 
 }
-//change title of duration if update was clicked and if post is not empty
+
+//change state of address if update was clicked and if post is not empty
 elseif (isset($_POST['UpdateST']))
 {
 	if(!empty($_POST['UpdatedState']))
@@ -94,7 +96,8 @@ elseif (isset($_POST['UpdateST']))
 }
 
 }
-//change title of artist if update was clicked and if post is not empty
+
+//change zip of address if update was clicked and if post is not empty
 elseif (isset($_POST['UpdateZ']))
 {
 	if(!empty($_POST['UpdatedZip']))
@@ -109,7 +112,8 @@ elseif (isset($_POST['UpdateZ']))
 	throw new InvalidArgumentException('Invalid Zip');
 }
 }
-// submit and process the query for existing Artists
+
+// submit and process the query for existing Addresses
 $query = "select * from Address;";
 $result = mysql_query ($query, $DBconn);
 while ($row = mysql_fetch_object ($result))
