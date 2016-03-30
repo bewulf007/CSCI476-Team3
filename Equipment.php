@@ -7,8 +7,10 @@
 <td bgcolor=green>Id
 <td bgcolor=green>Name
 <td bgcolor=yellow>Update Name
-<td bgcolor=green>Student_id
-<td bgcolor=yellow>Update Student_id
+<!--<td bgcolor=green>Student_id
+<td bgcolor=yellow>Update Student_id-->
+<td bgcolor=green>Serial_number
+<td bgcolor=yellow>Update Serial_number
 <td bgcolor=red>Delete
 
 <?php
@@ -23,8 +25,9 @@ if (!$db_selected)
    if (isset($_POST['Name']))
   {
    $Name= $_POST['Name'];
-   $Student_id = $_POST['Student_id'];
-   $query = "INSERT INTO Equipment VALUES (NULL,'$Name','$Student_id')";
+   //$Student_id = $_POST['Student_id'];
+   $Serial_number = $_POST['Serial_number'];
+   $query = "INSERT INTO Equipment VALUES (NULL,'$Name','$Serial_number')";
    $result = mysql_query ($query, $DBconn);
   }
 elseif (isset($_POST['remove']))
@@ -48,6 +51,7 @@ elseif (isset($_POST['UpdateN']))
 	throw new InvalidArgumentException('Invalid Name');
 }
 }
+/*
 //change Student_id of Equipment if update was clicked and if post is not empty
 elseif (isset($_POST['UpdateSID']))
 {
@@ -61,6 +65,22 @@ elseif (isset($_POST['UpdateSID']))
 	if(empty($_POST['UpdatedStudent_id']))
 {
 	throw new InvalidArgumentException('Invalid Student_id');
+}
+}*/
+
+//change Serial_number of Equipment if update was clicked and if post is not empty
+elseif (isset($_POST['UpdateSN']))
+{
+	if(!empty($_POST['UpdatedSerial_number']))
+{
+	$update = $_POST['UpdateSN'];
+	$UpdateSerial_number= $_POST['UpdatedSerial_number'];
+	$query = "UPDATE Equipment SET Serial_number = \"$UpdateSerial_number\" WHERE id = $update;";
+        $result = mysql_query($query, $DBconn);
+}
+	if(empty($_POST['UpdatedSerial_number']))
+{
+	throw new InvalidArgumentException('Invalid Serial_number');
 }
 }
 
@@ -76,11 +96,21 @@ while ($row = mysql_fetch_object ($result))
    echo ("<input type='hidden' name ='UpdateN' value = $row->id>");  
    echo ("Change Name <input type=text name='UpdatedName'>");
    echo "</form>";
-   echo("<td> $row->Student_id");
+   /*echo("<td> $row->Student_id");
    echo ("<form action=Equipment.php method = post>");
    echo ("<td> <input type=submit value=Update>");
    echo ("<input type='hidden' name ='UpdateSID' value = $row->id>");  
    echo ("Change Student_id <input type=text name='UpdatedStudent_id'>");
+   echo "</form>";*/
+   echo("<td> $row->Serial_number");
+   echo ("<form action=Equipment.php method = post>");
+   echo ("<td> <input type=submit value=Update>");
+   echo ("<input type='hidden' name ='UpdateSN' value = $row->id>");  
+   echo ("Change Serial_number <input type=text name='UpdatedSerial_number'>");
+   echo "</form>";
+   echo ("<form action=Equipment.php method =post>");
+   echo ("<td> <input type=submit value=Delete>");
+   echo ("<input type='hidden' name ='remove' value = $row->id>");
    echo "</form>";
 }
 ?>
@@ -94,7 +124,8 @@ while ($row = mysql_fetch_object ($result))
 <pre>
 		New Equipment Info:
 		Name <input type=text name="Name">
-		Student_id <input type=text name="Student_id">
+		<!--Student_id <input type=text name="Student_id">-->
+		Serial_number <input type=text name="Serial_number">
        <input type=submit value="Add Record">
 <a href ="JoinedTable.php"> Addresses And Zips Table </a>
 </pre>
