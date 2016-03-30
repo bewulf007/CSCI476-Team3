@@ -74,6 +74,7 @@ elseif (isset($_POST['remove']))
 	$query = "DELETE FROM Student WHERE id = \"$remove\"";
 	$result = mysql_query ($query, $DBconn);
 }
+
 //change fname of student if update was clicked and if post is not empty
 elseif (isset($_POST['UpdateF']))
 {
@@ -89,6 +90,7 @@ elseif (isset($_POST['UpdateF']))
 	throw new InvalidArgumentException('Invalid First name');
 }
 }
+
 //change last name of student if update was clicked and if post is not empty
 elseif (isset($_POST['UpdateL']))
 {
@@ -104,6 +106,7 @@ elseif (isset($_POST['UpdateL']))
 	throw new InvalidArgumentException('Invalid Last Name');
 }
 }
+
 //change address id of student if update was clicked and if post is not empty
 elseif (isset($_POST['UpdateA']))
 {
@@ -119,6 +122,7 @@ elseif (isset($_POST['UpdateA']))
 	throw new InvalidArgumentException('Invalid Address_id');
 }
 }
+
 //change shirt size of student if update was clicked and if post is not empty
 elseif (isset($_POST['UpdateS']))
 {
@@ -134,6 +138,7 @@ elseif (isset($_POST['UpdateS']))
 	throw new InvalidArgumentException('Invalid Size');
 }
 }
+
 //change school of student if update was clicked and if post is not empty
 elseif (isset($_POST['UpdateSc']))
 {
@@ -149,6 +154,7 @@ elseif (isset($_POST['UpdateSc']))
 	throw new InvalidArgumentException('Invalid School');
 }
 }
+
 //change Parent_id of student if update was clicked and if post is not empty
 elseif (isset($_POST['UpdateP']))
 {
@@ -164,6 +170,7 @@ elseif (isset($_POST['UpdateP']))
 	throw new InvalidArgumentException('Invalid Parent_id');
 }
 }
+
 //change grade of student if update was clicked and if post is not empty
 elseif (isset($_POST['UpdateG']))
 {
@@ -179,6 +186,7 @@ elseif (isset($_POST['UpdateG']))
 	throw new InvalidArgumentException('Invalid Size');
 }
 }
+
 //change gender of student if update was clicked and if post is not empty
 elseif (isset($_POST['UpdateGe']))
 {
@@ -194,6 +202,7 @@ elseif (isset($_POST['UpdateGe']))
 	throw new InvalidArgumentException('Invalid Gender');
 }
 }
+
 //change ethnicity of student if update was clicked and if post is not empty
 elseif (isset($_POST['UpdateE']))
 {
@@ -209,6 +218,7 @@ elseif (isset($_POST['UpdateE']))
 	throw new InvalidArgumentException('Invalid Ethnicity');
 }
 }
+
 //change safe pickup of student if update was clicked and if post is not empty
 elseif (isset($_POST['UpdateSPU']))
 {
@@ -224,6 +234,7 @@ elseif (isset($_POST['UpdateSPU']))
 	throw new InvalidArgumentException('Invalid Safe_PU');
 }
 }
+
 //change No pick up of student if update was clicked and if post is not empty
 elseif (isset($_POST['UpdateNPU']))
 {
@@ -239,6 +250,7 @@ elseif (isset($_POST['UpdateNPU']))
 	throw new InvalidArgumentException('Invalid No_PU');
 }
 }
+
 //change Camp id of student if update was clicked and if post is not empty
 elseif (isset($_POST['UpdateC']))
 {
@@ -254,6 +266,7 @@ elseif (isset($_POST['UpdateC']))
 	throw new InvalidArgumentException('Invalid Camp_id');
 }
 }
+
 //change scholarship of student if update was clicked and if post is not empty
 elseif (isset($_POST['UpdateSchol']))
 {
@@ -269,6 +282,7 @@ elseif (isset($_POST['UpdateSchol']))
 	throw new InvalidArgumentException('Invalid Scholarship');
 }
 }
+
 //change Emergency id of student if update was clicked and if post is not empty
 elseif (isset($_POST['UpdateEm']))
 {
@@ -284,6 +298,7 @@ elseif (isset($_POST['UpdateEm']))
 	throw new InvalidArgumentException('Invalid Emerge_id');
 }
 }
+
 //change Accepted of student if update was clicked and if post is not empty
 elseif (isset($_POST['UpdateAc']))
 {
@@ -299,6 +314,7 @@ elseif (isset($_POST['UpdateAc']))
 	throw new InvalidArgumentException('Invalid Accepted');
 }
 }
+
 // submit and process the query for existing Students
 $query = "select * from Student;";
 $result = mysql_query ($query, $DBconn);
