@@ -40,6 +40,7 @@ elseif (isset($_POST['remove']))
 	$query = "DELETE FROM Emerge WHERE id = \"$remove\"";
 	$result = mysql_query ($query, $DBconn);
 }
+
 //change fname of Emerge if update was clicked and if post is not empty
 elseif (isset($_POST['UpdateF']))
 {
@@ -55,6 +56,7 @@ elseif (isset($_POST['UpdateF']))
 	throw new InvalidArgumentException('Invalid Fname');
 }
 }
+
 //change Lname of Emerge if update was clicked and if post is not empty
 elseif (isset($_POST['UpdateL']))
 {
@@ -70,7 +72,8 @@ elseif (isset($_POST['UpdateL']))
 	throw new InvalidArgumentException('Invalid Lname');
 }
 }
-//change title of duration if update was clicked and if post is not empty
+
+//change email of Emerge if update was clicked and if post is not empty
 elseif (isset($_POST['UpdateE']))
 {
 	if(!empty($_POST['UpdatedEmail']))
@@ -85,7 +88,8 @@ elseif (isset($_POST['UpdateE']))
 	throw new InvalidArgumentException('Invalid Email');
 }
 }
-//change Phone of emergency if update was clicked and if post is not empty
+
+//change Phone of Emerge if update was clicked and if post is not empty
 elseif (isset($_POST['UpdateP']))
 {
 	if(!empty($_POST['UpdatedPhone']))
@@ -100,7 +104,8 @@ elseif (isset($_POST['UpdateP']))
 	throw new InvalidArgumentException('Invalid Phone');
 }
 }
-// submit and process the query for existing Artists
+
+// submit and process the query for existing Emergency contacts
 $query = "select * from Emerge;";
 $result = mysql_query ($query, $DBconn);
 while ($row = mysql_fetch_object ($result))
