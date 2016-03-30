@@ -45,6 +45,7 @@ elseif (isset($_POST['remove']))
 	$query = "DELETE FROM Grant_info WHERE id = \"$remove\"";
 	$result = mysql_query ($query, $DBconn);
 }
+
 //change Fname of Grant_info if update was clicked and if post is not empty
 elseif (isset($_POST['UpdateFN']))
 {
@@ -60,6 +61,7 @@ elseif (isset($_POST['UpdateFN']))
 	throw new InvalidArgumentException('Invalid Fname');
 }
 }
+
 //change Lname of Grant_info if update was clicked and if post is not empty
 elseif (isset($_POST['UpdateLN']))
 {
@@ -75,6 +77,7 @@ elseif (isset($_POST['UpdateLN']))
 	throw new InvalidArgumentException('Invalid Lname');
 }
 }
+
 //change Amount of Grant_info if update was clicked and if post is not empty
 elseif (isset($_POST['UpdateA']))
 {
@@ -90,6 +93,7 @@ elseif (isset($_POST['UpdateA']))
 	throw new InvalidArgumentException('Invalid Amount');
 }
 }
+
 //change Email of Grant_info if update was clicked and if post is not empty
 elseif (isset($_POST['UpdateE']))
 {
@@ -105,6 +109,7 @@ elseif (isset($_POST['UpdateE']))
 	throw new InvalidArgumentException('Invalid Email');
 }
 }
+
 //change Phone of Grant_info if update was clicked and if post is not empty
 elseif (isset($_POST['UpdateP']))
 {
@@ -120,6 +125,8 @@ elseif (isset($_POST['UpdateP']))
 	throw new InvalidArgumentException('Invalid Phone');
 }
 }
+
+//change Address of Grant_info if update was clicked and if post is not empty
 elseif (isset($_POST['UpdateAID']))
 {
 	if(!empty($_POST['UpdatedAddress_id']))
@@ -134,6 +141,7 @@ elseif (isset($_POST['UpdateAID']))
 	throw new InvalidArgumentException('Invalid Address_id');
 }
 }
+
 // submit and process the query for exisiting Grant_infos
 $query = "select * from Grant_info;";
 $result = mysql_query ($query, $DBconn);
