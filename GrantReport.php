@@ -20,6 +20,7 @@ $db_selected = mysql_select_db("my_morriss11", $DBconn);
 if (!$db_selected)
    die ("Can't use my_morriss11 : " . mysql_error());
 
+//get first name, last name, amount, phone, email from grant info table for reporting
 $query = "SELECT Grant_info.Fname, Grant_info.Lname, Grant_info.Amount, Grant_info.Phone, Grant_info.Email FROM Grant_info;";
 $result = mysql_query ($query, $DBconn);
 while ($row = mysql_fetch_object ($result))
