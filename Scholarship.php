@@ -36,6 +36,7 @@ elseif (isset($_POST['remove']))
 	$query = "DELETE FROM Scholarship WHERE id = \"$remove\"";
 	$result = mysql_query ($query, $DBconn);
 }
+
 //change Student_id of Scholarship if update was clicked and if post is not empty
 elseif (isset($_POST['UpdateSID']))
 {
@@ -51,6 +52,7 @@ elseif (isset($_POST['UpdateSID']))
 	throw new InvalidArgumentException('Invalid Student_id');
 }
 }
+
 //change Camp_id of Scholarship if update was clicked and if post is not empty
 elseif (isset($_POST['UpdateCID']))
 {
@@ -66,6 +68,7 @@ elseif (isset($_POST['UpdateCID']))
 	throw new InvalidArgumentException('Invalid Camp_id');
 }
 }
+
 //change Essay of Scholarship if update was clicked and if post is not empty
 elseif (isset($_POST['UpdateE']))
 {
@@ -81,6 +84,7 @@ elseif (isset($_POST['UpdateE']))
 	throw new InvalidArgumentException('Invalid Essay');
 }
 }
+
 // submit and process the query for exisiting Scholarships
 $query = "select * from Scholarship;";
 $result = mysql_query ($query, $DBconn);
