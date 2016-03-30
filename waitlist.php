@@ -1,7 +1,6 @@
-<!-- Matthew Paterno -->
+<!-- Team 3 Summer Camp Project -->
 <!-- Database Program -->
-<!-- Allows Records to be Added to the Waitlist Table -->
-<!-- Contains one form that is also processed by this script -->
+<!-- Allows Students to be Added to the Waitlist Table -->
 
 <html>
 <hr>
@@ -40,7 +39,8 @@ elseif (isset($_POST['remove']))
 	$query = "DELETE FROM Waitlist Student_id WHERE  = \"$remove\"";
 	$result = mysql_query ($query, $DBconn);
 }
-//change Student_id of song if update was clicked and if post is not empty
+
+//change Student_id of Waitlist if update was clicked and if post is not empty
 elseif (isset($_POST['UpdateT']))
 {
 	if(!empty($_POST['UpdatedStudent_id']))
@@ -56,7 +56,8 @@ elseif (isset($_POST['UpdateT']))
 }
 
 }
-//change Student_id of Camp_id if update was clicked and if post is not empty
+
+//change Camp_id of Waitlist if update was clicked and if post is not empty
 elseif (isset($_POST['UpdateD']))
 {
 	if(!empty($_POST['UpdatedCamp_id']))
@@ -73,7 +74,7 @@ elseif (isset($_POST['UpdateD']))
 
 }
 
-// submit and process the query for existing Students
+// submit and process the query for existing Waitlist
 $query = "select * from Waitlist;";
 $result = mysql_query ($query, $DBconn);
 while ($row = mysql_fetch_object ($result))
