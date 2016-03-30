@@ -45,6 +45,7 @@ elseif (isset($_POST['remove']))
 	$query = "DELETE FROM Instructor WHERE id = \"$remove\"";
 	$result = mysql_query ($query, $DBconn);
 }
+
 //change Fname of Instructor if update was clicked and if post is not empty
 elseif (isset($_POST['UpdateFN']))
 {
@@ -60,6 +61,7 @@ elseif (isset($_POST['UpdateFN']))
 	throw new InvalidArgumentException('Invalid Fname');
 }
 }
+
 //change Lname of Instructor if update was clicked and if post is not empty
 elseif (isset($_POST['UpdateLN']))
 {
@@ -91,6 +93,7 @@ elseif (isset($_POST['UpdateE']))
 	throw new InvalidArgumentException('Invalid Email');
 }
 }
+
 //change Phone of Instructor if update was clicked and if post is not empty
 elseif (isset($_POST['UpdateP']))
 {
@@ -106,6 +109,7 @@ elseif (isset($_POST['UpdateP']))
 	throw new InvalidArgumentException('Invalid Phone');
 }
 }
+
 //change Building of Instructor if update was clicked and if post is not empty
 elseif (isset($_POST['UpdateB']))
 {
@@ -121,6 +125,7 @@ elseif (isset($_POST['UpdateB']))
 	throw new InvalidArgumentException('Invalid Building');
 }
 }
+
 //change Office of Instructor if update was clicked and if post is not empty
 elseif (isset($_POST['UpdateO']))
 {
@@ -136,6 +141,7 @@ elseif (isset($_POST['UpdateO']))
 	throw new InvalidArgumentException('Invalid Office');
 }
 }
+
 // submit and process the query for exisiting Instructors
 $query = "select * from Instructor;";
 $result = mysql_query ($query, $DBconn);
