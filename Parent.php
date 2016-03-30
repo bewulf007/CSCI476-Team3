@@ -44,6 +44,7 @@ elseif (isset($_POST['remove']))
 	$query = "DELETE FROM Parent WHERE id = \"$remove\"";
 	$result = mysql_query ($query, $DBconn);
 }
+
 //change Fname of Parent if update was clicked and if post is not empty
 elseif (isset($_POST['UpdateFN']))
 {
@@ -59,6 +60,7 @@ elseif (isset($_POST['UpdateFN']))
 	throw new InvalidArgumentException('Invalid Fname');
 }
 }
+
 //change Lname of Parent if update was clicked and if post is not empty
 elseif (isset($_POST['UpdateLN']))
 {
@@ -74,6 +76,7 @@ elseif (isset($_POST['UpdateLN']))
 	throw new InvalidArgumentException('Invalid Lname');
 }
 }
+
 //change AddressID of Parent if update was clicked and if post is not empty
 elseif (isset($_POST['UpdateA']))
 {
@@ -89,6 +92,7 @@ elseif (isset($_POST['UpdateA']))
 	throw new InvalidArgumentException('Invalid AddressID');
 }
 }
+
 //change Email of Parent if update was clicked and if post is not empty
 elseif (isset($_POST['UpdateE']))
 {
@@ -104,6 +108,7 @@ elseif (isset($_POST['UpdateE']))
 	throw new InvalidArgumentException('Invalid Email');
 }
 }
+
 //change Phone of Parent if update was clicked and if post is not empty
 elseif (isset($_POST['UpdateP']))
 {
@@ -119,6 +124,7 @@ elseif (isset($_POST['UpdateP']))
 	throw new InvalidArgumentException('Invalid Phone');
 }
 }
+
 // submit and process the query for exisiting Parents
 
 $query = "select * from Parent;";
