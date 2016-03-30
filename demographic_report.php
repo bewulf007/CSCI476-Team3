@@ -22,6 +22,8 @@ $DBconn = mysql_connect ("daytona.birdnest.org", "my.morriss11", "@y#mln52")
 $db_selected = mysql_select_db("my_morriss11", $DBconn);
 if (!$db_selected)
    die ("Can't use my_morriss11 : " . mysql_error());
+   
+   //retrieve student first and last name, school, grade, gender, ethnicity, city, state, camp name for reporting purposes
 $query = "SELECT DISTINCT Student.Fname, Student.Lname, Student.School, Student.Grade, Student.Gender, Student.Ethnicity, Address.City, Address.State, Camp.Name FROM Student JOIN Address ON Student.Address_id=Address.id JOIN Campers ON Student.id=Campers.Student_id JOIN Camp ON Campers.Camp_id=Camp.id;";
 
 $result = mysql_query ($query, $DBconn);
