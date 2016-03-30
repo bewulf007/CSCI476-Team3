@@ -38,7 +38,8 @@ elseif (isset($_POST['remove']))
 	$query = "DELETE FROM Campers WHERE ID = \"$remove\"";
 	$result = mysql_query ($query, $DBconn);
 }
-//change Student_Id of song if update was clicked and if post is not empty
+
+//change Student_Id of Campers if update was clicked and if post is not empty
 elseif (isset($_POST['UpdateT']))
 {
 	if(!empty($_POST['UpdatedStudent_Id']))
@@ -54,7 +55,8 @@ elseif (isset($_POST['UpdateT']))
 }
 
 }
-//change Student_Id of Camp_Id if update was clicked and if post is not empty
+
+//change Student_Id of Campers if update was clicked and if post is not empty
 elseif (isset($_POST['UpdateD']))
 {
 	if(!empty($_POST['UpdatedCamp_Id']))
