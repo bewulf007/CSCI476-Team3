@@ -13,7 +13,7 @@ if (!$db_selected)
 $row = 1;
 
 //request file to read from
-require_once('file.php');
+require_once('file_readcsv.php');
 error_reporting(0);
 //Check if a file name has been entered
 if($file)
