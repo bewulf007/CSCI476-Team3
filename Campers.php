@@ -4,11 +4,13 @@
 <hr>
 <table rules=all border=10>
 <tr>
-<td bgcolor=black colspan=8 align=center><font color=white>Existing Users
+<td bgcolor=black colspan=8 align=center><font color=white>Existing Campers
 <tr>
 <td bgcolor=green>Id
 <td bgcolor=green>Student_Id
 <td bgcolor=yellow>Update Student_Id
+<td bgcolor=green>First Name
+<td bgcolor=green>Last Name
 <td bgcolor=green>Camp_Id
 <td bgcolor=yellow>Update Camp_Id
 <td bgcolor=red>Delete
@@ -38,8 +40,7 @@ elseif (isset($_POST['remove']))
 	$query = "DELETE FROM Campers WHERE ID = \"$remove\"";
 	$result = mysql_query ($query, $DBconn);
 }
-
-//change Student_Id of Campers if update was clicked and if post is not empty
+//change Student_Id of song if update was clicked and if post is not empty
 elseif (isset($_POST['UpdateT']))
 {
 	if(!empty($_POST['UpdatedStudent_Id']))
@@ -55,8 +56,7 @@ elseif (isset($_POST['UpdateT']))
 }
 
 }
-
-//change Student_Id of Campers if update was clicked and if post is not empty
+//change Student_Id of Camp_Id if update was clicked and if post is not empty
 elseif (isset($_POST['UpdateD']))
 {
 	if(!empty($_POST['UpdatedCamp_Id']))
@@ -74,7 +74,10 @@ elseif (isset($_POST['UpdateD']))
 }
 
 // submit and process the query for existing Students
-$query = "select * from Campers;";
+$query = "Select Campers.ID, Student_Id, Fname, Lname, Camp_Id
+ from Student JOIN Campers 
+WHERE Student.id=Campers.Student_id
+ORDER BY Student_Id ASC;";
 $result = mysql_query ($query, $DBconn);
 while ($row = mysql_fetch_object ($result))
 {
@@ -85,6 +88,8 @@ while ($row = mysql_fetch_object ($result))
    echo ("<input type='hIdden' name ='UpdateT' value = $row->ID>");  
    echo ("Change Student_Id <input type=text name='UpdatedStudent_Id'>");
    echo "</form>";
+   echo("<td> $row->Fname");
+   echo("<td> $row->Lname");
    echo ("<td> $row->Camp_Id");
    echo ("<form action=Campers.php method = post>");
    echo ("<td> <input type=submit value=Update>");
@@ -105,11 +110,16 @@ while ($row = mysql_fetch_object ($result))
 
 <form action=Campers.php method=post>
 <pre>
-       New Campers:
+        New Campers:
 	Student_Id <input type=text name="Student_Id">
-	Camp_Id <input type=text name="Camp_Id">
+	Camp_Id    <input type=text name="Camp_Id">
        <input type=submit value="Add Record">
-<a href ="JoinedTable.php"> Songs And Artists Table </a>
+<P>
+	<a href ="Student.php">Student Table </a> - To Reference Student Id's
+<P>
+	<a href ="Camp.php">Camp Table </a> - To Reference Camp Id's
+<P>
+	<a href ="Administrator.html">Back To Administration </a>
 </pre>
 </form>
 <P>
