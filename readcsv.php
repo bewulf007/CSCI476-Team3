@@ -12,8 +12,14 @@ if (!$db_selected)
    die ("Can't use my_morriss11 : " . mysql_error());
 $row = 1;
 
+//request file to read from
+require_once('file.php');
+error_reporting(0);
+//Check if a file name has been entered
+if($file)
+{
 
-if (($handle = fopen("/home/ACC.morriss11/public_html/TechnologyCampRegistration2015__Copy.csv", "r")) !== FALSE) {
+if (($handle = fopen("/home/ACC.morriss11/public_html/$file", "r")) !== FALSE) {
   while (($data = fgetcsv($handle, 1000, ",")) !== FALSE) {
     $num = count($data);
     echo "<p> $num fields in line $row: <br /></p>\n";
@@ -235,4 +241,5 @@ $result8 = mysql_query ($query11, $DBconn);
 //$result = mysql_query ($query, $DBconn);
 }}
   fclose($handle);
+}
 }
