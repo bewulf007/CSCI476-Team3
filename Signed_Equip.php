@@ -17,26 +17,26 @@
 
 <?php
 // connect the database
-$DBconn = mysql_connect ("daytona.birdnest.org", "my.morriss11", "@y#mln52")
+$DBconn = mysqli_connect ("daytona.birdnest.org", "my.morriss11", "@y#mln52")
           or exit ("failed to connect to mysql");
-$db_selected = mysql_select_db("my_morriss11", $DBconn);
+$db_selected = mysqli_select_db($DBconn, "my_morriss11");
 if (!$db_selected)
-   die ("Can't use my_paternom3 : " . mysql_error());
+   die ("Can't use my_paternom3 : " . mysqli_error());
 
 // if the form had data, then insert a new record
 if (isset($_POST['Student_Id']))
   {
 
-   $Student_Id = $_POST['Student_Id'];
-   $Equip_id= $_POST['Equip_id'];
+   $Student_Id = mysqli_real_escape_string($DBconn, trim($_POST['Student_Id']));
+   $Equip_id= mysqli_real_escape_string($DBconn, trim($_POST['Equip_id']));
    $query = "INSERT INTO Signed_Equip VALUES (Null,$Student_Id,$Equip_id)";
-   $result = mysql_query ($query, $DBconn);
+   $result = mysqli_query ($DBconn, $query);
   }
 elseif (isset($_POST['remove']))
 {
-	$remove = $_POST['remove'];
+	$remove = mysqli_real_escape_string($DBconn, trim($_POST['remove']));
 	$query = "DELETE FROM Signed_Equip WHERE ID = \"$remove\"";
-	$result = mysql_query ($query, $DBconn);
+	$result = mysqli_query ($DBconn, $query);
 }
 
 //change Student_Id of Signed_Equip if update was clicked and if post is not empty
@@ -44,10 +44,10 @@ elseif (isset($_POST['UpdateT']))
 {
 	if(!empty($_POST['UpdatedStudent_Id']))
 {
-	$update = $_POST['UpdateT'];
-	$UpdateStudent_Id= $_POST['UpdatedStudent_Id'];
+	$update = mysqli_real_escape_string($DBconn, trim($_POST['UpdateT']));
+	$UpdateStudent_Id= mysqli_real_escape_string($DBconn, trim($_POST['UpdatedStudent_Id']));
 	$query = "UPDATE Signed_Equip SET Student_Id = \"$UpdateStudent_Id\" WHERE ID = $update;";
-        $result = mysql_query($query, $DBconn);
+        $result = mysqli_query($DBconn, $query);
 }
 	if(empty($_POST['UpdatedStudent_Id']))
 {
@@ -61,10 +61,10 @@ elseif (isset($_POST['UpdateD']))
 {
 	if(!empty($_POST['UpdatedEquip_id']))
 {
-	$update = $_POST['UpdateD'];
-	$UpdateEquip_id= $_POST['UpdatedEquip_id'];
+	$update = mysqli_real_escape_string($DBconn, trim($_POST['UpdateD']));
+	$UpdateEquip_id= mysqli_real_escape_string($DBconn, trim($_POST['UpdatedEquip_id']));
 	$query = "UPDATE Signed_Equip SET Equip_id = $UpdateEquip_id WHERE ID = $update;";
-        $result = mysql_query($query, $DBconn);
+        $result = mysqli_query($DBconn, $query);
 }
 	if(empty($_POST['UpdatedEquip_id']))
 {
@@ -75,8 +75,8 @@ elseif (isset($_POST['UpdateD']))
 
 // submit and process the query for existing Students
 $query = "select * from Signed_Equip;";
-$result = mysql_query ($query, $DBconn);
-while ($row = mysql_fetch_object ($result))
+$result = mysqli_query ($DBconn, $query);
+while ($row = mysqli_fetch_object ($result))
 {
    echo ("<tr> <td> $row->ID");
    echo("<td> $row->Student_Id");
