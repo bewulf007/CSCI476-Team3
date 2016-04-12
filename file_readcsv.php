@@ -8,7 +8,7 @@ File Name: <input type=\"text\" name=\"file\"><br>
 <input type=\"submit\" value=\"Accept\">";
 if(isset($_POST['file']))
 {
-$file = $_POST['file'];
+$file = mysqli_real_escape_string($DBconn, ($_POST['file']));
 echo "<br><br>You entered:<br>" . $file;
 }
 ?>
