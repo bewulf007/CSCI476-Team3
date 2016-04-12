@@ -1,3 +1,6 @@
+<!-- Summer Camp Project -->
+<!-- Database Program -->
+<!-- Allows Information to be Added to the Grant_Info Table -->
 <html>
 <hr>
 <table rules=all border=10>
@@ -5,147 +8,123 @@
 <td bgcolor=black colspan=8 align=center><font color=white>Grant Information
 <tr>
 <td bgcolor=green>Id
-<td bgcolor=green>Fname
-<td bgcolor=yellow>Update Fname
-<td bgcolor=green>Lname
-<td bgcolor=yellow>Update Lname
+<td bgcolor=green>First Name
+<td bgcolor=yellow>Update First Name
+<td bgcolor=green>Last Name
+<td bgcolor=yellow>Update Last Name
 <td bgcolor=green>Amount
 <td bgcolor=yellow>Update Amount
 <td bgcolor=green>Phone
 <td bgcolor=yellow>Update Phone
 <td bgcolor=green>Email
 <td bgcolor=yellow>Update Email
-<td bgcolor=green>Address_id
-<td bgcolor=yellow>Update Address_id
 <td bgcolor=red>Delete
 
 <?php
 // connect the database
-$DBconn = mysql_connect ("daytona.birdnest.org", "my.morriss11", "@y#mln52")
+// connect the database
+$DBconn = mysqli_connect ("daytona.birdnest.org", "my.morriss11", "@y#mln52")
           or exit ("failed to connect to mysql");
-$db_selected = mysql_select_db("my_morriss11", $DBconn);
+$db_selected = mysqli_select_db($DBconn, "my_morriss11");
 if (!$db_selected)
-   die ("Can't use my_paternom3 : " . mysql_error());
+   die ("Can't use my_morriss11 : " . mysqli_error());
    
    //If the form has data, then insert a new record
    if (isset($_POST['Fname']))
   {
-   $Fname= $_POST['Fname'];
-   $Lname = $_POST['Lname'];
-   $Email= $_POST['Email'];
-   $Phone= $_POST['Phone'];
-   $Amount= $_POST['Amount'];
-   $Address_id= $_POST['Address_id'];
-   $query = "INSERT INTO Grant_info VALUES (NULL,'$Fname','$Lname','$Email','$Phone','$Amount','$Address_id')";
-   $result = mysql_query ($query, $DBconn);
+   $Fname= mysqli_real_escape_string($DBconn, trim($_POST['Fname']));
+   $Lname = mysqli_real_escape_string($DBconn, trim($_POST['Lname']));
+   $Amount= mysqli_real_escape_string($DBconn, trim($_POST['Amount']));
+   $Phone= mysqli_real_escape_string($DBconn, trim($_POST['Phone']));
+   $Email= mysqli_real_escape_string($DBconn, trim($_POST['Email']));
+   $query = "INSERT INTO Grant_info VALUES (NULL,'$Fname','$Lname','$Amount','$Phone','$Email')";
+   $result = mysqli_query ($DBconn, $query) or die ('Error querying database.');
   }
 elseif (isset($_POST['remove']))
 {
-	$remove = $_POST['remove'];
+	$remove = mysqli_real_escape_string($DBconn, trim($_POST['remove']));
 	$query = "DELETE FROM Grant_info WHERE id = \"$remove\"";
-	$result = mysql_query ($query, $DBconn);
+	$result = mysqli_query ($DBconn, $query) or die ('Error querying database.');
 }
-
 //change Fname of Grant_info if update was clicked and if post is not empty
 elseif (isset($_POST['UpdateFN']))
 {
 	if(!empty($_POST['UpdatedFname']))
 {
-	$update = $_POST['UpdateFN'];
-	$UpdateFname= $_POST['UpdatedFname'];
+	$update = mysqli_real_escape_string($DBconn, trim($_POST['UpdateFN']));
+	$UpdateFname= mysqli_real_escape_string($DBconn, trim($_POST['UpdatedFname']));
 	$query = "UPDATE Grant_info SET Fname = \"$UpdateFname\" WHERE id = $update;";
-        $result = mysql_query($query, $DBconn);
+        $result = mysqli_query ($DBconn, $query) or die ('Error querying database.');
 }
 	if(empty($_POST['UpdatedFname']))
 {
 	throw new InvalidArgumentException('Invalid Fname');
 }
 }
-
 //change Lname of Grant_info if update was clicked and if post is not empty
 elseif (isset($_POST['UpdateLN']))
 {
 	if(!empty($_POST['UpdatedLname']))
 {
-	$update = $_POST['UpdateLN'];
-	$UpdateLname= $_POST['UpdatedLname'];
+	$update = mysqli_real_escape_string($DBconn, trim($_POST['UpdateLN']));
+	$UpdateLname= mysqli_real_escape_string($DBconn, trim($_POST['UpdatedLname']));
 	$query = "UPDATE Grant_info SET Lname = \"$UpdateLname\" WHERE id = $update;";
-        $result = mysql_query($query, $DBconn);
+        $result = mysqli_query ($DBconn, $query) or die ('Error querying database.');
 }
 	if(empty($_POST['UpdatedLname']))
 {
 	throw new InvalidArgumentException('Invalid Lname');
 }
 }
-
 //change Amount of Grant_info if update was clicked and if post is not empty
 elseif (isset($_POST['UpdateA']))
 {
 	if(!empty($_POST['UpdatedAmount']))
 {
-	$update = $_POST['UpdateA'];
-	$UpdateAmount= $_POST['UpdatedAmount'];
+	$update = mysqli_real_escape_string($DBconn, trim($_POST['UpdateA']));
+	$UpdateAmount= mysqli_real_escape_string($DBconn, trim($_POST['UpdatedAmount']));
 	$query = "UPDATE Grant_info SET Amount = \"$UpdateAmount\" WHERE id = $update;";
-        $result = mysql_query($query, $DBconn);
+        $result = mysqli_query ($DBconn, $query) or die ('Error querying database.');
 }
 	if(empty($_POST['UpdatedAmount']))
 {
 	throw new InvalidArgumentException('Invalid Amount');
 }
 }
-
-//change Email of Grant_info if update was clicked and if post is not empty
-elseif (isset($_POST['UpdateE']))
-{
-	if(!empty($_POST['UpdatedEmail']))
-{
-	$update = $_POST['UpdateE'];
-	$UpdateEmail= $_POST['UpdatedEmail'];
-	$query = "UPDATE Grant_info SET Email = \"$UpdateEmail\" WHERE id = $update;";
-        $result = mysql_query($query, $DBconn);
-}
-	if(empty($_POST['UpdatedEmail']))
-{
-	throw new InvalidArgumentException('Invalid Email');
-}
-}
-
 //change Phone of Grant_info if update was clicked and if post is not empty
 elseif (isset($_POST['UpdateP']))
 {
 	if(!empty($_POST['UpdatedPhone']))
 {
-	$update = $_POST['UpdateP'];
-	$UpdatePhone = $_POST['UpdatedPhone'];
+	$update = mysqli_real_escape_string($DBconn, trim($_POST['UpdateP']));
+	$UpdatePhone = mysqli_real_escape_string($DBconn, trim($_POST['UpdatedPhone']));
 	$query = "UPDATE Grant_info SET Phone = \"$UpdatePhone\" WHERE id = $update;";
-        $result = mysql_query($query, $DBconn);
+        $result = mysqli_query ($DBconn, $query) or die ('Error querying database.');
 }
 	if(empty($_POST['UpdatedPhone']))
 {
 	throw new InvalidArgumentException('Invalid Phone');
 }
 }
-
-//change Address of Grant_info if update was clicked and if post is not empty
-elseif (isset($_POST['UpdateAID']))
+//change Email of Grant_info if update was clicked and if post is not empty
+elseif (isset($_POST['UpdateE']))
 {
-	if(!empty($_POST['UpdatedAddress_id']))
+	if(!empty($_POST['UpdatedEmail']))
 {
-	$update = $_POST['UpdateAID'];
-	$UpdateAddress_id= $_POST['UpdatedAddress_id'];
-	$query = "UPDATE Grant_info SET Address_id = \"$UpdateAddress_id\" WHERE id = $update;";
-        $result = mysql_query($query, $DBconn);
+	$update = mysqli_real_escape_string($DBconn, trim($_POST['UpdateE']));
+	$UpdateEmail= mysqli_real_escape_string($DBconn, trim($_POST['UpdatedEmail']));
+	$query = "UPDATE Grant_info SET Email = \"$UpdateEmail\" WHERE id = $update;";
+        $result = mysqli_query ($DBconn, $query) or die ('Error querying database.');
 }
-	if(empty($_POST['UpdatedAddress_id']))
+	if(empty($_POST['UpdatedEmail']))
 {
-	throw new InvalidArgumentException('Invalid Address_id');
+	throw new InvalidArgumentException('Invalid Email');
 }
 }
-
 // submit and process the query for exisiting Grant_infos
 $query = "select * from Grant_info;";
-$result = mysql_query ($query, $DBconn);
-while ($row = mysql_fetch_object ($result))
+$result = mysqli_query ($DBconn, $query);
+while ($row = mysqli_fetch_object ($result))
 {
    echo ("<tr> <td> $row->id");
    echo("<td> $row->Fname");
@@ -178,12 +157,6 @@ while ($row = mysql_fetch_object ($result))
    echo ("<input type='hidden' name ='UpdateE' value = $row->id>");  
    echo ("Change Email <input type=text name='UpdatedEmail'>");
    echo "</form>";
-   echo ("<td> $row->Address_id");
-   echo ("<form action=Grant_Info.php method = post>");
-   echo ("<td> <input type=submit value=Update>");
-   echo ("<input type='hidden' name ='UpdateAID' value = $row->id>");  
-   echo ("Change Address_id <input type=text name='UpdatedAddress_id'>");
-   echo "</form>";
    echo ("<form action=Grant_Info.php method =post>");
    echo ("<td> <input type=submit value=Delete>");
    echo ("<input type='hidden' name ='remove' value = $row->id>");
@@ -202,11 +175,10 @@ while ($row = mysql_fetch_object ($result))
 		Fname <input type=text name="Fname">
 		Lname <input type=text name="Lname">
 		Amount <input type=text name="Amount">
-		Email <input type=text name="Email">
 		Phone <input type=text name="Phone">
-		Address_id <input type=text name="Address_id">
+		Email <input type=text name="Email">
        <input type=submit value="Add Record">
-<a href ="JoinedTable.php"> Addresses And Zips Table </a>
+<a href ="index.php"> Admin Stuff </a>
 </pre>
 </form>
 <P>
