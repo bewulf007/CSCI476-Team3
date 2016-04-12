@@ -1,3 +1,6 @@
+<!-- Summer Camp Project -->
+<!-- Database Program -->
+<!-- Allows Information to be Added to the Grant_Info Table -->
 <html>
 <hr>
 <table rules=all border=10>
@@ -10,8 +13,6 @@
 <td bgcolor=White>Phone
 <td bgcolor=White>Email
 
-
-
 <?php
 // connect the database
 $DBconn = mysqli_connect ("daytona.birdnest.org", "my.morriss11", "@y#mln52")
@@ -19,9 +20,9 @@ $DBconn = mysqli_connect ("daytona.birdnest.org", "my.morriss11", "@y#mln52")
 $db_selected = mysqli_select_db($DBconn, "my_morriss11");
 if (!$db_selected)
    die ("Can't use my_morriss11 : " . mysqli_error());
-//get first name, last name, amount, phone, email from grant info table for reporting
+
 $query = "SELECT Grant_info.Fname, Grant_info.Lname, Grant_info.Amount, Grant_info.Phone, Grant_info.Email FROM Grant_info;";
-$result = mysqli_query ($DBconn, $query);
+$result = mysqli_query ($DBconn, $query) or die ('Error querying database.');
 while ($row = mysqli_fetch_object ($result))
 {
    echo ("<tr> <td> $row->Fname");
@@ -30,6 +31,7 @@ while ($row = mysqli_fetch_object ($result))
    echo ("<td> $row->Phone");
    echo ("<td> $row->Email");
 }
+
 echo ("</table>");
 echo ("<button onclick=history.go(-1);>Back </button>");
 ?>
