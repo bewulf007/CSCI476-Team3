@@ -1,5 +1,6 @@
-
-
+<!-- Summer Camp Project -->
+<!-- Database Program -->
+<!-- Allows Campers to be Added to the Campers Table -->
 <html>
 <hr>
 <table rules=all border=10>
@@ -19,67 +20,63 @@
 
 <?php
 // connect the database
-$DBconn = mysql_connect ("daytona.birdnest.org", "my.morriss11", "@y#mln52")
+$DBconn = mysqli_connect ("daytona.birdnest.org", "my.morriss11", "@y#mln52")
           or exit ("failed to connect to mysql");
-$db_selected = mysql_select_db("my_morriss11", $DBconn);
+$db_selected = mysqli_select_db($DBconn, "my_morriss11");
 if (!$db_selected)
-   die ("Can't use my_paternom3 : " . mysql_error());
+   die ("Can't use my_paternom3 : " . mysqli_error());
 
 // if the form had data, then insert a new record
 if (isset($_POST['Student_Id']))
   {
-
-   $Student_Id = $_POST['Student_Id'];
-   $Camp_Id= $_POST['Camp_Id'];
+   $Student_Id = mysqli_real_escape_string($DBconn, trim($_POST['Student_Id']));
+   $Camp_Id= mysqli_real_escape_string($DBconn, trim($_POST['Camp_Id']));
    $query = "INSERT INTO Campers VALUES (Null,$Student_Id,$Camp_Id)";
-   $result = mysql_query ($query, $DBconn);
+   $result = mysqli_query ($DBconn, $query);
   }
 elseif (isset($_POST['remove']))
 {
-	$remove = $_POST['remove'];
+	$remove = mysqli_real_escape_string($DBconn, trim($_POST['remove']));
 	$query = "DELETE FROM Campers WHERE ID = \"$remove\"";
-	$result = mysql_query ($query, $DBconn);
+	$result = mysqli_query ($DBconn, $query);
 }
 //change Student_Id of song if update was clicked and if post is not empty
 elseif (isset($_POST['UpdateT']))
 {
 	if(!empty($_POST['UpdatedStudent_Id']))
 {
-	$update = $_POST['UpdateT'];
-	$UpdateStudent_Id= $_POST['UpdatedStudent_Id'];
+	$update = mysqli_real_escape_string($DBconn, trim($_POST['UpdateT']));
+	$UpdateStudent_Id= mysqli_real_escape_string($DBconn, trim($_POST['UpdatedStudent_Id']));
 	$query = "UPDATE Campers SET Student_Id = \"$UpdateStudent_Id\" WHERE ID = $update;";
-        $result = mysql_query($query, $DBconn);
+        $result = mysqli_query($DBconn, $query);
 }
 	if(empty($_POST['UpdatedStudent_Id']))
 {
 	throw new InvalIdArgumentException('InvalId Student_Id');
 }
-
 }
 //change Student_Id of Camp_Id if update was clicked and if post is not empty
 elseif (isset($_POST['UpdateD']))
 {
 	if(!empty($_POST['UpdatedCamp_Id']))
 {
-	$update = $_POST['UpdateD'];
-	$UpdateCamp_Id= $_POST['UpdatedCamp_Id'];
+	$update = mysqli_real_escape_string($DBconn, trim($_POST['UpdateD']));
+	$UpdateCamp_Id= mysqli_real_escape_string($DBconn, trim($_POST['UpdatedCamp_Id']));
 	$query = "UPDATE Campers SET Camp_Id = $UpdateCamp_Id WHERE ID = $update;";
-        $result = mysql_query($query, $DBconn);
+        $result = mysqli_query($DBconn, $query);
 }
 	if(empty($_POST['UpdatedCamp_Id']))
 {
 	throw new InvalIdArgumentException('InvalId Camp_Id');
 }
-
 }
-
 // submit and process the query for existing Students
 $query = "Select Campers.ID, Student_Id, Fname, Lname, Camp_Id
  from Student JOIN Campers 
 WHERE Student.id=Campers.Student_id
 ORDER BY Student_Id ASC;";
-$result = mysql_query ($query, $DBconn);
-while ($row = mysql_fetch_object ($result))
+$result = mysqli_query ($query, $DBconn);
+while ($row = mysqli_fetch_object ($result))
 {
    echo ("<tr> <td> $row->ID");
    echo("<td> $row->Student_Id");
