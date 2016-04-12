@@ -14,16 +14,15 @@
 
 <?php
 // connect the database
-$DBconn = mysql_connect ("daytona.birdnest.org", "my.morriss11", "@y#mln52")
+$DBconn = mysqli_connect ("daytona.birdnest.org", "my.morriss11", "@y#mln52")
           or exit ("failed to connect to mysql");
-$db_selected = mysql_select_db("my_morriss11", $DBconn);
+$db_selected = mysqli_select_db($DBconn, "my_morriss11");
 if (!$db_selected)
-   die ("Can't use my_morriss11 : " . mysql_error());
-
+   die ("Can't use my_morriss11 : " . mysqli_error());
 //get first name, last name, amount, phone, email from grant info table for reporting
 $query = "SELECT Grant_info.Fname, Grant_info.Lname, Grant_info.Amount, Grant_info.Phone, Grant_info.Email FROM Grant_info;";
-$result = mysql_query ($query, $DBconn);
-while ($row = mysql_fetch_object ($result))
+$result = mysqli_query ($DBconn, $query);
+while ($row = mysqli_fetch_object ($result))
 {
    echo ("<tr> <td> $row->Fname");
    echo("<td> $row->Lname");
@@ -31,10 +30,6 @@ while ($row = mysql_fetch_object ($result))
    echo ("<td> $row->Phone");
    echo ("<td> $row->Email");
 }
-
 echo ("</table>");
 echo ("<button onclick=history.go(-1);>Back </button>");
-
-
 ?>
-
