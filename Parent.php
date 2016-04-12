@@ -1,5 +1,6 @@
-
-
+<!-- Summer Camp Project -->
+<!-- Database Program -->
+<!-- Allows Students to be Added to the Student Table -->
 <html>
 <hr>
 <table rules=all border=10>
@@ -21,115 +22,108 @@
 
 <?php
 // connect the database
-$DBconn = mysql_connect ("daytona.birdnest.org", "my.morriss11", "@y#mln52")
+$DBconn = mysqli_connect ("daytona.birdnest.org", "my.morriss11", "@y#mln52")
           or exit ("failed to connect to mysql");
-$db_selected = mysql_select_db("my_morriss11", $DBconn);
+$db_selected = mysqli_select_db($DBconn, "my_morriss11");
 if (!$db_selected)
-   die ("Can't use my_paternom3 : " . mysql_error());
+   die ("Can't use my_morriss11 : " . mysqli_error());
    
    //If the form has data, then insert a new record
    if (isset($_POST['Fname']))
   {
-   $Fname= $_POST['Fname'];
-   $Lname = $_POST['Lname'];
-   $AddressID= $_POST['AddressID'];
-   $Email= $_POST['Email'];
-   $Phone= $_POST['Phone'];
+   $Fname= mysqli_real_escape_string($DBconn, trim($_POST['Fname']));
+   $Lname = mysqli_real_escape_string($DBconn, trim($_POST['Lname']));
+   $AddressID= mysqli_real_escape_string($DBconn, trim($_POST['AddressID']));
+   $Email= mysqli_real_escape_string($DBconn, trim($_POST['Email']));
+   $Phone= mysqli_real_escape_string($DBconn, trim($_POST['Phone']));
    $query = "INSERT INTO Parent VALUES (NULL,'$Fname','$Lname','$AddressID','$Email','$Phone')";//will need to adjust JOIN address to instructor
-   $result = mysql_query ($query, $DBconn);
+   $result = mysqli_query ($DBconn, $query) or die ('Error querying database.');
   }
 elseif (isset($_POST['remove']))
 {
-	$remove = $_POST['remove'];
+	$remove = mysqli_real_escape_string($DBconn, trim($_POST['remove']));
 	$query = "DELETE FROM Parent WHERE id = \"$remove\"";
-	$result = mysql_query ($query, $DBconn);
+	$result = mysqli_query ($DBconn, $query) or die ('Error querying database.');
 }
-
 //change Fname of Parent if update was clicked and if post is not empty
 elseif (isset($_POST['UpdateFN']))
 {
 	if(!empty($_POST['UpdatedFname']))
 {
-	$update = $_POST['UpdateFN'];
-	$UpdateFname= $_POST['UpdatedFname'];
+	$update = mysqli_real_escape_string($DBconn, trim($_POST['UpdateFN']));
+	$UpdateFname= mysqli_real_escape_string($DBconn, trim($_POST['UpdatedFname']));
 	$query = "UPDATE Parent SET Fname = \"$UpdateFname\" WHERE id = $update;";
-        $result = mysql_query($query, $DBconn);
+        $result = mysqli_query ($DBconn, $query) or die ('Error querying database.');
 }
 	if(empty($_POST['UpdatedFname']))
 {
 	throw new InvalidArgumentException('Invalid Fname');
 }
 }
-
 //change Lname of Parent if update was clicked and if post is not empty
 elseif (isset($_POST['UpdateLN']))
 {
 	if(!empty($_POST['UpdatedLname']))
 {
-	$update = $_POST['UpdateLN'];
-	$UpdateLname= $_POST['UpdatedLname'];
+	$update = mysqli_real_escape_string($DBconn, trim($_POST['UpdateLN']));
+	$UpdateLname= mysqli_real_escape_string($DBconn, trim($_POST['UpdatedLname']));
 	$query = "UPDATE Parent SET Lname = \"$UpdateLname\" WHERE id = $update;";
-        $result = mysql_query($query, $DBconn);
+        $result = mysqli_query ($DBconn, $query) or die ('Error querying database.');
 }
 	if(empty($_POST['UpdatedLname']))
 {
 	throw new InvalidArgumentException('Invalid Lname');
 }
 }
-
 //change AddressID of Parent if update was clicked and if post is not empty
 elseif (isset($_POST['UpdateA']))
 {
 	if(!empty($_POST['UpdatedAddressID']))
 {
-	$update = $_POST['UpdateA'];
-	$UpdateAddressID= $_POST['UpdatedAddressID'];
+	$update = mysqli_real_escape_string($DBconn, trim($_POST['UpdateA']));
+	$UpdateAddressID= mysqli_real_escape_string($DBconn, trim($_POST['UpdatedAddressID']));
 	$query = "UPDATE Parent SET AddressID = \"$UpdateAddressID\" WHERE id = $update;";
-        $result = mysql_query($query, $DBconn);
+        $result = mysqli_query ($DBconn, $query) or die ('Error querying database.');
 }
 	if(empty($_POST['UpdatedAddressID']))
 {
 	throw new InvalidArgumentException('Invalid AddressID');
 }
 }
-
 //change Email of Parent if update was clicked and if post is not empty
 elseif (isset($_POST['UpdateE']))
 {
 	if(!empty($_POST['UpdatedEmail']))
 {
-	$update = $_POST['UpdateE'];
-	$UpdateEmail= $_POST['UpdatedEmail'];
+	$update = mysqli_real_escape_string($DBconn, trim($_POST['UpdateE']));
+	$UpdateEmail= mysqli_real_escape_string($DBconn, trim($_POST['UpdatedEmail']));
 	$query = "UPDATE Parent SET Email = \"$UpdateEmail\" WHERE id = $update;";
-        $result = mysql_query($query, $DBconn);
+        $result = mysqli_query ($DBconn, $query) or die ('Error querying database.');
 }
 	if(empty($_POST['UpdatedEmail']))
 {
 	throw new InvalidArgumentException('Invalid Email');
 }
 }
-
 //change Phone of Parent if update was clicked and if post is not empty
 elseif (isset($_POST['UpdateP']))
 {
 	if(!empty($_POST['UpdatedPhone']))
 {
-	$update = $_POST['UpdateP'];
-	$UpdatePhone = $_POST['UpdatedPhone'];
+	$update = mysqli_real_escape_string($DBconn, trim($_POST['UpdateP']));
+	$UpdatePhone = mysqli_real_escape_string($DBconn, trim($_POST['UpdatedPhone']));
 	$query = "UPDATE Parent SET Phone = \"$UpdatePhone\" WHERE id = $update;";
-        $result = mysql_query($query, $DBconn);
+        $result = mysqli_query ($DBconn, $query) or die ('Error querying database.');
 }
 	if(empty($_POST['UpdatedPhone']))
 {
 	throw new InvalidArgumentException('Invalid Phone');
 }
 }
-
 // submit and process the query for exisiting Parents
-
 $query = "select * from Parent;";
-$result = mysql_query ($query, $DBconn);
-while ($row = mysql_fetch_object ($result))
+$result = mysqli_query ($DBconn, $query) or die ('Error querying database.');
+while ($row = mysqli_fetch_object ($result))
 {
    echo ("<tr> <td> $row->id");
    echo("<td> $row->Fname");
