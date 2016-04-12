@@ -1,6 +1,6 @@
 <!-- Summer Camp Project -->
 <!-- Database Program -->
-<!-- Allows Budgets to be Added to the Budgets Table -->
+<!-- Displays a list of Equipment -->
 <html>
 <hr>
 <table rules=all border=10>
