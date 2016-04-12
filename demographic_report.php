@@ -1,3 +1,6 @@
+<!-- Summer Camp Project -->
+<!-- Database Program -->
+<!-- Displays Demographic Information for Students -->
 <html>
 <hr>
 <table rules=all border=10>
@@ -17,17 +20,16 @@
 
 <?php
 // connect the database
-$DBconn = mysql_connect ("daytona.birdnest.org", "my.morriss11", "@y#mln52")
+$DBconn = mysqli_connect ("daytona.birdnest.org", "my.morriss11", "@y#mln52")
           or exit ("failed to connect to mysql");
-$db_selected = mysql_select_db("my_morriss11", $DBconn);
+$db_selected = mysqli_select_db($DBconn, "my_morriss11");
 if (!$db_selected)
-   die ("Can't use my_morriss11 : " . mysql_error());
-   
-   //retrieve student first and last name, school, grade, gender, ethnicity, city, state, camp name for reporting purposes
+   die ("Can't use my_morriss11 : " . mysqli_error());
+
 $query = "SELECT DISTINCT Student.Fname, Student.Lname, Student.School, Student.Grade, Student.Gender, Student.Ethnicity, Address.City, Address.State, Camp.Name FROM Student JOIN Address ON Student.Address_id=Address.id JOIN Campers ON Student.id=Campers.Student_id JOIN Camp ON Campers.Camp_id=Camp.id;";
 
-$result = mysql_query ($query, $DBconn);
-while ($row = mysql_fetch_object ($result))
+$result = mysqli_query ($DBconn, $query) or die ('Error querying database.');
+while ($row = mysqli_fetch_object ($result))
 {
    echo ("<tr> <td> $row->Fname");
    echo("<td> $row->Lname");
