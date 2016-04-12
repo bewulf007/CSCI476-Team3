@@ -23,100 +23,92 @@
 
 <?php
 // connect the database
-$DBconn = mysql_connect ("daytona.birdnest.org", "my.morriss11", "@y#mln52")
+$DBconn = mysqli_connect ("daytona.birdnest.org", "my.morriss11", "@y#mln52")
           or exit ("failed to connect to mysql");
-$db_selected = mysql_select_db("my_morriss11", $DBconn);
+$db_selected = mysqli_select_db($DBconn, "my_morriss11");
 if (!$db_selected)
-   die ("Can't use my_paternom3 : " . mysql_error());
+   die ("Can't use my_morriss11 : " . mysqli_error());
 
 // if the form has data, then insert a new record
 if (isset($_POST['Street']))
   {
-   $Street= $_POST['Street'];
-   $City = $_POST['City'];
-   $State= $_POST['State'];
-   $Zip= $_POST['Zip'];
+   $Street= mysqli_real_escape_string($DBconn, trim($_POST['Street']));
+   $City = mysqli_real_escape_string($DBconn, trim($_POST['City']));
+   $State= mysqli_real_escape_string($DBconn, trim($_POST['State']));
+   $Zip= mysqli_real_escape_string($DBconn, trim($_POST['Zip']));
    $query = "INSERT INTO Address VALUES (NULL,'$Street','$City','$State','$Zip')";
-   $result = mysql_query ($query, $DBconn);
+   $result = mysqli_query ($DBconn, $query) or die ('Error querying database.');
   }
 elseif (isset($_POST['remove']))
 {
 	$remove = $_POST['remove'];
 	$query = "DELETE FROM Address WHERE id = \"$remove\"";
-	$result = mysql_query ($query, $DBconn);
+	$result = mysqli_query ($DBconn, $query) or die ('Error querying database.');
 }
-
 //change street of address if update was clicked and if post is not empty
 elseif (isset($_POST['UpdateS']))
 {
 	if(!empty($_POST['UpdatedStreet']))
 {
-	$update = $_POST['UpdateS'];
-	$UpdateStreet= $_POST['UpdatedStreet'];
+	$update = mysqli_real_escape_string($DBconn, trim($_POST['UpdateS']));
+	$UpdateStreet= mysqli_real_escape_string($DBconn, trim($_POST['UpdatedStreet']));
 	$query = "UPDATE Address SET Street = \"$UpdateStreet\" WHERE id = $update;";
-        $result = mysql_query($query, $DBconn);
+    $result = mysqli_query ($DBconn, $query) or die ('Error querying database.');
 }
 	if(empty($_POST['UpdatedStreet']))
 {
 	throw new InvalidArgumentException('Invalid Street');
 }
-
 }
-
 //change city of address if update was clicked and if post is not empty
 elseif (isset($_POST['UpdateC']))
 {
 	if(!empty($_POST['UpdatedCity']))
 {
-	$update = $_POST['UpdateC'];
-	$UpdateCity= $_POST['UpdatedCity'];
+	$update = mysqli_real_escape_string($DBconn, trim($_POST['UpdateC']));
+	$UpdateCity= mysqli_real_escape_string($DBconn, trim($_POST['UpdatedCity']));
 	$query = "UPDATE Address SET City = \"$UpdateCity\" WHERE id = $update;";
-        $result = mysql_query($query, $DBconn);
+    $result = mysqli_query ($DBconn, $query) or die ('Error querying database.');
 }
 	if(empty($_POST['UpdatedCity']))
 {
 	throw new InvalidArgumentException('Invalid City');
 }
-
 }
-
 //change state of address if update was clicked and if post is not empty
 elseif (isset($_POST['UpdateST']))
 {
 	if(!empty($_POST['UpdatedState']))
 {
-	$update = $_POST['UpdateST'];
-	$UpdateState= $_POST['UpdatedState'];
+	$update = mysqli_real_escape_string($DBconn, trim($_POST['UpdateST']));
+	$UpdateState= mysqli_real_escape_string($DBconn, trim($_POST['UpdatedState']));
 	$query = "UPDATE Address SET State = \"$UpdateState\" WHERE id = $update;";
-        $result = mysql_query($query, $DBconn);
+    $result = mysqli_query ($DBconn, $query) or die ('Error querying database.');
 }
 	if(empty($_POST['UpdatedState']))
 {
 	throw new InvalidArgumentException('Invalid State');
 }
-
 }
-
 //change zip of address if update was clicked and if post is not empty
 elseif (isset($_POST['UpdateZ']))
 {
 	if(!empty($_POST['UpdatedZip']))
 {
-	$update = $_POST['UpdateZ'];
-	$UpdateZip = $_POST['UpdatedZip'];
+	$update = mysqli_real_escape_string($DBconn, trim($_POST['UpdateZ']));
+	$UpdateZip = mysqli_real_escape_string($DBconn, trim($_POST['UpdatedZip']));
 	$query = "UPDATE Address SET Zip = $UpdateZip WHERE id = $update;";
-        $result = mysql_query($query, $DBconn);
+    $result = mysqli_query ($DBconn, $query) or die ('Error querying database.');
 }
 	if(empty($_POST['UpdatedZip']))
 {
 	throw new InvalidArgumentException('Invalid Zip');
 }
 }
-
 // submit and process the query for existing Addresses
 $query = "select * from Address;";
-$result = mysql_query ($query, $DBconn);
-while ($row = mysql_fetch_object ($result))
+$result = mysqli_query ($DBconn, $query) or die ('Error querying database.');
+while ($row = mysqli_fetch_object ($result))
 {
    echo ("<tr> <td> $row->id");
    echo("<td> $row->Street");
@@ -163,7 +155,7 @@ while ($row = mysql_fetch_object ($result))
 	State <input type=text name="State">
 	Zip <input type=text name="Zip">
        <input type=submit value="Add Record">
-<a href ="JoinedTable.php"> Addresses And Zips Table </a>
+<a href ="Administrator.html"> Back To Administration </a>
 </pre>
 </form>
 <P>
