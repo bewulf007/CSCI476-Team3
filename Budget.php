@@ -1,3 +1,6 @@
+<!-- Summer Camp Project -->
+<!-- Database Program -->
+<!-- Allows Budgets to be Added to the Budgets Table -->
 
 <html>
 <hr>
