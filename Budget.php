@@ -1,3 +1,4 @@
+
 <html>
 <hr>
 <table rules=all border=10>
@@ -11,35 +12,37 @@
 
 <?php
 // connect the database
-$DBconn = mysql_connect ("daytona.birdnest.org", "my.morriss11", "@y#mln52")
+$DBconn = mysqli_connect ("daytona.birdnest.org", "my.morriss11", "@y#mln52")
           or exit ("failed to connect to mysql");
-$db_selected = mysql_select_db("my_morriss11", $DBconn);
+$db_selected = mysqli_select_db($DBconn, "my_morriss11");
 if (!$db_selected)
-   die ("Can't use my_paternom3 : " . mysql_error());
+   die ("Can't use my_paternom3 : " . mysqli_error());
 
 //If the form has data, then insert a new record
    if (isset($_POST['Budget']))
   {
-   $Budget= $_POST['Budget'];
-
+   $Budget= mysqli_real_escape_string($DBconn, trim($_POST['Budget']));
+   if(is_numeric($Budget))
+   {
    $query = "INSERT INTO Budget VALUES (NULL,'$Budget')";
-   $result = mysql_query ($query, $DBconn);
+   $result = mysqli_query ($DBconn, $query) or die ('Error querying database.');
+   }
   }
 elseif (isset($_POST['remove']))
 {
-	$remove = $_POST['remove'];
+	$remove = mysqli_real_escape_string($DBconn, trim($_POST['remove']));
 	$query = "DELETE FROM Budget WHERE id = \"$remove\"";
-	$result = mysql_query ($query, $DBconn);
+	$result = mysqli_query ($DBconn, $query);
 }
 //change Budget of Budget if update was clicked and if post is not empty
 elseif (isset($_POST['UpdateB']))
 {
 	if(!empty($_POST['UpdatedBudget']))
 	{
-	$update = $_POST['UpdateB'];
-	$UpdateBudget= $_POST['UpdatedBudget'];
+	$update = mysqli_real_escape_string($DBconn, trim($_POST['UpdateB']));
+	$UpdateBudget= mysqli_real_escape_string($DBconn, trim($_POST['UpdatedBudget']));
 	$query = "UPDATE Budget SET Budget = \"$UpdateBudget\" WHERE id = $update;";
-        $result = mysql_query($query, $DBconn);
+        $result = mysqli_query($DBconn, $query);
 	}
 	if(empty($_POST['UpdatedBudget']))
 	{
@@ -49,8 +52,8 @@ elseif (isset($_POST['UpdateB']))
 
 // submit and process the query for existing Budget
 $query = "select * from Budget;";
-$result = mysql_query ($query, $DBconn);
-while ($row = mysql_fetch_object ($result))
+$result = mysqli_query ($DBconn, $query);
+while ($row = mysqli_fetch_object ($result))
 {
    //echo ("<tr> <td> $row->id");
    echo("<tr><td> $row->Budget");
@@ -73,8 +76,8 @@ while ($row = mysql_fetch_object ($result))
 <td bgcolor=white colspan=1 align=center><font color=black>
 <?php
 $query = "select SUM(Budget) AS Total from Budget;";
-$result = mysql_query ($query, $DBconn);
-$row = mysql_fetch_object ($result);
+$result = mysqli_query ($DBconn, $query);
+$row = mysqli_fetch_object ($result);
 echo "Total: $" . $row->Total;
 ?>
 </table>
@@ -86,7 +89,7 @@ echo "Total: $" . $row->Total;
 		New Budget:
 		Budget <input type=text name="Budget">
        <input type=submit value="Add Record">
-<a href ="index.php"> Administrative Activities </a>
+<a href ="Administrator.html"> Back To Administration </a>
 </pre>
 </form>
 <P>
