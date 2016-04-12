@@ -21,131 +21,124 @@
 
 <?php
 // connect the database
-$DBconn = mysql_connect ("daytona.birdnest.org", "my.morriss11", "@y#mln52")
+$DBconn = mysqli_connect ("daytona.birdnest.org", "my.morriss11", "@y#mln52")
           or exit ("failed to connect to mysql");
-$db_selected = mysql_select_db("my_morriss11", $DBconn);
+$db_selected = mysqli_select_db($DBconn, "my_morriss11");
 if (!$db_selected)
-   die ("Can't use my_paternom3 : " . mysql_error());
+   die ("Can't use my_paternom3 : " . mysqli_error());
    
    //If the form has data, then insert a new record
    if (isset($_POST['Fname']))
   {
-   $Fname= $_POST['Fname'];
-   $Lname = $_POST['Lname'];
-   $Email= $_POST['Email'];
-   $Phone= $_POST['Phone'];
-   $Building= $_POST['Building'];
-   $Office= $_POST['Office'];
+   $Fname= mysqli_real_escape_string($DBconn, trim($_POST['Fname']));
+   $Lname = mysqli_real_escape_string($DBconn, trim($_POST['Lname']));
+   $Email= mysqli_real_escape_string($DBconn, trim($_POST['Email']));
+   $Phone= mysqli_real_escape_string($DBconn, trim($_POST['Phone']));
+   $Building= mysqli_real_escape_string($DBconn, trim($_POST['Building']));
+   $Office= mysqli_real_escape_string($DBconn, trim($_POST['Office']));
    $query = "INSERT INTO Instructor VALUES (NULL,'$Fname','$Lname','$Email','$Phone','$Building','$Office')";
-   $result = mysql_query ($query, $DBconn);
+   $result = mysqli_query ($DBconn, $query);
   }
 elseif (isset($_POST['remove']))
 {
-	$remove = $_POST['remove'];
+	$remove = mysqli_real_escape_string($DBconn, trim($_POST['remove']));
 	$query = "DELETE FROM Instructor WHERE id = \"$remove\"";
-	$result = mysql_query ($query, $DBconn);
+	$result = mysqli_query ($DBconn, $query);
 }
-
 //change Fname of Instructor if update was clicked and if post is not empty
 elseif (isset($_POST['UpdateFN']))
 {
 	if(!empty($_POST['UpdatedFname']))
 {
-	$update = $_POST['UpdateFN'];
-	$UpdateFname= $_POST['UpdatedFname'];
+	$update = mysqli_real_escape_string($DBconn, trim($_POST['UpdateFN']));
+	$UpdateFname= mysqli_real_escape_string($DBconn, trim($_POST['UpdatedFname']));
 	$query = "UPDATE Instructor SET Fname = \"$UpdateFname\" WHERE id = $update;";
-        $result = mysql_query($query, $DBconn);
+        $result = mysqli_query($DBconn, $query);
 }
 	if(empty($_POST['UpdatedFname']))
 {
 	throw new InvalidArgumentException('Invalid Fname');
 }
 }
-
 //change Lname of Instructor if update was clicked and if post is not empty
 elseif (isset($_POST['UpdateLN']))
 {
 	if(!empty($_POST['UpdatedLname']))
 {
-	$update = $_POST['UpdateLN'];
-	$UpdateLname= $_POST['UpdatedLname'];
+	$update = mysqli_real_escape_string($DBconn, trim($_POST['UpdateLN']));
+	$UpdateLname= mysqli_real_escape_string($DBconn, trim($_POST['UpdatedLname']));
 	$query = "UPDATE Instructor SET Lname = \"$UpdateLname\" WHERE id = $update;";
-        $result = mysql_query($query, $DBconn);
+        $result = mysqli_query($DBconn, $query);
 }
 	if(empty($_POST['UpdatedLname']))
 {
 	throw new InvalidArgumentException('Invalid Lname');
 }
 }
-
 //change Email of Instructor if update was clicked and if post is not empty
 elseif (isset($_POST['UpdateE']))
 {
 	if(!empty($_POST['UpdatedEmail']))
 {
-	$update = $_POST['UpdateE'];
-	$UpdateEmail= $_POST['UpdatedEmail'];
+	$update = mysqli_real_escape_string($DBconn, trim($_POST['UpdateE']));
+	$UpdateEmail= mysqli_real_escape_string($DBconn, trim($_POST['UpdatedEmail']));
 	$query = "UPDATE Instructor SET Email = \"$UpdateEmail\" WHERE id = $update;";
-        $result = mysql_query($query, $DBconn);
+        $result = mysqli_query($DBconn, $query);
 }
 	if(empty($_POST['UpdatedEmail']))
 {
 	throw new InvalidArgumentException('Invalid Email');
 }
 }
-
 //change Phone of Instructor if update was clicked and if post is not empty
 elseif (isset($_POST['UpdateP']))
 {
 	if(!empty($_POST['UpdatedPhone']))
 {
-	$update = $_POST['UpdateP'];
-	$UpdatePhone = $_POST['UpdatedPhone'];
+	$update = mysqli_real_escape_string($DBconn, trim($_POST['UpdateP']));
+	$UpdatePhone = mysqli_real_escape_string($DBconn, trim($_POST['UpdatedPhone']));
 	$query = "UPDATE Instructor SET Phone = \"$UpdatePhone\" WHERE id = $update;";
-        $result = mysql_query($query, $DBconn);
+        $result = mysqli_query($DBconn, $query);
 }
 	if(empty($_POST['UpdatedPhone']))
 {
 	throw new InvalidArgumentException('Invalid Phone');
 }
 }
-
 //change Building of Instructor if update was clicked and if post is not empty
 elseif (isset($_POST['UpdateB']))
 {
 	if(!empty($_POST['UpdatedBuilding']))
 {
-	$update = $_POST['UpdateB'];
-	$UpdateBuilding= $_POST['UpdatedBuilding'];
+	$update = mysqli_real_escape_string($DBconn, trim($_POST['UpdateB']));
+	$UpdateBuilding= mysqli_real_escape_string($DBconn, trim($_POST['UpdatedBuilding']));
 	$query = "UPDATE Instructor SET Building = \"$UpdateBuilding\" WHERE id = $update;";
-        $result = mysql_query($query, $DBconn);
+        $result = mysqli_query($DBconn, $query);
 }
 	if(empty($_POST['UpdatedBuilding']))
 {
 	throw new InvalidArgumentException('Invalid Building');
 }
 }
-
 //change Office of Instructor if update was clicked and if post is not empty
 elseif (isset($_POST['UpdateO']))
 {
 	if(!empty($_POST['UpdatedOffice']))
 {
-	$update = $_POST['UpdateO'];
-	$UpdateOffice= $_POST['UpdatedOffice'];
+	$update = mysqli_real_escape_string($DBconn, trim($_POST['UpdateO']));
+	$UpdateOffice= mysqli_real_escape_string($DBconn, trim($_POST['UpdatedOffice']));
 	$query = "UPDATE Instructor SET Office = \"$UpdateOffice\" WHERE id = $update;";
-        $result = mysql_query($query, $DBconn);
+        $result = mysqli_query($DBconn, $query);
 }
 	if(empty($_POST['UpdatedOffice']))
 {
 	throw new InvalidArgumentException('Invalid Office');
 }
 }
-
 // submit and process the query for exisiting Instructors
 $query = "select * from Instructor;";
-$result = mysql_query ($query, $DBconn);
-while ($row = mysql_fetch_object ($result))
+$result = mysqli_query ($DBconn, $query);
+while ($row = mysqli_fetch_object ($result))
 {
    echo ("<tr> <td> $row->id");
    echo("<td> $row->Fname");
