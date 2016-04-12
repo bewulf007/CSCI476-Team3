@@ -1,7 +1,6 @@
-<!-- Matthew Paterno -->
 <!-- Database Program -->
 <!-- Allows Records to be Added to the Waitlist Table -->
-<!-- Contains one form that is also processed by this script -->
+<!-- Dispalys students on the waitist -->
 
 <html>
 <hr>
@@ -19,39 +18,37 @@
 <td bgcolor=red>Delete
 
 
-
 <?php
-// connect the database
-$DBconn = mysql_connect ("daytona.birdnest.org", "my.morriss11", "@y#mln52")
+$DBconn = mysqli_connect ("daytona.birdnest.org", "my.morriss11", "@y#mln52")
           or exit ("failed to connect to mysql");
-$db_selected = mysql_select_db("my_morriss11", $DBconn);
+$db_selected = mysqli_select_db($DBconn, "my_morriss11");
 if (!$db_selected)
-   die ("Can't use my_paternom3 : " . mysql_error());
+   die ("Can't use my_morriss11 : " . mysqli_error());
 
 // if the form had data, then insert a new record
 if (isset($_POST['Student_id']))
   {
 
-   $Student_id = $_POST['Student_id'];
-   $Camp_id= $_POST['Camp_id'];
+   $Student_id = mysqli_real_escape_string($DBconn, trim($_POST['Student_id']));
+   $Camp_id= mysqli_real_escape_string($DBconn, trim($_POST['Camp_id']));
    $query = "INSERT INTO Waitlist VALUES ($Student_id,$Camp_id)";
-   $result = mysql_query ($query, $DBconn);
+   $result = mysqli_query ($DBconn, $query) or die ('Error querying database.');
   }
 elseif (isset($_POST['remove']))
 {
-	$remove = $_POST['remove'];
+	$remove = mysqli_real_escape_string($DBconn, trim($_POST['remove']));
 	$query = "DELETE FROM Waitlist Student_id WHERE  = \"$remove\"";
-	$result = mysql_query ($query, $DBconn);
+	$result = mysqli_query ($DBconn, $query) or die ('Error querying database.');
 }
 //change Student_id of song if update was clicked and if post is not empty
 elseif (isset($_POST['UpdateT']))
 {
 	if(!empty($_POST['UpdatedStudent_id']))
 {
-	$update = $_POST['UpdateT'];
-	$UpdateStudent_id= $_POST['UpdatedStudent_id'];
+	$update = mysqli_real_escape_string($DBconn, trim($_POST['UpdateT']));
+	$UpdateStudent_id= mysqli_real_escape_string($DBconn, trim($_POST['UpdatedStudent_id']));
 	$query = "UPDATE Waitlist SET Student_id = \"$UpdateStudent_id\" WHERE Student_id = $update;";
-        $result = mysql_query($query, $DBconn);
+        $result = mysqli_query ($DBconn, $query) or die ('Error querying database.');
 }
 	if(empty($_POST['UpdatedStudent_id']))
 {
@@ -64,10 +61,10 @@ elseif (isset($_POST['UpdateD']))
 {
 	if(!empty($_POST['UpdatedCamp_id']))
 {
-	$update = $_POST['UpdateD'];
-	$UpdateCamp_id= $_POST['UpdatedCamp_id'];
+	$update = mysqli_real_escape_string($DBconn, trim($_POST['UpdateD']));
+	$UpdateCamp_id= mysqli_real_escape_string($DBconn, trim($_POST['UpdatedCamp_id']));
 	$query = "UPDATE Waitlist SET Camp_id = $UpdateCamp_id WHERE Student_id = $update;";
-        $result = mysql_query($query, $DBconn);
+        $result = mysqli_query ($DBconn, $query) or die ('Error querying database.');
 }
 	if(empty($_POST['UpdatedCamp_id']))
 {
@@ -76,20 +73,13 @@ elseif (isset($_POST['UpdateD']))
 
 }
 
-/*elseif (isset($_POST['move']
-{
-	$move = $_POST['move'];
-        $query = "Insert INTO Campers
-	$query = "DELETE FROM Waitlist Student_id WHERE  = \"$move\"";
-	$result = mysql_query ($query, $DBconn);
-}*/
 // submit and process the query for existing Students
 $query = "Select Waitlist.id, Student_id, Fname, Lname, Waitlist.Camp_id
  from Student JOIN Waitlist 
 WHERE Student.id=Waitlist.Student_id
 ORDER BY Student_id ASC;";
-$result = mysql_query ($query, $DBconn);
-while ($row = mysql_fetch_object ($result))
+$result = mysqli_query ($DBconn, $query) or die ('Error querying database.');
+while ($row = mysqli_fetch_object ($result))
 {
    echo ("<tr> <td> $row->Student_id");
    echo("<td> $row->Student_id");
