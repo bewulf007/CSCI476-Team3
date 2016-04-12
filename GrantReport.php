@@ -1,6 +1,6 @@
 <!-- Summer Camp Project -->
 <!-- Database Program -->
-<!-- Allows Information to be Added to the Grant_Info Table -->
+<!-- Displays Grant_Report Table -->
 <html>
 <hr>
 <table rules=all border=10>
