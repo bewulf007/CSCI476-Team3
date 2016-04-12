@@ -19,38 +19,38 @@
 
 <?php
 // connect the database
-$DBconn = mysql_connect ("daytona.birdnest.org", "my.morriss11", "@y#mln52")
+$DBconn = mysqli_connect ("daytona.birdnest.org", "my.morriss11", "@y#mln52")
           or exit ("failed to connect to mysql");
-$db_selected = mysql_select_db("my_morriss11", $DBconn);
+$db_selected = mysqli_select_db($DBconn, "my_morriss11");
 if (!$db_selected)
-   die ("Can't use my_paternom3 : " . mysql_error());
+   die ("Can't use my_paternom3 : " . mysqli_error());
    
    //If the form has data, then insert a new record
    if (isset($_POST['SFname']))
   {
-   $SFname= $_POST['SFname'];
-   $SLname = $_POST['SLname'];
-   $PFname = $_POST['PFname'];
-   $PLname = $_POST['PLname'];
-   $Essay= $_POST['Essay'];
+   $SFname= mysqli_real_escape_string($DBconn, trim($_POST['SFname']));
+   $SLname = mysqli_real_escape_string($DBconn, trim($_POST['SLname']));
+   $PFname = mysqli_real_escape_string($DBconn, trim($_POST['PFname']));
+   $PLname = mysqli_real_escape_string($DBconn, trim($_POST['PLname']));
+   $Essay= mysqli_real_escape_string($DBconn, trim($_POST['Essay']));
    $query = "INSERT INTO Scholarship VALUES (NULL,'$SFname','$SLname','$PFname','$PLname','$Essay')";
-   $result = mysql_query ($query, $DBconn);
+   $result = mysqli_query ($DBconn, $query);
   }
 elseif (isset($_POST['remove']))
 {
-	$remove = $_POST['remove'];
+	$remove = mysqli_real_escape_string($DBconn, trim($_POST['remove']));
 	$query = "DELETE FROM Scholarship WHERE id = \"$remove\"";
-	$result = mysql_query ($query, $DBconn);
+	$result = mysqli_query ($DBconn, $query);
 }
 //change Student_id of Scholarship if update was clicked and if post is not empty
 elseif (isset($_POST['UpdateSFname']))
 {
 	if(!empty($_POST['UpdatedSFname']))
 {
-	$update = $_POST['UpdateSFname'];
-	$UpdateSFname= $_POST['UpdatedSFname'];
+	$update = mysqli_real_escape_string($DBconn, trim($_POST['UpdateSFname']));
+	$UpdateSFname= mysqli_real_escape_string($DBconn, trim($_POST['UpdatedSFname']));
 	$query = "UPDATE Scholarship SET SFname = \"$UpdateSFname\" WHERE id = $update;";
-        $result = mysql_query($query, $DBconn);
+        $result = mysqli_query($DBconn, $query);
 }
 	if(empty($_POST['UpdatedSFname']))
 {
@@ -62,10 +62,10 @@ elseif (isset($_POST['UpdateSLname']))
 {
 	if(!empty($_POST['UpdatedSLname']))
 {
-	$update = $_POST['UpdateSLname'];
-	$UpdateSLname= $_POST['UpdatedSLname'];
+	$update = mysqli_real_escape_string($DBconn, trim($_POST['UpdateSLname']));
+	$UpdateSLname= mysqli_real_escape_string($DBconn, trim($_POST['UpdatedSLname']));
 	$query = "UPDATE Scholarship SET SLname = \"$UpdateSLname\" WHERE id = $update;";
-        $result = mysql_query($query, $DBconn);
+        $result = mysqli_query($DBconn, $query);
 }
 	if(empty($_POST['UpdatedSLname']))
 {
@@ -76,10 +76,10 @@ elseif (isset($_POST['UpdatePFname']))
 {
 	if(!empty($_POST['UpdatedPFname']))
 {
-	$update = $_POST['UpdatePFname'];
-	$UpdatePFname= $_POST['UpdatedPFname'];
+	$update = mysqli_real_escape_string($DBconn, trim($_POST['UpdatePFname']));
+	$UpdatePFname= mysqli_real_escape_string($DBconn, trim($_POST['UpdatedPFname']));
 	$query = "UPDATE Scholarship SET PFname = \"$UpdatePFname\" WHERE id = $update;";
-        $result = mysql_query($query, $DBconn);
+        $result = mysqli_query($DBconn, $query);
 }
 	if(empty($_POST['UpdatedPFname']))
 {
@@ -91,10 +91,10 @@ elseif (isset($_POST['UpdatePLname']))
 {
 	if(!empty($_POST['UpdatedPLname']))
 {
-	$update = $_POST['UpdatePLname'];
-	$UpdatePLname= $_POST['UpdatedPLname'];
+	$update = mysqli_real_escape_string($DBconn, trim($_POST['UpdatePLname']));
+	$UpdatePLname= mysqli_real_escape_string($DBconn, trim($_POST['UpdatedPLname']));
 	$query = "UPDATE Scholarship SET PLname = \"$UpdatePLname\" WHERE id = $update;";
-        $result = mysql_query($query, $DBconn);
+        $result = mysqli_query($DBconn, $query);
 }
 	if(empty($_POST['UpdatedPLname']))
 {
@@ -106,10 +106,10 @@ elseif (isset($_POST['UpdateE']))
 {
 	if(!empty($_POST['UpdatedEssay']))
 {
-	$update = $_POST['UpdateE'];
-	$UpdateEssay= $_POST['UpdatedEssay'];
+	$update = mysqli_real_escape_string($DBconn, trim($_POST['UpdateE']));
+	$UpdateEssay= mysqli_real_escape_string($DBconn, trim($_POST['UpdatedEssay']));
 	$query = "UPDATE Scholarship SET Essay = \"$UpdateEssay\" WHERE id = $update;";
-        $result = mysql_query($query, $DBconn);
+        $result = mysqli_query($DBconn, $query);
 }
 	if(empty($_POST['UpdatedEssay']))
 {
@@ -118,8 +118,8 @@ elseif (isset($_POST['UpdateE']))
 }
 // submit and process the query for exisiting Scholarships
 $query = "select * from Scholarship;";
-$result = mysql_query ($query, $DBconn);
-while ($row = mysql_fetch_object ($result))
+$result = mysqli_query ($DBconn, $query);
+while ($row = mysqli_fetch_object ($result))
 {
    echo ("<tr> <td> $row->id");
    echo("<td> $row->SFname");
