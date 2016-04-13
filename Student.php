@@ -2,7 +2,7 @@
 <hr>
 <table rules=all border=10>
 <tr>
-<td bgcolor=black colspan=8 align=center><font color=white>Existing Users
+<td bgcolor=black colspan=32 align=center><font color=white>Existing Students
 <tr>
 <td bgcolor=green>id
 <td bgcolor=green>First Name
@@ -27,14 +27,8 @@
 <td bgcolor=yellow>Update Safe Pickup
 <td bgcolor=green>No Pickup
 <td bgcolor=yellow>Update No Pickup
-<td bgcolor=green>Camp Id
-<td bgcolor=yellow>Update Camp Id
-<td bgcolor=green>Scholarship?
-<td bgcolor=yellow>Update Scholarship
 <td bgcolor=green>Emergency Id
 <td bgcolor=yellow>Update Emergency Id
-<td bgcolor=green>Accepted
-<td bgcolor=yellow>Update Accepted
 <td bgcolor=red>Delete
 
 
@@ -63,9 +57,8 @@ if (isset($_POST['Fname']))
    $Camp_id = $_POST['Camp_id'];
    $Scholarship = $_POST['Scholarship'];
    $Emerge_id = $_POST['Emerge_id'];
-   $Accepted = $_POST['Accepted'];
    $query = "INSERT INTO Student VALUES (NULL,'$Fname','$Lname','$Address_id','$Shirt_Size','$School','$Parent_id','$Grade','$Gender',
-   '$Ethnicity','$Safe_PU','$No_PU','$Camp_id','$Scholarship','$Emerge_id','$Accepted')";
+   '$Ethnicity','$Safe_PU','$No_PU','$Camp_id','$Scholarship','$Emerge_id')";
    $result = mysql_query ($query, $DBconn);
   }
 elseif (isset($_POST['remove']))
@@ -74,7 +67,6 @@ elseif (isset($_POST['remove']))
 	$query = "DELETE FROM Student WHERE id = \"$remove\"";
 	$result = mysql_query ($query, $DBconn);
 }
-
 //change fname of student if update was clicked and if post is not empty
 elseif (isset($_POST['UpdateF']))
 {
@@ -90,7 +82,6 @@ elseif (isset($_POST['UpdateF']))
 	throw new InvalidArgumentException('Invalid First name');
 }
 }
-
 //change last name of student if update was clicked and if post is not empty
 elseif (isset($_POST['UpdateL']))
 {
@@ -106,7 +97,6 @@ elseif (isset($_POST['UpdateL']))
 	throw new InvalidArgumentException('Invalid Last Name');
 }
 }
-
 //change address id of student if update was clicked and if post is not empty
 elseif (isset($_POST['UpdateA']))
 {
@@ -122,7 +112,6 @@ elseif (isset($_POST['UpdateA']))
 	throw new InvalidArgumentException('Invalid Address_id');
 }
 }
-
 //change shirt size of student if update was clicked and if post is not empty
 elseif (isset($_POST['UpdateS']))
 {
@@ -138,7 +127,6 @@ elseif (isset($_POST['UpdateS']))
 	throw new InvalidArgumentException('Invalid Size');
 }
 }
-
 //change school of student if update was clicked and if post is not empty
 elseif (isset($_POST['UpdateSc']))
 {
@@ -154,7 +142,6 @@ elseif (isset($_POST['UpdateSc']))
 	throw new InvalidArgumentException('Invalid School');
 }
 }
-
 //change Parent_id of student if update was clicked and if post is not empty
 elseif (isset($_POST['UpdateP']))
 {
@@ -170,7 +157,6 @@ elseif (isset($_POST['UpdateP']))
 	throw new InvalidArgumentException('Invalid Parent_id');
 }
 }
-
 //change grade of student if update was clicked and if post is not empty
 elseif (isset($_POST['UpdateG']))
 {
@@ -186,7 +172,6 @@ elseif (isset($_POST['UpdateG']))
 	throw new InvalidArgumentException('Invalid Size');
 }
 }
-
 //change gender of student if update was clicked and if post is not empty
 elseif (isset($_POST['UpdateGe']))
 {
@@ -202,7 +187,6 @@ elseif (isset($_POST['UpdateGe']))
 	throw new InvalidArgumentException('Invalid Gender');
 }
 }
-
 //change ethnicity of student if update was clicked and if post is not empty
 elseif (isset($_POST['UpdateE']))
 {
@@ -218,7 +202,6 @@ elseif (isset($_POST['UpdateE']))
 	throw new InvalidArgumentException('Invalid Ethnicity');
 }
 }
-
 //change safe pickup of student if update was clicked and if post is not empty
 elseif (isset($_POST['UpdateSPU']))
 {
@@ -234,7 +217,6 @@ elseif (isset($_POST['UpdateSPU']))
 	throw new InvalidArgumentException('Invalid Safe_PU');
 }
 }
-
 //change No pick up of student if update was clicked and if post is not empty
 elseif (isset($_POST['UpdateNPU']))
 {
@@ -251,39 +233,6 @@ elseif (isset($_POST['UpdateNPU']))
 }
 }
 
-//change Camp id of student if update was clicked and if post is not empty
-elseif (isset($_POST['UpdateC']))
-{
-	if(!empty($_POST['UpdatedCamp_id']))
-{
-	$update = $_POST['UpdateC'];
-	$UpdateCamp_id = $_POST['UpdatedCamp_id'];
-	$query = "UPDATE Student SET Camp_id = \"$UpdateCamp_id\" WHERE id = $update;";
-        $result = mysql_query($query, $DBconn);
-}
-	if(empty($_POST['UpdatedCamp_id']))
-{
-	throw new InvalidArgumentException('Invalid Camp_id');
-}
-}
-
-//change scholarship of student if update was clicked and if post is not empty
-elseif (isset($_POST['UpdateSchol']))
-{
-	if(!empty($_POST['UpdatedScholarship']))
-{
-	$update = $_POST['UpdateSchol'];
-	$UpdateScholarship = $_POST['UpdatedScholarship'];
-	$query = "UPDATE Student SET Scholarship = \"$UpdateScholarship\" WHERE id = $update;";
-        $result = mysql_query($query, $DBconn);
-}
-	if(empty($_POST['UpdatedScholarship']))
-{
-	throw new InvalidArgumentException('Invalid Scholarship');
-}
-}
-
-//change Emergency id of student if update was clicked and if post is not empty
 elseif (isset($_POST['UpdateEm']))
 {
 	if(!empty($_POST['UpdatedEmerge_id']))
@@ -299,23 +248,6 @@ elseif (isset($_POST['UpdateEm']))
 }
 }
 
-//change Accepted of student if update was clicked and if post is not empty
-elseif (isset($_POST['UpdateAc']))
-{
-	if(!empty($_POST['UpdatedAccepted']))
-{
-	$update = $_POST['UpdateAc'];
-	$UpdateAccepted = $_POST['UpdatedAccepted'];
-	$query = "UPDATE Student SET Accepted = \"$UpdateAccepted\" WHERE id = $update;";
-        $result = mysql_query($query, $DBconn);
-}
-	if(empty($_POST['UpdatedAccepted']))
-{
-	throw new InvalidArgumentException('Invalid Accepted');
-}
-}
-
-// submit and process the query for existing Students
 $query = "select * from Student;";
 $result = mysql_query ($query, $DBconn);
 while ($row = mysql_fetch_object ($result))
@@ -387,29 +319,11 @@ while ($row = mysql_fetch_object ($result))
    echo ("<input type='hidden' name ='UpdateNPU' value = $row->id>");  
    echo ("Change No_PU <input type=text name='UpdatedNo_PU'>");
    echo "</form>";
-   echo ("<td> $row->Camp_id");
-   echo ("<form action=Student.php method = post>");
-   echo ("<td> <input type=submit value=Update>");
-   echo ("<input type='hidden' name ='UpdateC' value = $row->id>");  
-   echo ("Change Camp_id <input type=text name='UpdatedCamp_id'>");
-   echo "</form>";
-   echo ("<td> $row->Scholarship");
-   echo ("<form action=Student.php method = post>");
-   echo ("<td> <input type=submit value=Update>");
-   echo ("<input type='hidden' name ='UpdateSchol' value = $row->id>");  
-   echo ("Change Scholarship <input type=text name='UpdatedScholarship'>");
-   echo "</form>";
    echo ("<td> $row->Emerge_id");
    echo ("<form action=Student.php method = post>");
    echo ("<td> <input type=submit value=Update>");
    echo ("<input type='hidden' name ='UpdateEm' value = $row->id>");  
    echo ("Change Emerge_id <input type=text name='UpdatedEmerge_id'>");
-   echo "</form>";
-   echo ("<td> $row->Accepted");
-   echo ("<form action=Student.php method = post>");
-   echo ("<td> <input type=submit value=Update>");
-   echo ("<input type='hidden' name ='UpdateAc' value = $row->id>");  
-   echo ("Change Accepted <input type=text name='UpdatedAccepted'>");
    echo "</form>";
    echo ("<form action=Student.php method =post>");
    echo ("<td> <input type=submit value=Delete>");
@@ -425,24 +339,29 @@ while ($row = mysql_fetch_object ($result))
 
 <form action=Student.php method=post>
 <pre>
-       New Student Info:
-        Fname <input type=text name="Fname">
-	Lname <input type=text name="Lname">
-	Address_id <input type=text name="Address_id">
-	Shirt_Size <input type=text name="Shirt_Size">
-	School <input type=text name="School">
-	Parent_id <input type=text name="Parent_id">
-	Grade <input type=text name="Grade">
-	Gender <input type=text name="Gender">
-	Ethnicity <input type=text name="Ethnicity">
-	Safe_PU <input type=text name="Safe_PU">
-	No_PU <input type=text name="No_PU">
-	Camp_id <input type=text name="Camp_id">
-	Scholarship <input type=text name="Scholarship">
-	Emerge_id <input type=text name="Emerge_id">
-	Accepted <input type=text name="Accepted">
+        New Student Info:
+        Fname       <input type=text name="Fname">
+	Lname       <input type=text name="Lname">
+	Address_id  <input type=text name="Address_id">
+	Shirt_Size  <input type=text name="Shirt_Size">
+	School      <input type=text name="School">
+	Parent_id   <input type=text name="Parent_id">
+	Grade       <input type=text name="Grade">
+	Gender      <input type=text name="Gender">
+	Ethnicity   <input type=text name="Ethnicity">
+	Safe_PU     <input type=text name="Safe_PU">
+	No_PU       <input type=text name="No_PU">
+	Emerge_id   <input type=text name="Emerge_id">
+<!--	Camp_id     <input type=text name="Camp_id">
+	Scholarship <input type=text name="Scholarship"> -->
+<!--	Accepted    <input type=text name="Accepted"> -->
        <input type=submit value="Add Student">
-<a href ="JoinedTable.php"> Student Table </a>
+<P>
+	<a href ="Address.php">Address Table </a> - To Reference Address Id's
+<P>
+	<a href ="Parent.php">Address Table </a> - To Reference Parent Id's
+<P>
+	<a href ="Administrator.html">Back To Administration </a>
 </pre>
 </form>
 <P>
