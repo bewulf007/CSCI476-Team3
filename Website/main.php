@@ -81,11 +81,8 @@ h5 {color:red;}
 <p>"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."</p>
 <p>"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."</p>
 
-</div>
-
-<div
-<?php 
-    $dir = "/doman-project/*.png";
+    <?php 
+    $dir = "/Website/images/*.png";
     //get the list of all files with .jpg extension in the directory and safe it in an array named $images
     $images = glob( $dir );
     
@@ -96,7 +93,9 @@ h5 {color:red;}
     }
 
 ?>
+
 </div>
+
 
 <div id="footer">
 <center>Winthrop Technology Camps 2015 : http://birdnest.org/stars/computingcamp.htm</center>
