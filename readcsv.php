@@ -1,48 +1,54 @@
 <?php
-
+//Connect to the database
 $DBconn = mysql_connect ("daytona.birdnest.org", "my.morriss11", "@y#mln52")
           or exit ("failed to connect to mysql");
 $db_selected = mysql_select_db("my_morriss11", $DBconn);
+//if database does not exist exit the program
 if (!$db_selected)
    die ("Can't use my_morriss11 : " . mysql_error());
 
 $row = 1;
+
+//Text box to enter a file name to be read into the database by the program
 require_once ('file_readcsv.php');
 $row = 0;
 if($file)
 if (($handle = fopen($file, "r")) !== FALSE) {
+//read the file
   while (($data = fgetcsv($handle, 1000, ",")) !== FALSE) {
     $num = count($data);
     $row++;
 
-
+//We want to skip the first five rows on the csv as qualtrics provides unneeded information that we do not want inside of the database. Data to be read starts at row 5
 if($row >=5)
 {
+//take the data and store the data into an array
     for ($c=0; $c < $num; $c++) {
 	$data[$c];
-
-    }
+}
          
 	
 
-
+//insert '$data[26]'(street),'$data[27]'(city),'$data[28]'(state),'$data[29]'(zip) into the database table Address
 $query = "INSERT INTO Address VALUES (NULL,'$data[26]','$data[27]','$data[28]','$data[29]')";
 $result = mysql_query ($query, $DBconn);
 
 
-
+//Insert: '$data[32]'(First Name),'$data[33]'(Last Name),'$data[34]'(Email),'$data[35]'(Phone Number) into emergency contact table
 $query1 = "INSERT INTO Emerge VALUES (NULL,'$data[32]','$data[33]','$data[34]','$data[35]')";
 $result = mysql_query ($query1, $DBconn);
 
 
-
+//search the address table for the address id where $data[26](street) exists
 $query2 = "Select id From Address Where Street = '$data[26]'";
 $result1 = mysql_query ($query2, $DBconn);
+//if there is no result then print error
 if (!$result1) {
-	echo 'nope' . mysql_error();}
+	echo 'Error ID not found' . mysql_error();}
+//store the id into the array $AddressId[0]
 $AddressId = mysql_fetch_row($result1);
 
-
+//insert: $data[22](Parent First Name),$data[23](Parent Last Name) ,$AddressId[0](Address Id),$data[24](Parent Email),$data[25] (Parent Phone Number)
 $query = "INSERT INTO Parent VALUES (NULL,'$data[22]','$data[23]',$AddressId[0],'$data[24]','$data[25]')";
 $result = mysql_query ($query, $DBconn);
 
@@ -50,7 +56,7 @@ $result = mysql_query ($query, $DBconn);
 $query4 = "Select id From Parent Where Email = '$data[24]'";
 $result2 = mysql_query ($query4, $DBconn);
 if (!$result2) {
-	echo 'nope' . mysql_error();}
+	echo 'Error ID not found' . mysql_error();}
 $ParentId = mysql_fetch_row($result2);
 
 
@@ -58,7 +64,7 @@ $ParentId = mysql_fetch_row($result2);
 $query5 = "Select id From Emerge Where Email = '$data[34]'";
 $result3 = mysql_query ($query5, $DBconn);
 if (!$result3) {
-	echo 'nope' . mysql_error();}
+	echo 'Error ID not found' . mysql_error();}
 $EmergId = mysql_fetch_row($result3);
 
 
@@ -69,7 +75,7 @@ $result = mysql_query ($query6, $DBconn);
 $query7 = "Select id From Student Where Fname = '$data[10]' and Lname = '$data[11]'";
 $result4 = mysql_query ($query7, $DBconn);
 if (!$result4) {
-	echo 'nope' . mysql_error();}
+	echo 'Error ID not found' . mysql_error();}
 $StudentId = mysql_fetch_row($result4);
 
 
@@ -80,28 +86,28 @@ $StudentId = mysql_fetch_row($result4);
 $query12 = "SELECT COUNT(Camp_Id) FROM Campers WHERE Camp_Id=1";
 $result9 = mysql_query ($query12, $DBconn);
 if (!$result9) {
-	echo 'nope' . mysql_error();}
+	echo 'Error ID not found' . mysql_error();}
 $camp1count = mysql_fetch_row($result9);
 
 
 $query13 = "SELECT COUNT(Camp_Id) FROM Campers WHERE Camp_Id=2";
 $result10 = mysql_query ($query13, $DBconn);
 if (!$result10) {
-	echo 'nope' . mysql_error();}
+	echo 'Error ID not found' . mysql_error();}
 $camp2count = mysql_fetch_row($result10);
 
 
 $query14 = "SELECT COUNT(Camp_Id) FROM Campers WHERE Camp_Id=3";
 $result11 = mysql_query ($query14, $DBconn);
 if (!$result11) {
-	echo 'nope' . mysql_error();}
+	echo 'Error ID not found' . mysql_error();}
 $camp3count = mysql_fetch_row($result11);
 
 
 $query15 = "SELECT COUNT(Camp_Id) FROM Campers WHERE Camp_Id=4";
 $result12 = mysql_query ($query15, $DBconn);
 if (!$result12) {
-	echo 'nope' . mysql_error();}
+	echo 'Error ID not found' . mysql_error();}
 $camp4count = mysql_fetch_row($result12);
 
 //---------------------------JEWEL-----------------------------------------------------------
@@ -112,11 +118,9 @@ $query12 = "SELECT COUNT(Camp_Id) FROM Campers WHERE Camp_Id=1";
 $result9 = mysql_query ($query12, $DBconn);
 }
 if (!$result9) {
-	echo 'nope' . mysql_error();}
+	echo 'Error ID not found' . mysql_error();}
 $camp1count = mysql_fetch_row($result9);
 
-//echo "Count =";
-//echo $camp1count[0];
 if ($camp1count[0] < 20 and $data[36] == "Computing and Jewelry Design Cost: $125 July 7 - 11")
 {
 $query8 = "INSERT INTO Campers VALUES (NULL,$StudentId[0],1)";
@@ -126,7 +130,7 @@ $query30 = "Select ID From Campers where Student_Id = $StudentId[0] and Camp_Id 
 $result30 = mysql_query ($query30, $DBconn);
 if (!$result30) 
 {
-	echo 'nope' . mysql_error();
+	echo 'Error ID not found' . mysql_error();
 }
 $Campers = mysql_fetch_row($result30);
 if ($data[36] == "Computing and Jewelry Design Cost: $125 July 7 - 11"and $camp1count[0] >= 20 and $Campers[0] == NULL)
@@ -144,7 +148,7 @@ $query13 = "SELECT COUNT(Camp_Id) FROM Campers WHERE Camp_Id=2";
 $result10 = mysql_query ($query13, $DBconn);
 }
 if (!$result10) {
-	echo 'nope' . mysql_error();}
+	echo 'Error ID not found' . mysql_error();}
 $camp2count = mysql_fetch_row($result10);
 
 if ($camp2count[0] < 20 and $data[37] == "Computing and Robotics Cost $125 July 14 -18")
@@ -156,7 +160,7 @@ $query31 = "Select ID From Campers where Student_Id = $StudentId[0] and Camp_Id 
 $result31 = mysql_query ($query31, $DBconn);
 if (!$result31) 
 {
-	echo 'nope' . mysql_error();
+	echo 'Error ID not found' . mysql_error();
 }
 $Campers = mysql_fetch_row($result31);
 if ($data[37] == "Computing and Robotics Cost $125 July 14 -18"and $camp2count[0] >= 20 and $Campers[0] == NULL)
@@ -175,7 +179,7 @@ $query14 = "SELECT COUNT(Camp_Id) FROM Campers WHERE Camp_Id=3";
 $result11 = mysql_query ($query14, $DBconn);
 }
 if (!$result11) {
-	echo 'nope' . mysql_error();}
+	echo 'Error ID not found' . mysql_error();}
 $camp3count = mysql_fetch_row($result11);
 
 if ($camp3count[0] < 20 and $data[38] == "Computing Mobile Apps Cost: $125 July 21 - 25")
@@ -188,7 +192,7 @@ $query32 = "Select ID From Campers where Student_Id = $StudentId[0] and Camp_Id 
 $result32 = mysql_query ($query32, $DBconn);
 if (!$result32) 
 {
-	echo 'nope' . mysql_error();
+	echo 'Error ID not found' . mysql_error();
 }
 $Campers = mysql_fetch_row($result31);
 
@@ -206,7 +210,7 @@ $query15 = "SELECT COUNT(Camp_Id) FROM Campers WHERE Camp_Id=4";
 $result12 = mysql_query ($query15, $DBconn);
 }
 if (!$result12) {
-	echo 'nope' . mysql_error();}
+	echo 'Error ID not found' . mysql_error();}
 $camp4count = mysql_fetch_row($result12);
 if ($camp4count[0] < 20 and $data[39] == "3-D Printing Cost $125")
 {
@@ -218,7 +222,7 @@ $query33 = "Select ID From Campers where Student_Id = $StudentId[0] and Camp_Id 
 $result33 = mysql_query ($query33, $DBconn);
 if (!$result33) 
 {
-	echo 'nope' . mysql_error();
+	echo 'Error ID not found' . mysql_error();
 }
 $Campers = mysql_fetch_row($result31);
 
