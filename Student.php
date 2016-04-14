@@ -35,47 +35,48 @@
 
 <?php
 // connect the database
-$DBconn = mysql_connect ("daytona.birdnest.org", "my.morriss11", "@y#mln52")
+$DBconn = mysqli_connect ("daytona.birdnest.org", "my.morriss11", "@y#mln52")
           or exit ("failed to connect to mysql");
-$db_selected = mysql_select_db("my_morriss11", $DBconn);
+$db_selected = mysqli_select_db($DBconn, "my_morriss11");
 if (!$db_selected)
-   die ("Can't use my_paternom3 : " . mysql_error());
+   die ("Can't use my_paternom3 : " . mysqli_error());
+
 // if the form has data, then insert a new record
 if (isset($_POST['Fname']))
   {
-   $Fname= $_POST['Fname'];
-   $Lname = $_POST['Lname'];
-   $Address_id= $_POST['Address_id'];
-   $Shirt_Size= $_POST['Shirt_Size'];
-   $School = $_POST['School'];
-   $Parent_id = $_POST['Parent_id'];
-   $Grade = $_POST['Grade'];
-   $Gender = $_POST['Gender'];
-   $Ethnicity = $_POST['Ethnicity'];
-   $Safe_PU = $_POST['Safe_PU'];
-   $No_PU = $_POST['Camp_id'];
-   $Camp_id = $_POST['Camp_id'];
-   $Scholarship = $_POST['Scholarship'];
-   $Emerge_id = $_POST['Emerge_id'];
+   $Fname= mysqli_real_escape_string($DBconn, trim($_POST['Fname']));
+   $Lname = mysqli_real_escape_string($DBconn, trim($_POST['Lname']));
+   $Address_id= mysqli_real_escape_string($DBconn, trim($_POST['Address_id']));
+   $Shirt_Size= mysqli_real_escape_string($DBconn, trim($_POST['Shirt_Size']));
+   $School = mysqli_real_escape_string($DBconn, trim($_POST['School']));
+   $Parent_id = mysqli_real_escape_string($DBconn, trim($_POST['Parent_id']));
+   $Grade = mysqli_real_escape_string($DBconn, trim($_POST['Grade']));
+   $Gender = mysqli_real_escape_string($DBconn, trim($_POST['Gender']));
+   $Ethnicity = mysqli_real_escape_string($DBconn, trim($_POST['Ethnicity']));
+   $Safe_PU = mysqli_real_escape_string($DBconn, trim($_POST['Safe_PU']));
+   $No_PU = mysqli_real_escape_string($DBconn, trim($_POST['Camp_id']));
+   $Camp_id = mysqli_real_escape_string($DBconn, trim($_POST['Camp_id']));
+   $Scholarship = mysqli_real_escape_string($DBconn, trim($_POST['Scholarship']));
+   $Emerge_id = mysqli_real_escape_string($DBconn, trim($_POST['Emerge_id']));
    $query = "INSERT INTO Student VALUES (NULL,'$Fname','$Lname','$Address_id','$Shirt_Size','$School','$Parent_id','$Grade','$Gender',
    '$Ethnicity','$Safe_PU','$No_PU','$Camp_id','$Scholarship','$Emerge_id')";
-   $result = mysql_query ($query, $DBconn);
+   $result = mysqli_query($DBconn, $query);
   }
 elseif (isset($_POST['remove']))
 {
 	$remove = $_POST['remove'];
 	$query = "DELETE FROM Student WHERE id = \"$remove\"";
-	$result = mysql_query ($query, $DBconn);
+	$result = mysqli_query($DBconn, $query);
 }
 //change fname of student if update was clicked and if post is not empty
 elseif (isset($_POST['UpdateF']))
 {
 	if(!empty($_POST['UpdatedFname']))
 {
-	$update = $_POST['UpdateF'];
-	$UpdateFname= $_POST['UpdatedFname'];
+	$update = mysqli_real_escape_string($DBconn, trim($_POST['UpdateF']));
+	$UpdateFname= mysqli_real_escape_string($DBconn, trim($_POST['UpdatedFname']));
 	$query = "UPDATE Student SET Fname = \"$UpdateFname\" WHERE id = $update;";
-        $result = mysql_query($query, $DBconn);
+        $result = mysqli_query($DBconn, $query);
 }
 	if(empty($_POST['UpdatedFname']))
 {
@@ -87,10 +88,10 @@ elseif (isset($_POST['UpdateL']))
 {
 	if(!empty($_POST['UpdatedLname']))
 {
-	$update = $_POST['UpdateL'];
-	$UpdateLname= $_POST['UpdatedLname'];
+	$update = mysqli_real_escape_string($DBconn, trim($_POST['UpdateL']));
+	$UpdateLname= mysqli_real_escape_string($DBconn, trim($_POST['UpdatedLname']));
 	$query = "UPDATE Student SET Lname = \"$UpdateLname\" WHERE id = $update;";
-        $result = mysql_query($query, $DBconn);
+        $result = mysqli_query($DBconn, $query);
 }
 	if(empty($_POST['UpdatedLname']))
 {
@@ -102,10 +103,10 @@ elseif (isset($_POST['UpdateA']))
 {
 	if(!empty($_POST['UpdatedAddress_id']))
 {
-	$update = $_POST['UpdateA'];
-	$UpdateAddress_id= $_POST['UpdatedAddress_id'];
+	$update = mysqli_real_escape_string($DBconn, trim($_POST['UpdateA']));
+	$UpdateAddress_id= mysqli_real_escape_string($DBconn, trim($_POST['UpdatedAddress_id']));
 	$query = "UPDATE Student SET Address_id = \"$UpdateAddress_id\" WHERE id = $update;";
-        $result = mysql_query($query, $DBconn);
+        $result = mysqli_query($DBconn, $query);
 }
 	if(empty($_POST['UpdatedAddress_id']))
 {
@@ -117,10 +118,10 @@ elseif (isset($_POST['UpdateS']))
 {
 	if(!empty($_POST['UpdatedShirt']))
 {
-	$update = $_POST['UpdateS'];
-	$UpdateShirt = $_POST['UpdatedShirt'];
+	$update = mysqli_real_escape_string($DBconn, trim($_POST['UpdateS']));
+	$UpdateShirt = mysqli_real_escape_string($DBconn, trim($_POST['UpdatedShirt']));
 	$query = "UPDATE Student SET Shirt_Size = \"$UpdateShirt\" WHERE id = $update;";
-        $result = mysql_query($query, $DBconn);
+        $result = mysqli_query($DBconn, $query);
 }
 	if(empty($_POST['UpdatedShirt']))
 {
@@ -132,10 +133,10 @@ elseif (isset($_POST['UpdateSc']))
 {
 	if(!empty($_POST['UpdatedSchool']))
 {
-	$update = $_POST['UpdateSc'];
-	$UpdateSchool = $_POST['UpdatedSchool'];
+	$update = mysqli_real_escape_string($DBconn, trim($_POST['UpdateSc']));
+	$UpdateSchool = mysqli_real_escape_string($DBconn, trim($_POST['UpdatedSchool']));
 	$query = "UPDATE Student SET School = \"$UpdateSchool\" WHERE id = $update;";
-        $result = mysql_query($query, $DBconn);
+        $result = mysqli_query($DBconn, $query);
 }
 	if(empty($_POST['UpdatedSchool']))
 {
@@ -147,10 +148,10 @@ elseif (isset($_POST['UpdateP']))
 {
 	if(!empty($_POST['UpdatedParent_id']))
 {
-	$update = $_POST['UpdateP'];
-	$UpdateParent_id = $_POST['UpdatedParent_id'];
+	$update = mysqli_real_escape_string($DBconn, trim($_POST['UpdateP']));
+	$UpdateParent_id = mysqli_real_escape_string($DBconn, trim($_POST['UpdatedParent_id']));
 	$query = "UPDATE Student SET Parent_id = \"$UpdateParent_id\" WHERE id = $update;";
-        $result = mysql_query($query, $DBconn);
+        $result = mysqli_query($DBconn, $query);
 }
 	if(empty($_POST['UpdatedParent_id']))
 {
@@ -162,10 +163,10 @@ elseif (isset($_POST['UpdateG']))
 {
 	if(!empty($_POST['UpdatedGrade']))
 {
-	$update = $_POST['UpdateG'];
-	$UpdateGrade = $_POST['UpdatedGrade'];
+	$update = mysqli_real_escape_string($DBconn, trim($_POST['UpdateG']));
+	$UpdateGrade = mysqli_real_escape_string($DBconn, trim($_POST['UpdatedGrade']));
 	$query = "UPDATE Student SET Grade = \"$UpdateGrade\" WHERE id = $update;";
-        $result = mysql_query($query, $DBconn);
+        $result = mysqli_query($DBconn, $query);
 }
 	if(empty($_POST['UpdatedGrade']))
 {
@@ -177,10 +178,10 @@ elseif (isset($_POST['UpdateGe']))
 {
 	if(!empty($_POST['UpdatedGender']))
 {
-	$update = $_POST['UpdateGe'];
-	$UpdateGender = $_POST['UpdatedGender'];
+	$update = mysqli_real_escape_string($DBconn, trim($_POST['UpdateGe']));
+	$UpdateGender = mysqli_real_escape_string($DBconn, trim($_POST['UpdatedGender']));
 	$query = "UPDATE Student SET Gender = \"$UpdateGender\" WHERE id = $update;";
-        $result = mysql_query($query, $DBconn);
+        $result = mysqli_query($DBconn, $query);
 }
 	if(empty($_POST['UpdatedGender']))
 {
@@ -192,10 +193,10 @@ elseif (isset($_POST['UpdateE']))
 {
 	if(!empty($_POST['UpdatedEthnicity']))
 {
-	$update = $_POST['UpdateE'];
-	$UpdateEthnicity = $_POST['UpdatedEthnicity'];
+	$update = mysqli_real_escape_string($DBconn, trim($_POST['UpdateE']));
+	$UpdateEthnicity = mysqli_real_escape_string($DBconn, trim($_POST['UpdatedEthnicity']));
 	$query = "UPDATE Student SET Ethnicity = \"$UpdateEthnicity\" WHERE id = $update;";
-        $result = mysql_query($query, $DBconn);
+        $result = mysqli_query($DBconn, $query);
 }
 	if(empty($_POST['UpdatedEthnicity']))
 {
@@ -207,10 +208,10 @@ elseif (isset($_POST['UpdateSPU']))
 {
 	if(!empty($_POST['UpdatedSafe_PU']))
 {
-	$update = $_POST['UpdateSPU'];
-	$UpdateSafe_PU = $_POST['UpdatedSafe_PU'];
+	$update = mysqli_real_escape_string($DBconn, trim($_POST['UpdateSPU']));
+	$UpdateSafe_PU = mysqli_real_escape_string($DBconn, trim($_POST['UpdatedSafe_PU']));
 	$query = "UPDATE Student SET Safe_PU = \"$UpdateSafe_PU\" WHERE id = $update;";
-        $result = mysql_query($query, $DBconn);
+        $result = mysqli_query($DBconn, $query);
 }
 	if(empty($_POST['UpdatedSafe_PU']))
 {
@@ -222,10 +223,10 @@ elseif (isset($_POST['UpdateNPU']))
 {
 	if(!empty($_POST['UpdatedNo_PU']))
 {
-	$update = $_POST['UpdateNPU'];
-	$UpdateNo_PU = $_POST['UpdatedNo_PU'];
+	$update = mysqli_real_escape_string($DBconn, trim($_POST['UpdateNPU']));
+	$UpdateNo_PU = mysqli_real_escape_string($DBconn, trim($_POST['UpdatedNo_PU']));
 	$query = "UPDATE Student SET No_PU = \"$UpdateNo_PU\" WHERE id = $update;";
-        $result = mysql_query($query, $DBconn);
+        $result = mysqli_query($DBconn, $query);
 }
 	if(empty($_POST['UpdatedNo_PU']))
 {
@@ -237,10 +238,10 @@ elseif (isset($_POST['UpdateEm']))
 {
 	if(!empty($_POST['UpdatedEmerge_id']))
 {
-	$update = $_POST['UpdateEm'];
-	$UpdateEmerge_id = $_POST['UpdatedEmerge_id'];
+	$update = mysqli_real_escape_string($DBconn, trim($_POST['UpdateEm']));
+	$UpdateEmerge_id = mysqli_real_escape_string($DBconn, trim($_POST['UpdatedEmerge_id']));
 	$query = "UPDATE Student SET Emerge_id = \"$UpdateEmerge_id\" WHERE id = $update;";
-        $result = mysql_query($query, $DBconn);
+        $result = mysqli_query($DBconn, $query);
 }
 	if(empty($_POST['UpdatedEmerge_id']))
 {
@@ -249,8 +250,8 @@ elseif (isset($_POST['UpdateEm']))
 }
 
 $query = "select * from Student;";
-$result = mysql_query ($query, $DBconn);
-while ($row = mysql_fetch_object ($result))
+$result = mysqli_query($DBconn, $query);
+while ($row = mysqli_fetch_object ($result))
 {
    echo ("<tr> <td> $row->id");
    echo("<td> $row->Fname");
@@ -352,9 +353,6 @@ while ($row = mysql_fetch_object ($result))
 	Safe_PU     <input type=text name="Safe_PU">
 	No_PU       <input type=text name="No_PU">
 	Emerge_id   <input type=text name="Emerge_id">
-<!--	Camp_id     <input type=text name="Camp_id">
-	Scholarship <input type=text name="Scholarship"> -->
-<!--	Accepted    <input type=text name="Accepted"> -->
        <input type=submit value="Add Student">
 <P>
 	<a href ="Address.php">Address Table </a> - To Reference Address Id's
