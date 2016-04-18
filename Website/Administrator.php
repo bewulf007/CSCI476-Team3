@@ -33,43 +33,73 @@ if(!empty($_POST['username']) && !empty($_POST['password']) && $_SESSION['userna
 $authUser = $ad->authenticate($_SESSION['username'], $_SESSION['password']);
 }
 if($authUser==true) { ?>
-<h2 align=center>My Administrative activities</h3>
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+#header {
+    background-color:#660000;
+    color:white;
+    text-align:center;
+    padding:5px;
+}
 
-<a href="Address.php">Address CRUD </a>
+#section {
+    width:350px;
+    float:left;
+    padding:4px;	 	 
+}
+
+</style>
+</head>
+<body>
+
+<div id="header">
+<h2 align=center>My Administrative activities</h3>
+</div>
+
+
+<h3 align=left>Read csv Files into Database</h3>
+<a href ="readcsv.php">Read Registration Data </a>
 <P>
-<a href="Camp.php">Camp CRUD</a>
+<a href ="readingcsv.php">Read Scholarship Data </a>
 <P>
-<a href="Campers.php">Campers CRUD</a>
+<h3 align=left>Manage Information</h3>
+<a href="Address.php">Addresses </a>
 <P>
-<a href="Budget.php">Budget CRUD Form </a>
+<a href="Camp.php">Camps</a>
 <P>
-<a href="Emerge.php">Emergency Contacts CRUD Form</a>
+<a href="Campers.php">Campers</a>
 <P>
-<a href="Equipment.php">Equipment CRUD Form </a>
+<a href="Emerge.php">Emergency Contacts</a>
 <P>
-<a href="Instructor.php">Instructor CRUD Print </a> - Add/Remove Instructors Here
+<a href="Equipment.php">Equipment</a>
 <P>
-<a href="Parent.php">Parent CRUD search </a>
+<a href ="Signed_Equip.php">Equipment Signed Out by Students </a>
 <P>
-<a href ="Scholarship.php">Scholarship CRUD </a>
+<a href="Grant_Info.php">Grant Information</a>
 <P>
-<a href ="Student.php">Student CRUD </a>
+<a href="Instructor.php">Instructors</a> 
 <P>
-<a href ="waitlist.php">Waitlist CRUD </a>
+<a href ="Student.php">Master List of Students</a>
 <P>
-<a href ="readcsv.php">Read Registration data </a>
+<a href="Parent.php">Parents</a>
 <P>
-<a href ="readingcsv.php">Read scholarship data </a>
+<a href ="Scholarship.php">Scholarships</a>
 <P>
-<a href ="EquipmentList.php"> List Of Camp Equipment </a> Printable List of Equipment for Camps
+<a href ="waitlist.php">Waitlist</a>
 <P>
-<a href ="GrantReport.php"> Grant Report </a> - Printable list of Grant information
+<h3 align=left>Reports</h3>
+<a href ="demographic_report.php">Demographic Report </a>
 <P>
-<a href ="InstructorReport.php">Instructor Report  </a> - Printable list of instructors and camps
+<a href ="GrantReport.php"> Grant Report </a>
 <P>
-<a href ="RollCall.php">Camper Report  </a> - Printable List for Roll Calls
+<a href ="InstructorReport.php">Instructor Report  </a>
 <P>
-<a href ="Report.php">Report </a> - All Information for report
+<a href ="EquipmentList.php"> List Of Camp Equipment </a>
+<P>
+<a href ="RollCall.php">Rollcall  </a>
+<P>
 <?php
 }else{ ?>
 <P>
