@@ -128,7 +128,7 @@ while ($row = mysqli_fetch_object ($result))
 		Serial_number <input type=text name="Serial_number">
 		<!--Student_id <input type=text name="Student_id">-->
        <input type=submit value="Add Record">
-<a href ="JoinedTable.php"> Addresses And Zips Table </a>
+<a href ="Administrator.html"> Back To Administration </a>
 </pre>
 </form>
 <P>
