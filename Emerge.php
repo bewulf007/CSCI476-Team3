@@ -154,7 +154,7 @@ while ($row = mysqli_fetch_object ($result))
 	      Email <input type=text name="Email">
 	      Phone <input type=text name="Phone">
        <input type=submit value="Add Emergency Info">
-<a href ="JoinedTable.php"> Emergency Contact Table </a>
+<a href ="Administrator.html"> Back To Administration </a>
 </pre>
 </form>
 <P>
