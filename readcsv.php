@@ -27,8 +27,33 @@ if($row >=5)
     for ($c=0; $c < $num; $c++) {
 	$data[$c];
 }
-         
-	
+/*these values will change based on updates to the survey Currently the data stored in the array goes as followed When the questions on qualtrics these values should be outputted to see how they have changed.
+	$data[10] == Student Fname
+	$data[11] == Student Lname
+	$data[16] == Student Grade
+	$data[17] == Student School
+	$data[18] == Student Gender
+	$data[19] == Student Ethnicity
+	$data[21] == Student Shirt Size
+	$data[22] == Parent Fname
+	$data[23] == Parent Lname
+	$data[24] == Parent Email
+	$data[25] == Parent Phone
+	$data[26] == Address: Street
+	$data[27] == Address: City
+	$data[28] == Address: State
+	$data[29] == Address: Zip
+	$data[30] == Student: Safe Pick Up 
+	$data[31] == Student: No Pick Up
+	$data[32] == Emergency Contact: FName
+	$data[33] == Emergency Contact: Lname
+	$data[34] == Emergency Contact: Email
+	$data[35] == Emergency Contact: Phone
+	$data[36] == Camp: Jewelry Camp
+	$data[37] == Camp: Robotics Camp
+	$data[38] == Camp: Mobile App Camp
+	$data[39] == Camp: 3-D Printing	 
+*/
 
 //insert '$data[26]'(street),'$data[27]'(city),'$data[28]'(state),'$data[29]'(zip) into the database table Address
 $query = "INSERT INTO Address VALUES (NULL,'$data[26]','$data[27]','$data[28]','$data[29]')";
