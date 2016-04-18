@@ -2,6 +2,7 @@
 <!-- Database Program -->
 <!-- Allows Addresses to be Added to the Address Table -->
 
+<!--Use in conjunction with php require_once('connection.php');?> to connect all pages to database-->
 <?php
 // connect the database
 $DBconn = mysqli_connect ("daytona.birdnest.org", "my.morriss11", "@y#mln52")
