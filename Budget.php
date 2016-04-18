@@ -13,7 +13,7 @@
 <td bgcolor=red>Delete Record
 
 
-<?php
+<?php //php begins here
 // connect the database
 $DBconn = mysqli_connect ("daytona.birdnest.org", "my.morriss11", "@y#mln52")
           or exit ("failed to connect to mysql");
@@ -31,8 +31,10 @@ if (!$db_selected)
    $result = mysqli_query ($DBconn, $query) or die ('Error querying database.');
    }
   }
+
 elseif (isset($_POST['remove']))
 {
+//trim all input to prevent SQL injections
 	$remove = mysqli_real_escape_string($DBconn, trim($_POST['remove']));
 	$query = "DELETE FROM Budget WHERE id = \"$remove\"";
 	$result = mysqli_query ($DBconn, $query);
@@ -42,11 +44,13 @@ elseif (isset($_POST['UpdateB']))
 {
 	if(!empty($_POST['UpdatedBudget']))
 	{
+//trim all input to prevent SQL injections
 	$update = mysqli_real_escape_string($DBconn, trim($_POST['UpdateB']));
 	$UpdateBudget= mysqli_real_escape_string($DBconn, trim($_POST['UpdatedBudget']));
 	$query = "UPDATE Budget SET Budget = \"$UpdateBudget\" WHERE id = $update;";
         $result = mysqli_query($DBconn, $query);
 	}
+//exception if post is empty output error message
 	if(empty($_POST['UpdatedBudget']))
 	{
 	throw new InvalidArgumentException('Invalid Budget');
@@ -60,17 +64,19 @@ while ($row = mysqli_fetch_object ($result))
 {
    //echo ("<tr> <td> $row->id");
    echo("<tr><td> $row->Budget");
-
+//form to post from textbox input to update Budget
    echo ("<form action=Budget.php method = post>");
    echo ("<td> <input type=submit value=Update>");
    echo ("<input type='hidden' name ='UpdateB' value = $row->id>");  
    echo ("Change Budget <input type=text name='UpdatedBudget'>");
    echo "</form>";
+//form to create the delete button to remove a row from the database and crud
    echo ("<form action=Budget.php method =post>");
    echo ("<td> <input type=submit value=Delete>");
    echo ("<input type='hidden' name ='remove' value = $row->id>");
    echo "</form>";
 }
+//end of php
 ?>
 
 </table>
@@ -89,6 +95,7 @@ echo "Total: $" . $row->Total;
 <P>
 <form action=Budget.php method=post>
 <pre>
+<!-- Textboxes to input a new record -->
 		New Budget:
 		Budget <input type=text name="Budget">
        <input type=submit value="Add Record">

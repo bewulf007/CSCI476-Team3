@@ -13,25 +13,27 @@
 <td bgcolor=yellow>Update Equip_Id
 <td bgcolor=red>Delete
 
+<!--end of table -->
 
-
-<?php
+<?php //php begins here
 // connect the database
 $DBconn = mysqli_connect ("daytona.birdnest.org", "my.morriss11", "@y#mln52")
           or exit ("failed to connect to mysql");
 $db_selected = mysqli_select_db($DBconn, "my_morriss11");
+//exception if cannot connect to database output error message
 if (!$db_selected)
    die ("Can't use my_paternom3 : " . mysqli_error());
 
 // if the form had data, then insert a new record
 if (isset($_POST['Student_Id']))
   {
-
+//trim input to prevent sql injections
    $Student_Id = mysqli_real_escape_string($DBconn, trim($_POST['Student_Id']));
    $Equip_id= mysqli_real_escape_string($DBconn, trim($_POST['Equip_id']));
    $query = "INSERT INTO Signed_Equip VALUES (Null,$Student_Id,$Equip_id)";
    $result = mysqli_query ($DBconn, $query);
   }
+//if post remove is set delete the row with the id == remove
 elseif (isset($_POST['remove']))
 {
 	$remove = mysqli_real_escape_string($DBconn, trim($_POST['remove']));
@@ -44,6 +46,7 @@ elseif (isset($_POST['UpdateT']))
 {
 	if(!empty($_POST['UpdatedStudent_Id']))
 {
+//trim input to prevent sql injections
 	$update = mysqli_real_escape_string($DBconn, trim($_POST['UpdateT']));
 	$UpdateStudent_Id= mysqli_real_escape_string($DBconn, trim($_POST['UpdatedStudent_Id']));
 	$query = "UPDATE Signed_Equip SET Student_Id = \"$UpdateStudent_Id\" WHERE ID = $update;";
@@ -61,6 +64,7 @@ elseif (isset($_POST['UpdateD']))
 {
 	if(!empty($_POST['UpdatedEquip_id']))
 {
+//trim input to prevent sql injections
 	$update = mysqli_real_escape_string($DBconn, trim($_POST['UpdateD']));
 	$UpdateEquip_id= mysqli_real_escape_string($DBconn, trim($_POST['UpdatedEquip_id']));
 	$query = "UPDATE Signed_Equip SET Equip_id = $UpdateEquip_id WHERE ID = $update;";
@@ -79,23 +83,27 @@ $result = mysqli_query ($DBconn, $query);
 while ($row = mysqli_fetch_object ($result))
 {
    echo ("<tr> <td> $row->ID");
+//form to post from textbox input to update Student_ID
    echo("<td> $row->Student_Id");
    echo ("<form action=Signed_Equip.php method = post>");
    echo ("<td> <input type=submit value=Update>");
    echo ("<input type='hIdden' name ='UpdateT' value = $row->ID>");  
    echo ("Change Student_Id <input type=text name='UpdatedStudent_Id'>");
    echo "</form>";
+//form to post from textbox input to update Equip_id
    echo ("<td> $row->Equip_id");
    echo ("<form action=Signed_Equip.php method = post>");
    echo ("<td> <input type=submit value=Update>");
    echo ("<input type='hIdden' name ='UpdateD' value = $row->ID>");  
    echo ("Change Equip_id <input type=text name='UpdatedEquip_id'>");
    echo "</form>";
+//form to create the delete button to remove a row from the database and crud
    echo ("<form action=Signed_Equip.php method =post>");
    echo ("<td> <input type=submit value=Delete>");
    echo ("<input type='hIdden' name ='remove' value = $row->ID>");
    echo "</form>";
 }
+//end of php
 ?>
 
 </table>
@@ -105,6 +113,7 @@ while ($row = mysqli_fetch_object ($result))
 
 <form action=Signed_Equip.php method=post>
 <pre>
+<!-- Textboxes to input a new record -->
        New Signed_Equip:
 	Student_Id <input type=text name="Student_Id">
 	Equip_id <input type=text name="Equip_id">

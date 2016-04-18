@@ -3,6 +3,7 @@
 <!-- Allows Budgets to be Added to the Budgets Table -->
 <html>
 <hr>
+<!--create table for crud to be displayed -->
 <table rules=all border=10>
 <tr>
 <td bgcolor=black colspan=8 align=center><font color=white>Existing Users
@@ -16,7 +17,7 @@
 <td bgcolor=yellow>Update Instructor
 <td bgcolor=red>Delete
 
-
+<!--end of table code -->
 
 <?php
 // connect the database
@@ -29,14 +30,17 @@ if (!$db_selected)
 // if the form has data, then insert a new record
 if (isset($_POST['Name']))
   {
+//trim all input to prevent SQL injections
    $Name= mysqli_real_escape_string($DBconn, trim($_POST['Name']));
    $MaxNum= mysqli_real_escape_string($DBconn, trim($_POST['MaxNum']));
    $Instructor_id = mysqli_real_escape_string($DBconn, trim($_POST['Instructor_id']));
    $query = "INSERT INTO Camp VALUES (NULL,'$Name','$MaxNum','$Instructor_id')";
    $result = mysqli_query ($DBconn, $query) or die ('Error querying database.');
   }
+
 elseif (isset($_POST['remove']))
 {
+//trim all input to prevent SQL injections
 	$remove = mysqli_real_escape_string($DBconn, trim($_POST['remove']));
 	$query = "DELETE FROM Camp WHERE id = \"$remove\"";
 	$result = mysqli_query ($DBconn, $query) or die ('Error querying database.');
@@ -46,6 +50,7 @@ elseif (isset($_POST['UpdateN']))
 {
 	if(!empty($_POST['UpdatedName']))
 {
+//trim all input to prevent SQL injections
 	$update = mysqli_real_escape_string($DBconn, trim($_POST['UpdateN']));
 	$UpdateName= mysqli_real_escape_string($DBconn, trim($_POST['UpdatedName']));
 	$query = "UPDATE Camp SET Name = \"$UpdateName\" WHERE id = $update;";
@@ -61,6 +66,7 @@ elseif (isset($_POST['UpdateMN']))
 {
 	if(!empty($_POST['UpdatedMaxNum']))
 {
+//trim all input to prevent SQL injections
 	$update = mysqli_real_escape_string($DBconn, trim($_POST['UpdateMN']));
 	$UpdateMaxNum= mysqli_real_escape_string($DBconn, trim($_POST['UpdatedMaxNum']));
 	$query = "UPDATE Camp SET MaxNum = \"$UpdateMaxNum\" WHERE id = $update;";
@@ -76,6 +82,7 @@ elseif (isset($_POST['UpdateI']))
 {
 	if(!empty($_POST['UpdatedInstructor_id']))
 {
+//trim all input to prevent SQL injections
 	$update = mysqli_real_escape_string($DBconn, trim($_POST['UpdateI']));
 	$UpdateInstructor_id= mysqli_real_escape_string($DBconn, trim($_POST['UpdatedInstructor_id']));
 	$query = "UPDATE Camp SET Instructor_id = \"$UpdateInstructor_id\" WHERE id = $update;";
@@ -91,25 +98,31 @@ $query = "select * from Camp;";
 $result = mysqli_query ($DBconn, $query) or die ('Error querying database.');
 while ($row = mysqli_fetch_object ($result))
 {
+//output the ID
    echo ("<tr> <td> $row->id");
+//output the name
    echo("<td> $row->Name");
+//form to post from textbox input to update Name
    echo ("<form action=Camp.php method = post>");
    echo ("<td> <input type=submit value=Update>");
    echo ("<input type='hidden' name ='UpdateN' value = $row->id>");  
    echo ("Change Name <input type=text name='UpdatedName'>");
    echo "</form>";
    echo("<td> $row->MaxNum");
+//form to post from textbox input to update Maxnum
    echo ("<form action=Camp.php method = post>");
    echo ("<td> <input type=submit value=Update>");
    echo ("<input type='hidden' name ='UpdateMN' value = $row->id>");  
    echo ("Change MaxNum <input type=text name='UpdatedMaxNum'>");
    echo "</form>";
+//form to post from textbox input to update Instructor_ID
    echo ("<td> $row->Instructor_id");
    echo ("<form action=Camp.php method = post>");
    echo ("<td> <input type=submit value=Update>");
    echo ("<input type='hidden' name ='UpdateI' value = $row->id>");  
    echo ("Change Instructor_id <input type=text name='UpdatedInstructor_id'>");
    echo "</form>";
+//form to post remove by clicking the delete button this will remove this row from the database and thhe crud
    echo ("<form action=Camp.php method =post>");
    echo ("<td> <input type=submit value=Delete>");
    echo ("<input type='hidden' name ='remove' value = $row->id>");
@@ -124,6 +137,7 @@ while ($row = mysqli_fetch_object ($result))
 
 <form action=Camp.php method=post>
 <pre>
+<!-- Textboxes to input a new record -->
        New Camp Info:
        Name <input type=text name="Name">
 	   MaxNum <input type=text name="MaxNum">

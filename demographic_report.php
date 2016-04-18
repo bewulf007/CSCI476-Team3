@@ -3,6 +3,7 @@
 <!-- Displays Demographic Information for Students -->
 <html>
 <hr>
+<!-- output table for report -->
 <table rules=all border=10>
 <tr>
 <td bgcolor=White colspan=8 align=center><font color=Black>Student Report
@@ -17,20 +18,23 @@
 <td bgcolor=White>State
 <td bgcolor=White>Camp
 
+<!--end of table -->
 
-<?php
+<?php //php begins here
 // connect the database
 $DBconn = mysqli_connect ("daytona.birdnest.org", "my.morriss11", "@y#mln52")
           or exit ("failed to connect to mysql");
 $db_selected = mysqli_select_db($DBconn, "my_morriss11");
+//exception if database cannot connect throw error message
 if (!$db_selected)
    die ("Can't use my_morriss11 : " . mysqli_error());
-
+//query to create report
 $query = "SELECT DISTINCT Student.Fname, Student.Lname, Student.School, Student.Grade, Student.Gender, Student.Ethnicity, Address.City, Address.State, Camp.Name FROM Student JOIN Address ON Student.Address_id=Address.id JOIN Campers ON Student.id=Campers.Student_id JOIN Camp ON Campers.Camp_id=Camp.id;";
 
 $result = mysqli_query ($DBconn, $query) or die ('Error querying database.');
 while ($row = mysqli_fetch_object ($result))
 {
+//generate query into the table
    echo ("<tr> <td> $row->Fname");
    echo("<td> $row->Lname");
    echo ("<td> $row->School");
