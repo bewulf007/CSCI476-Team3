@@ -83,7 +83,7 @@ $query = "Select Campers.ID, Student_Id, Fname, Lname, Camp_Id
  from Student JOIN Campers 
 WHERE Student.id=Campers.Student_id
 ORDER BY Student_Id ASC;";
-$result = mysqli_query ($query, $DBconn);
+$result = mysqli_query ($DBconn, $query);
 while ($row = mysqli_fetch_object ($result))
 {
    echo ("<tr> <td> $row->ID");
