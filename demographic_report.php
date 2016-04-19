@@ -22,12 +22,7 @@
 
 <?php //php begins here
 // connect the database
-$DBconn = mysqli_connect ("daytona.birdnest.org", "my.morriss11", "@y#mln52")
-          or exit ("failed to connect to mysql");
-$db_selected = mysqli_select_db($DBconn, "my_morriss11");
-//exception if database cannot connect throw error message
-if (!$db_selected)
-   die ("Can't use my_morriss11 : " . mysqli_error());
+require_once ('connection.php');
 //query to create report
 $query = "SELECT DISTINCT Student.Fname, Student.Lname, Student.School, Student.Grade, Student.Gender, Student.Ethnicity, Address.City, Address.State, Camp.Name FROM Student JOIN Address ON Student.Address_id=Address.id JOIN Campers ON Student.id=Campers.Student_id JOIN Camp ON Campers.Camp_id=Camp.id;";
 
