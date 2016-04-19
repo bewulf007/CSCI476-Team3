@@ -12,11 +12,7 @@
 
 <?php
 // connect the database
-$DBconn = mysqli_connect ("daytona.birdnest.org", "my.morriss11", "@y#mln52")
-          or exit ("failed to connect to mysql");
-$db_selected = mysqli_select_db($DBconn, "my_morriss11");
-if (!$db_selected)
-   die ("Can't use my_paternom3 : " . mysqli_error());
+require_once ('connection.php');
 
 $query = "select * from Equipment;";
 $result = mysqli_query ($DBconn, $query);
