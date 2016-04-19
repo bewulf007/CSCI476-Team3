@@ -21,11 +21,7 @@
 <!--end of table -->
 
 <?php //php begins here
-$DBconn = mysqli_connect ("daytona.birdnest.org", "my.morriss11", "@y#mln52")
-          or exit ("failed to connect to mysql");
-$db_selected = mysqli_select_db($DBconn, "my_morriss11");
-if (!$db_selected)
-   die ("Can't use my_morriss11 : " . mysqli_error());
+require_once ('connection.php');
 
 // if the form had data, then insert a new record
 if (isset($_POST['Student_id']))
