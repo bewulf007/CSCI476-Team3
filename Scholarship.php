@@ -22,12 +22,7 @@
 
 <?php //php begins here
 // connect the database
-$DBconn = mysqli_connect ("daytona.birdnest.org", "my.morriss11", "@y#mln52")
-          or exit ("failed to connect to mysql");
-$db_selected = mysqli_select_db($DBconn, "my_morriss11");
-//exception if cannot connect to database output error message
-if (!$db_selected)
-   die ("Can't use my_paternom3 : " . mysqli_error());
+require_once ('connection.php');
    
    //If the form has data, then insert a new record
    if (isset($_POST['SFname']))
