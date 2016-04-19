@@ -1,11 +1,5 @@
 <?php
-
-$DBconn = mysql_connect ("daytona.birdnest.org", "my.morriss11", "@y#mln52")
-          or exit ("failed to connect to mysql");
-$db_selected = mysql_select_db("my_morriss11", $DBconn);
-//exception: if database is not connected print error message
-if (!$db_selected)
-   die ("Can't use my_morriss11 : " . mysql_error());
+require_once ('connection.php');
 
 //require once the file_readingcsv.php
 require_once ('file_readingcsv.php');
