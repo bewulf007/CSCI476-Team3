@@ -140,9 +140,12 @@ if (!$result12) {
 	echo 'Error ID not found' . mysql_error();}
 $camp4count = mysql_fetch_row($result12);
 
+/*note that the following code will need to be updated with the new camp names every year
+the camp name is hard coded so that you can search for the answer provided through qualtrics and check which answer or answers were chosen*/
+
 //---------------------------JEWEL-----------------------------------------------------------
 
-//if student chose the answer Computing and Jewelry Design Cost: $125 July 7 - 11 then check the count.
+//if student chose the answer Computing and Jewelry Design Cost: $125 July 7 - 11 then check the count. Would recommend copy and pasted the answer from qualtrics to the next line of code
 if ($data[36] == "Computing and Jewelry Design Cost: $125 July 7 - 11")
 {
 $query12 = "SELECT COUNT(Camp_Id) FROM Campers WHERE Camp_Id=1";
@@ -179,7 +182,7 @@ $result5 = mysql_query ($query8, $DBconn);
 
 //----------------------------- ROBOT-----------------------------------------------------------
 
-//if student chose the answer Computing and Robotics Cost $125 July 14 -18 then check the count.
+//if student chose the answer Computing and Robotics Cost $125 July 14 -18 then check the count.Would recommend copy and pasting the answer from qualtrics to the next line of code
 if ($data[37] == "Computing and Robotics Cost $125 July 14 -18")
 {
 $query13 = "SELECT COUNT(Camp_Id) FROM Campers WHERE Camp_Id=2";
@@ -214,7 +217,7 @@ $result6 = mysql_query ($query9, $DBconn);
 
 //-----------------------------------Mobile-----------------------------------------------------
 
-//if student chose the answer Computing Mobile Apps Cost: $125 July 21 - 25 then check the count.
+//if student chose the answer Computing Mobile Apps Cost: $125 July 21 - 25 then check the count.Would recommend copy and pasting the answers from qualtrics to the next line of code
 if ($data[38] == "Computing Mobile Apps Cost: $125 July 21 - 25")
 {
 $query14 = "SELECT COUNT(Camp_Id) FROM Campers WHERE Camp_Id=3";
@@ -248,9 +251,9 @@ $query10 = "INSERT INTO Waitlist VALUES (NULL,$StudentId[0],3)";
 $result7 = mysql_query ($query10, $DBconn);
 }
 
-//----------------------------------3-D-Print--------------------------------------------------------
+//--------------------------------3-D-Print-----------------------------------------------------------
 
-//if student chose the answer 3-D Printing Cost $125 then check the count.
+//if student chose the answer 3-D Printing Cost $125 then check the count. Would recommend copy and pasted the answers from qualtrics to the next line of code.
 if ($data[39] == "3-D Printing Cost $125")
 {
 $query15 = "SELECT COUNT(Camp_Id) FROM Campers WHERE Camp_Id=4";
@@ -282,8 +285,6 @@ if ($data[39] == "3-D Printing Cost $125"and $camp4count[0] >= 20 and $Campers[0
 $query11 = "INSERT INTO Waitlist VALUES (NULL,$StudentId[0],4)";
 $result8 = mysql_query ($query11, $DBconn);
 }
-
-
 
 }}
 //close the file
