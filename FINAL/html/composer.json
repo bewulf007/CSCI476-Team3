@@ -1,0 +1,6 @@
+{
+	"minimum-stability": "dev",
+	"require" : {
+		"adldap/adldap": "5.0.*"
+	}
+}
