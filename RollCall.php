@@ -16,12 +16,7 @@
 
 <?php //php begins here
 // connect the database
-$DBconn = mysqli_connect ("daytona.birdnest.org", "my.morriss11", "@y#mln52")
-          or exit ("failed to connect to mysql");
-$db_selected = mysqli_select_db($DBconn, "my_morriss11");
-//exception if database cannot connect throw error message
-if (!$db_selected)
-   die ("Can't use my_morriss11 : " . mysqli_error());
+require_once ('connection.php');
 //get Student first name, last name, camp name, emergency first name, emergency last name, emergency phone for reporting purposes
 $query = "SELECT Student.Fname, Student.Lname, Camp.Name, Emerge.Fname AS EFname, Emerge.Lname AS ELname, Emerge.Phone FROM Student JOIN Campers ON Student.id=Campers.Student_id JOIN Camp ON Campers.Camp_id=Camp.id JOIN Emerge ON Student.Emerge_id=Emerge.id;";
 $result = mysqli_query ($DBconn, $query);
