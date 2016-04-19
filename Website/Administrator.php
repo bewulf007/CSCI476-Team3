@@ -89,6 +89,9 @@ if($authUser==true) { ?>
 <P>
 <a href ="waitlist.php">Waitlist</a>
 <P>
+ <a href="Budget.php">Budget</a>
+</P>
+<P>
 <h3 align=left>Reports</h3>
 <a href ="demographic_report.php">Demographic Report </a>
 <P>
